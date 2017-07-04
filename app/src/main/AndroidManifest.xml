@@ -38,6 +38,16 @@
             android:name=".ui.activity.CoordinatorActivity2"
             android:theme="@style/AppTheme.Common.Launch" />
         <activity android:name=".ui.activity.KotlinAndroidActivity"></activity>
-    </application>
 
+
+        <!--友盟统计  value是其他项目的-->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5913bcf2f5cde42deb102334" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+        <!--友盟统计-->
+
+    </application>
 </manifest>

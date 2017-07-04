@@ -3,20 +3,40 @@
 //apply plugin:'kotlin-android'
 //apply plugin:'kotlin-android-extensions'
 
-buildscript {//配置驱动构建过程的代码，意思就是buildscript中的配置仅仅在构建过程中起作用，也就是构建程序所使用的配置。
+buildscript {
+    //Configures the build script classpath for this project. 说白了就是设置脚本的运行环境
+    // 配置驱动构建过程的代码，意思就是buildscript中的配置仅仅在构建过程中起作用，也就是构建程序所使用的配置。
     ext.kotlin_version = '1.1.2-4'
     repositories {
+        //Returns a handler to create repositories which are used for retrieving dependencies and uploading artifacts produced by the project.
+        // 大意就是支持java 依赖库管理（maven/ivy）,用于项目的依赖。这也是gradle 强力的地方，gradle 对于包的管理，支持filesystem，maven，ivy
         jcenter()
-        // mavenCentral()  声明了我们的构建程序会使用Maven中央仓库，
+        // 如果是mavenCentral()  声明了我们的构建程序会使用Maven中央仓库，从中央库里面获取依赖
         // 并且有一个classpath依赖是指向一个Maven库的。这个Maven库就是Android Gradle插件，版本号是2.3.3。
-
 
 //私人仓库
 //        maven {
 //            url "${NEXUS_URL}/repository/maven-public"
 //        }
+
+        //或者使用指定的本地maven 库
+//        maven{
+//            url "file://F:/githubrepo/releases"
+//        }
+        //或者使用指定的远程maven库，如上私人仓库
+//        maven {
+//            url "https://github.com/youxiachai/youxiachai-mvn-repo/raw/master/releases"
+//       }
     }
     dependencies {
+        //应用格式: packageName:artifactId:version
+
+        //The dependency handler of this project.
+        // The returned dependency handler instance can be used for adding new dependencies.
+        // For accessing already declared dependencies, the configurations can be used.
+        // 依赖包的定义。支持maven/ivy，远程，本地库，也支持单文件，
+        // 如果前面定义了repositories{}maven 库，使用maven的依赖（我没接触过ivy。。）的时候
+        // 只需要按照用类似于com.android.tools.build:gradle:0.4，gradle 就会自动的往远程库下载相应的依赖。
         classpath 'com.android.tools.build:gradle:2.3.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 

@@ -1,11 +1,18 @@
 apply plugin: 'com.android.application'
+//声明构建的项目类型，这里当然是android了。。。
+//只需要使用android插件，再使用Java插件会报错.
+//在local.properties中使用sdk.dir属性指定SDK路径，或者你可以使用ANDROID_HOME环境变量。
+
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+
 def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
 
-android {
+android { //设置编译android项目的参数，接下来，我们的构建android项目的所有配置都在这里完成。
+    // 默认情况下，只需要指定compileSdkVersion和buildtoolsVersion，compileSdkVersion
+    // 指定使用哪个版本的sdk编译，buildToolsVersion指定使用哪个版本的构建工具。
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
@@ -18,7 +25,7 @@ android {
         // 默认是yingyongbao的渠道
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
     }
-    signingConfigs {
+    signingConfigs { //打签名包
         debug {
             storeFile file('E:\\keystore\\dumbo_release.jks')
             storePassword RELEASE_KEYSTORE_PASSWORD
@@ -53,7 +60,7 @@ android {
         release {
             signingConfig signingConfigs.release
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'//混淆
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false
@@ -64,7 +71,7 @@ android {
     dexOptions {
         jumboMode true
     }
-    productFlavors {
+    productFlavors {//Product Flavor{} 不只是能改包名那么简单，还能够对编译的源码目录进行切换。
         yingyongbao {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
         }
