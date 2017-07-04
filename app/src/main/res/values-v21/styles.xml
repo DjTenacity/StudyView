@@ -1,0 +1,12 @@
+<resources>
+
+    <style name="AppTheme.Common">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
+    </style>
+
+    <!--<style name="WrapContent.WidthMatchParent.RecyclerItem.Foreground">-->
+        <!--<item name="android:foreground">?selectableItemBackground</item>-->
+    <!--</style>-->
+
+</resources>

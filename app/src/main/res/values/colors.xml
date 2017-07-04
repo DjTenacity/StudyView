@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorPrimaryTransparent">#991B7AEA</color>
+
+    <color name="black">#FF000000</color>
+    <color name="gray">#FF888888</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#FFFF0000</color>
+    <color name="green">#FF00FF00</color>
+    <color name="blue">#FF0000FF</color>
+    <color name="yellow">#FFFFFF00</color>
+    <color name="orange">#FFFFA500</color>
+    <color name="purple">#FFA020F0</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_half_1">#10000000</color>
+    <color name="transparent_half_2">#20000000</color>
+
+    <drawable name="transparent">#00000000</drawable>
+
+    <!-- 统一 -->
+    <color name="page_ground">#FFEFEFF4</color>
+    <color name="font_color">#FF333333</color>
+    <color name="font_color_more_text">#BB000000</color>
+    <color name="line_color">#C4C4C4</color>
+
+
+</resources>

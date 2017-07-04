@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyView</string>
+    <string name="DoYouLove">DoYouKnow</string>
+
+    <string name="simple_view_behavior">com.gdj.myview.ui.behavior.SimpleViewBehavior</string>
+    <string name="translate_up_down_behavior">com.gdj.myview.ui.behavior.TranslateUpDownBehavior</string>
+
+    <string name="behavior_user_head_move">com.gdj.myview.ui.behavior.AvatarImageBehavior</string>
+
+</resources>

@@ -1,0 +1,66 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+//apply plugin: 'com.android.application'
+//apply plugin:'kotlin-android'
+//apply plugin:'kotlin-android-extensions'
+
+buildscript {//配置驱动构建过程的代码，意思就是buildscript中的配置仅仅在构建过程中起作用，也就是构建程序所使用的配置。
+    ext.kotlin_version = '1.1.2-4'
+    repositories {
+        jcenter()
+        // mavenCentral()  声明了我们的构建程序会使用Maven中央仓库，
+        // 并且有一个classpath依赖是指向一个Maven库的。这个Maven库就是Android Gradle插件，版本号是2.3.3。
+
+
+//私人仓库
+//        maven {
+//            url "${NEXUS_URL}/repository/maven-public"
+//        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+
+        // classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+//私人仓库
+//allprojects {
+//    repositories {
+//        maven {
+//            url "${NEXUS_URL}/repository/maven-public"
+//        }
+//    }
+//}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+//在local.properties中使用sdk.dir属性指定SDK路径，或者你可以使用ANDROID_HOME环境变量。
+ext {
+//    versionCode = 24
+//    versionName_okgo = '3.0.0'
+//    versionName_okserver = '2.0.0'
+//    versionName_okrx = '1.0.0'
+//    versionName_okrx2 = '2.0.0'
+
+    minSdkVersion = 16
+    targetSdkVersion = 25
+    compileSdkVersion = 25
+    buildToolsVersion = '25.0.2'
+    supportVersion = '25.3.1'
+}
