@@ -1,1 +1,1 @@
-include ':app', ':camera', ':dropdownmenu'
+include ':app', ':camera', ':dropdownmenu',':multichoicescirclebutton'

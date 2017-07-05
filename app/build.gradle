@@ -49,8 +49,11 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
             }
         }
     }
+
+//  gradle在构建项目的时候,会自动的优先使用build-types下目录文件的目录,
+//                  诸如,根据不同渠道,不同国家换个程序图标什么的,都只要放到目录下即可
     buildTypes {
-//        release {
+//        release {   默认
 //            minifyEnabled false
 //            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //        }
@@ -59,8 +62,9 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
         }
         release {
             signingConfig signingConfigs.release
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'//混淆
+            minifyEnabled false//是否混淆
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//混淆de位置
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false
@@ -88,6 +92,12 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
 //    }
 //}
 
+//repositories {   针对camera-debug
+//    flatDir {
+//        dirs 'libs'
+//    }
+//}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -103,6 +113,8 @@ dependencies {
     compile "com.android.support:cardview-v7:$supportVersion"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
+    //compile(name: 'camera-debug', ext: 'aar')   类似于 compile project(':camera')，不过camera是我改的源码，前者是原作者的封装
+
 // compile 'cn.zhimadi.android.common.lib:android-common-lib:1.0.0-SNAPSHOT'
 
     compile 'com.jakewharton:butterknife:8.5.1'
@@ -115,4 +127,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
 
     compile project(':camera')
+    compile project(':multichoicescirclebutton')
+
 }

@@ -9,8 +9,10 @@ buildscript {
     ext.kotlin_version = '1.1.2-4'
     repositories {
         //Returns a handler to create repositories which are used for retrieving dependencies and uploading artifacts produced by the project.
-        // 大意就是支持java 依赖库管理（maven/ivy）,用于项目的依赖。这也是gradle 强力的地方，gradle 对于包的管理，支持filesystem，maven，ivy
+        // 大意就是支持java 依赖库管理（maven/ivy）,用于项目的依赖。这也是gradle 强力的地方，
+        // gradle 对于包的管理，支持filesystem，maven，ivy
         jcenter()
+        //jcenter是一个声明仓库的源,之前版本则是mavenCentral(),jcenter可以理解成是一个新的中央远程仓库，兼容maven中心仓库，而且性能更优。
         // 如果是mavenCentral()  声明了我们的构建程序会使用Maven中央仓库，从中央库里面获取依赖
         // 并且有一个classpath依赖是指向一个Maven库的。这个Maven库就是Android Gradle插件，版本号是2.3.3。
 
@@ -43,6 +45,8 @@ buildscript {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 
+
+      //  classpath 'com.novoda:bintray-release:0.3.4'  //快速发布开源项目到jcenter
         // classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -52,6 +56,10 @@ buildscript {
 
 allprojects {
     repositories {
+
+        //        flatDir {
+//            dirs 'libs'
+//        }
         jcenter()
         maven { url "https://jitpack.io" }
     }
