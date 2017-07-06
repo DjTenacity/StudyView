@@ -22,6 +22,7 @@ import android.content.Intent;
 import com.gdj.myview.entry.ItemModel;
 import com.gdj.myview.ui.activity.CoordinatorActivity2;
 import com.gdj.myview.ui.activity.MainActivity;
+import com.gdj.myview.ui.activity.MultiButtonActivity;
 
 import java.util.List;
 
@@ -40,12 +41,11 @@ public class MYFragment extends MainFragment {
                                 " " +//
                                 " \n" +//
                                 " \n" +//
-                                " \n" +//
                                 " "));
 
-        items.add(new ItemModel("自动解析JSON对象",//
-                                "1.自动解析JSONObject对象\n" + //
-                                "2.自动解析JSONArray对象"));
+        items.add(new ItemModel("具有3D视差效果的多选按钮。",//
+                                "https://github.com/gjiazhe/MultiChoicesCircleButton\n" + //
+                                "灵感来自Nicola Felasquez Felaco的发布会，并引用JustinFincher / JZMultiChoicesCircleButton。"));
 
         items.add(new ItemModel("文件下载",//
                                 "1.支持大文件或小文件下载，无论多大文件都不会发生OOM\n" +//
@@ -64,5 +64,7 @@ public class MYFragment extends MainFragment {
     public void onItemClick(int position) {
         if (position == 0) startActivity(new Intent(context, MainActivity.class));
         if (position == 1) startActivity(new Intent(context, CoordinatorActivity2.class));
+        if (position == 2) startActivity(new Intent(context, MultiButtonActivity.class));
+
     }
 }

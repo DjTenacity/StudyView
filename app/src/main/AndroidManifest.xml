@@ -38,6 +38,8 @@
             android:name=".ui.activity.CoordinatorActivity2"
             android:theme="@style/AppTheme.Common.Launch" />
         <activity android:name=".ui.activity.KotlinAndroidActivity"></activity>
+        
+        <activity android:name=".ui.activity.MultiButtonActivity"></activity>
 
 
         <!--友盟统计  value是其他项目的-->

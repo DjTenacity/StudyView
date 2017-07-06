@@ -202,7 +202,9 @@ public class CameraInterface implements Camera.PreviewCallback {
         if (mParams == null) {
             mParams = mCamera.getParameters();
         }
-        if (!mParams.isZoomSupported() || !mParams.isSmoothZoomSupported()) {
+
+        //判断一个是否支持对焦
+        if (!mParams.isZoomSupported() && !mParams.isSmoothZoomSupported()) {
             return;
         }
         switch (type) {
@@ -212,8 +214,8 @@ public class CameraInterface implements Camera.PreviewCallback {
                     return;
                 }
                 if (zoom >= 0) {
-                    //每移动50个像素缩放一个级别
-                    int scaleRate = (int) (zoom / 50);
+                    //每移动30个像素缩放一个级别 ,本应该根据屏幕分辨率来计算一个缩放的像素
+                    int scaleRate = (int) (zoom / 30);
                     if (scaleRate <= mParams.getMaxZoom() && scaleRate >= nowScaleRate && recordScleRate != scaleRate) {
                         mParams.setZoom(scaleRate);
                         mCamera.setParameters(mParams);
@@ -225,8 +227,8 @@ public class CameraInterface implements Camera.PreviewCallback {
                 if (isRecorder) {
                     return;
                 }
-                //每移动50个像素缩放一个级别
-                int scaleRate = (int) (zoom / 50);
+                //每移动30个像素缩放一个级别
+                int scaleRate = (int) (zoom / 30);
                 if (scaleRate < mParams.getMaxZoom()) {
                     nowScaleRate += scaleRate;
                     if (nowScaleRate < 0) {
