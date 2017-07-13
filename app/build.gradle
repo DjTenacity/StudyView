@@ -6,6 +6,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+//添加如下代码，应用apt插件
+//apply plugin: 'com.neenbedankt.android-apt'
+
 def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
@@ -125,6 +128,11 @@ dependencies {
 
     // circle image,圆形头像
     compile 'de.hdodenhof:circleimageview:2.1.0'
+//dagger2
+  //  compile 'com.google.dagger:dagger:2.4'
+  //  apt 'com.google.dagger:dagger-compiler:2.4'
+    //java注解
+  //  compile 'org.glassfish:javax.annotation:10.0-b28'
 
     compile project(':camera')
     compile project(':multichoicescirclebutton')

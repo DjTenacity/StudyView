@@ -26,6 +26,7 @@ import android.widget.VideoView;
 
 import com.gdj.camera.lisenter.CaptureLisenter;
 import com.gdj.camera.lisenter.ErrorLisenter;
+import com.gdj.camera.lisenter.FirstFoucsLisenter;
 import com.gdj.camera.lisenter.JCameraLisenter;
 import com.gdj.camera.lisenter.ReturnLisenter;
 import com.gdj.camera.lisenter.TypeLisenter;
@@ -43,9 +44,11 @@ import java.io.IOException;
  */
 public class JCameraView extends FrameLayout implements CameraInterface.CamOpenOverCallback, SurfaceHolder.Callback {
     private static final String TAG = "CJT";
+    //拍照浏览时候的类型
     private static final int TYPE_PICTURE = 0x001;
     private static final int TYPE_VIDEO = 0x002;
 
+    //录制视频比特率
     public static final int MEDIA_QUALITY_HIGH = 20 * 100000;
     public static final int MEDIA_QUALITY_MIDDLE = 16 * 100000;
     public static final int MEDIA_QUALITY_LOW = 12 * 100000;
@@ -61,7 +64,7 @@ public class JCameraView extends FrameLayout implements CameraInterface.CamOpenO
     public static final int BUTTON_STATE_ONLY_RECORDER = 0x102;
     //两者都可以
     public static final int BUTTON_STATE_BOTH = 0x103;
-
+    //回调监听
     private JCameraLisenter jCameraLisenter;
 
 
@@ -78,8 +81,11 @@ public class JCameraView extends FrameLayout implements CameraInterface.CamOpenO
     private int fouce_size;
     private float screenProp;
 
+    //拍照的图片
     private Bitmap captureBitmap;
+    //第一帧图片
     private Bitmap firstFrame;
+    //视频URL
     private String videoUrl;
     private int type = -1;
     private boolean onlyPause = false;
@@ -190,9 +196,9 @@ public class JCameraView extends FrameLayout implements CameraInterface.CamOpenO
                 }.start();
             }
         });
-        mCloseCamera=new ImageView(mContext);
+        mCloseCamera = new ImageView(mContext);
         LayoutParams imageViewParam2 = new LayoutParams(iconSize + 2 * iconMargin, iconSize + 2 * iconMargin);
-        imageViewParam2.gravity=Gravity.LEFT;
+        imageViewParam2.gravity = Gravity.LEFT;
         mCloseCamera.setPadding(iconMargin, iconMargin, iconMargin, iconMargin);
         mCloseCamera.setLayoutParams(imageViewParam2);
         mCloseCamera.setImageResource(R.drawable.ic_close);
@@ -424,7 +430,18 @@ public class JCameraView extends FrameLayout implements CameraInterface.CamOpenO
 
     @Override
     public void cameraHasOpened() {
-        CameraInterface.getInstance().doStartPreview(mVideoView.getHolder(), screenProp);
+        CameraInterface.getInstance().doStartPreview(mVideoView.getHolder(), screenProp, new FirstFoucsLisenter() {
+            @Override
+            public void onFouce() {
+                JCameraView.this.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        setFocusViewWidthAnimation(getWidth() / 2, getHeight() / 2);
+                    }
+                });
+            }
+        });
+        //CameraInterface.getInstance().doStartPreview(mVideoView.getHolder(), screenProp);
     }
 
     private boolean switching = false;
@@ -498,7 +515,7 @@ public class JCameraView extends FrameLayout implements CameraInterface.CamOpenO
                         firstTouchLength = result;
                         firstTouch = false;
                     }
-                    if ((int) (result - firstTouchLength) / 50 != 0) {
+                    if ((int) (result - firstTouchLength) / 40 != 0) {
                         firstTouch = true;
                         CameraInterface.getInstance().setZoom(result - firstTouchLength, CameraInterface.TYPE_CAPTURE);
                     }
@@ -597,6 +614,8 @@ public class JCameraView extends FrameLayout implements CameraInterface.CamOpenO
         isBorrow = false;
         mSwitchCamera.setVisibility(VISIBLE);
         CAMERA_STATE = STATE_IDLE;
+        mFoucsView.setVisibility(VISIBLE);
+        setFocusViewWidthAnimation(getWidth() / 2, getHeight() / 2);
     }
 
     public void setSaveVideoPath(String path) {

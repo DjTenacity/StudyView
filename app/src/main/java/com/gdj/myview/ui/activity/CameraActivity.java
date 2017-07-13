@@ -25,6 +25,7 @@ import java.io.File;
 
 public class CameraActivity extends AppCompatActivity {
     private JCameraView jCameraView;
+    private String appname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,8 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
         jCameraView = (JCameraView) findViewById(R.id.jcameraview);
         //设置视频保存路径
-        String appname = getString(R.string.app_name);
+        appname = getString(R.string.app_name);
+
         jCameraView.setSaveVideoPath(Environment.getExternalStorageDirectory().getPath() + File.separator + appname);
         jCameraView.setFeatures(JCameraView.BUTTON_STATE_BOTH);
         jCameraView.setMediaQuality(JCameraView.MEDIA_QUALITY_MIDDLE);
@@ -81,17 +83,18 @@ public class CameraActivity extends AppCompatActivity {
             public void recordSuccess(String url, Bitmap firstFrame) {
                 //获取视频路径
                 Log.i("CJT", "url = " + url + ", Bitmap = " + firstFrame.getWidth());
-
+                String path = FileUtil.saveBitmap("JCamera", firstFrame);
+                Log.i("CJT", "url = " + url + ", Bitmap = " + path);
                 // 这里我们发送广播让MediaScanner 扫描我们制定的文件
                 // 这样在系统的相册中我们就可以找到我们拍摄的照片了
                  Uri uri = Uri.fromFile(new File(url));
                 Intent intent2 = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                  intent2.setData(uri);
+                intent2.setData(uri);
                 sendBroadcast(intent2);
 
                 Intent intent = new Intent();
-                intent.putExtra("path", url);
-                setResult(102, intent);
+                intent.putExtra("path", path);
+                setResult(101, intent);
                 finish();
             }
 
@@ -137,5 +140,11 @@ public class CameraActivity extends AppCompatActivity {
         Log.i("CJT", "onPause");
         super.onPause();
         jCameraView.onPause();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this,"请点击屏幕按钮",Toast.LENGTH_SHORT).show();
+       // super.onBackPressed();
     }
 }

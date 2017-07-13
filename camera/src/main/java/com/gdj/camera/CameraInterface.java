@@ -23,6 +23,7 @@ import android.view.SurfaceHolder;
 import android.widget.ImageView;
 
 import com.gdj.camera.lisenter.ErrorLisenter;
+import com.gdj.camera.lisenter.FirstFoucsLisenter;
 import com.gdj.camera.util.AngleUtil;
 import com.gdj.camera.util.CameraParamUtil;
 import com.gdj.camera.util.CheckPermission;
@@ -204,7 +205,7 @@ public class CameraInterface implements Camera.PreviewCallback {
         }
 
         //判断一个是否支持对焦
-        if (!mParams.isZoomSupported() && !mParams.isSmoothZoomSupported()) {
+        if (!mParams.isZoomSupported() || !mParams.isSmoothZoomSupported()) {
             return;
         }
         switch (type) {
@@ -325,14 +326,14 @@ public class CameraInterface implements Camera.PreviewCallback {
                 Log.e("CJT", "enable shutter_sound sound faild");
             }
         }
-        doStartPreview(mHolder, screenProp);
+        doStartPreview(mHolder, screenProp,null);
         callback.cameraSwitchSuccess();
     }
 
     /**
      * doStartPreview
      */
-    void doStartPreview(SurfaceHolder holder, float screenProp) {
+    void doStartPreview(SurfaceHolder holder, float screenProp, FirstFoucsLisenter lisenter) {
         if (this.screenProp < 0) {
             this.screenProp = screenProp;
         }
@@ -383,6 +384,10 @@ public class CameraInterface implements Camera.PreviewCallback {
 //                mCamera.stopPreview();
             }
         }
+        //启动浏览后自动对焦一次
+                if (lisenter != null) {
+                        lisenter.onFouce();
+                   }
         Log.i(TAG, "=== Start Preview ===");
     }
 
