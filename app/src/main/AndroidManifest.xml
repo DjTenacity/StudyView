@@ -41,6 +41,7 @@
         
         <activity android:name=".ui.activity.MultiButtonActivity"></activity>
 
+        <activity android:name=".ui.activity.QQzoneActivity"></activity>
 
         <!--友盟统计  value是其他项目的-->
         <meta-data

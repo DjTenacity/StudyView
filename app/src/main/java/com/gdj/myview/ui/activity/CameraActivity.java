@@ -81,10 +81,10 @@ public class CameraActivity extends AppCompatActivity {
 
             @Override
             public void recordSuccess(String url, Bitmap firstFrame) {
-                //获取视频路径
+                //获取视频路径  url
                 Log.i("CJT", "url = " + url + ", Bitmap = " + firstFrame.getWidth());
-                String path = FileUtil.saveBitmap("JCamera", firstFrame);
-                Log.i("CJT", "url = " + url + ", Bitmap = " + path);
+
+
                 // 这里我们发送广播让MediaScanner 扫描我们制定的文件
                 // 这样在系统的相册中我们就可以找到我们拍摄的照片了
                  Uri uri = Uri.fromFile(new File(url));
@@ -92,9 +92,14 @@ public class CameraActivity extends AppCompatActivity {
                 intent2.setData(uri);
                 sendBroadcast(intent2);
 
+                //第一帧的图片 传的
+                String path = FileUtil.saveBitmap("JCamera", firstFrame);
+                Log.i("CJT", "url = " + url + ", Bitmap = " + path);
                 Intent intent = new Intent();
                 intent.putExtra("path", path);
                 setResult(101, intent);
+                //intent.putExtra("path", url);
+                //setResult(102, intent);
                 finish();
             }
 

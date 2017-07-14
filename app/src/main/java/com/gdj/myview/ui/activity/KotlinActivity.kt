@@ -170,6 +170,7 @@ class KotlinActivity : AppCompatActivity() {
             println("$k -> $v")
         }
         var value: String=""
+
         println(map["a"])
      //   map["B"] = value
 
