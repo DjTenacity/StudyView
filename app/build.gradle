@@ -29,12 +29,12 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
     }
     signingConfigs { //打签名包
-        debug {
-            storeFile file('E:\\keystore\\dumbo_release.jks')
-            storePassword RELEASE_KEYSTORE_PASSWORD
-            keyAlias 'release'
-            keyPassword RELEASE_KEY_PASSWORD
-        }
+//        debug {
+//            storeFile file('E:\\keystore\\dumbo_release.jks')
+//            storePassword RELEASE_KEYSTORE_PASSWORD
+//            keyAlias 'release'
+//            keyPassword RELEASE_KEY_PASSWORD
+//        }
         release {
             storeFile file('E:\\keystore\\dumbo_release.jks')
             storePassword RELEASE_KEYSTORE_PASSWORD

@@ -37,13 +37,16 @@
         <activity
             android:name=".ui.activity.CoordinatorActivity2"
             android:theme="@style/AppTheme.Common.Launch" />
-        <activity android:name=".ui.activity.KotlinAndroidActivity"></activity>
+        <activity android:name=".ui.activity.KotlinAndroidActivity"/>
         
-        <activity android:name=".ui.activity.MultiButtonActivity"></activity>
+        <activity android:name=".ui.activity.MultiButtonActivity"/>
 
-        <activity android:name=".ui.activity.QQzoneActivity"></activity>
+        <activity android:name=".ui.activity.QQzoneActivity"/>
 
-        <!--友盟统计  value是其他项目的-->
+        <activity android:name=".ui.activity.YahooNewsActivity"/>
+
+
+        <!--友盟统计  value是其他项目的,而且放心，我改了部分-->
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5913bcf2f5cde42deb102334" />

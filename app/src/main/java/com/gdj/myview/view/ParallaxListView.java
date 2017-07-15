@@ -2,6 +2,7 @@ package com.gdj.myview.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -32,15 +33,17 @@ public class ParallaxListView extends ListView {
 
         //deltaX, deltaY ——>dx,dy 增量    正的  上拉过度 和负的 下拉过度
 
+Log.w("log.w(\"\")","og.w");
+
         if (deltaY < 0) {
             //添加高度，因为是centerCrop所以宽度也会变大
-            mImageView.getLayoutParams().height = mImageView.getHeight() - deltaX;
+            mImageView.getLayoutParams().height = mImageView.getHeight() - deltaY;
             mImageView.requestLayout();
             iv_icon.setRotation(iv_icon.getRotation()-deltaY);
         } else {
             //缩小,要确认是放大情况
             if (mImageView.getHeight() > mImageViewHeight) {
-                mImageView.getLayoutParams().height = mImageView.getHeight() - deltaX;
+                mImageView.getLayoutParams().height = mImageView.getHeight() - deltaY;
                 mImageView.requestLayout();
                 iv_icon.setRotation(iv_icon.getRotation()+deltaY);
             }
@@ -78,7 +81,7 @@ public class ParallaxListView extends ListView {
         //松开手
         if (action == MotionEvent.ACTION_UP) {
             ResetAnimation resetAnimation = new ResetAnimation(mImageView,mImageViewHeight,iv_icon);
-            resetAnimation.setDuration(300);
+            resetAnimation.setDuration(500);
             mImageView.startAnimation(resetAnimation);
         }
 
@@ -105,6 +108,7 @@ public class ParallaxListView extends ListView {
             // interpolatedTime(0.0 - 1.0 )执行的百分比
             //减小imageView的高度
             mIV.getLayoutParams().height = (int) (originalHeight-extraHeight* interpolatedTime);//现在的高度-高度差 * interpolatedTime
+           mIV.requestLayout();
             iv_icon.setRotation(iv_icon.getRotation()-iv_icon.getRotation()* interpolatedTime);
             super.applyTransformation(interpolatedTime, t);
         }

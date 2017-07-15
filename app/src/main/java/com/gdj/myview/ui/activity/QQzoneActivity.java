@@ -33,7 +33,7 @@ public class QQzoneActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         View view = View.inflate(this,R.layout.layout_heard_img,null);
-        iv= (ImageView) view.findViewById(R.id.layout_heard_image);
+        iv= (ImageView) view.findViewById(R.id.iv_heard_image);
         iHeardV= (ImageView) view.findViewById(R.id.iv_icon);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,

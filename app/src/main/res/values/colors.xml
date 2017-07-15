@@ -27,5 +27,15 @@
     <color name="font_color_more_text">#BB000000</color>
     <color name="line_color">#C4C4C4</color>
 
+    <array name="splash_circle_colors">
+        <item>@color/purple</item>
+        <item>@color/yellow</item>
+        <item>@color/green</item>
+        <item>@color/red</item>
+        <item>@color/orange</item>
+        <item>@color/colorAccent</item>
+    </array>
+
+
 
 </resources>

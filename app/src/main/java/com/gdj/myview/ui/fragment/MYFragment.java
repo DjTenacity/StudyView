@@ -23,6 +23,8 @@ import com.gdj.myview.entry.ItemModel;
 import com.gdj.myview.ui.activity.CoordinatorActivity2;
 import com.gdj.myview.ui.activity.MainActivity;
 import com.gdj.myview.ui.activity.MultiButtonActivity;
+import com.gdj.myview.ui.activity.QQzoneActivity;
+import com.gdj.myview.ui.activity.YahooNewsActivity;
 
 import java.util.List;
 
@@ -38,33 +40,30 @@ public class MYFragment extends MainFragment {
                                 "类似于微信" ));
 
         items.add(new ItemModel("CoordinatorLayout的用法2",//
-                                " " +//
+                                " rv的adapter没有填充数据，所以会有问题" +//
                                 " \n" +//
-                                " \n" +//
+                                "而且对主题有一定要求 \n" +//
                                 " "));
 
         items.add(new ItemModel("具有3D视差效果的多选按钮。",//
                                 "https://github.com/gjiazhe/MultiChoicesCircleButton\n" + //
                                 "灵感来自Nicola Felasquez Felaco的发布会，并引用JustinFincher / JZMultiChoicesCircleButton。"));
 
-        items.add(new ItemModel("文件下载",//
-                                "1.支持大文件或小文件下载，无论多大文件都不会发生OOM\n" +//
-                                "2.支持监听下载进度和下载网速\n" +//
-                                "3.支持自定义下载目录和下载文件名"));
+        items.add(new ItemModel("加载动画",//
+                                "防雅虎新闻加载过渡动画之小球旋转跳跃然后团灭的故事\n" ));
 
-        items.add(new ItemModel("文件上传",//
-                                "1.支持上传单个文件\n" +//
-                                "2.支持同时上传多个文件\n" +//
-                                "3.支持多个文件多个参数同时上传\n" +//
-                                "4.支持大文件上传,无论多大都不会发生OOM\n" +//
-                                "5.支持监听上传进度和上传网速"));
+        items.add(new ItemModel("qq空间头部",//
+                                "仿QQ控件值打造个性化可拉伸头部空间\n" ));
     }
-
+//给予erp的二次开发  以及周边app的开发  卖用户产品
     @Override
     public void onItemClick(int position) {
         if (position == 0) startActivity(new Intent(context, MainActivity.class));
         if (position == 1) startActivity(new Intent(context, CoordinatorActivity2.class));
         if (position == 2) startActivity(new Intent(context, MultiButtonActivity.class));
+        if (position == 3) startActivity(new Intent(context, YahooNewsActivity.class));
+        if (position == 4) startActivity(new Intent(context, QQzoneActivity.class));
+
 
     }
 }
