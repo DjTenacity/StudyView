@@ -54,6 +54,10 @@ public class MYFragment extends MainFragment {
 
         items.add(new ItemModel("qq空间头部",//
                                 "仿QQ控件值打造个性化可拉伸头部空间\n" ));
+
+        items.add(new ItemModel("自定义Behavior玩转特效--滑动的卡片",//
+                " \n" ));
+//
     }
 //给予erp的二次开发  以及周边app的开发  卖用户产品
     @Override
@@ -63,6 +67,7 @@ public class MYFragment extends MainFragment {
         if (position == 2) startActivity(new Intent(context, MultiButtonActivity.class));
         if (position == 3) startActivity(new Intent(context, YahooNewsActivity.class));
         if (position == 4) startActivity(new Intent(context, QQzoneActivity.class));
+        if (position == 5) startActivity(new Intent(context, QQzoneActivity.class));
 
 
     }

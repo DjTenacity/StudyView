@@ -99,12 +99,20 @@ public class SplashView extends View {
 
     //进入主界面----开启后面的两个动画
     public void splashAndDisappear() {
-        RotationState rt = (RotationState) mState;
-        rt.cancel();//首先取消动画
-        //执行第二个方法
-        mState = new MergingState();
-        //提醒view重新绘制  ***onDraw方法
-        invalidate();
+        if (mState != null && mState instanceof RotationState) {
+
+            RotationState rt = (RotationState) mState;
+            rt.cancel();//首先取消动画
+            post(new Runnable() {//为了性能，为了保证ui的优先
+                @Override
+                public void run() {
+                    //执行第二个d动画
+                    mState = new MergingState();
+                    //提醒view重新绘制  ***onDraw方法
+                    //invalidate();
+                }
+            });
+        }
     }
 
     //动画就是不断调用onDraw方法     旋转动画  聚合动画  扩散动画
@@ -146,7 +154,8 @@ public class SplashView extends View {
                     mCurrentRotationRadiusAngle = (float) mAnimation.getAnimatedValue();
 
                     //重新绘制----onDraw
-                    invalidate();
+                    //invalidate();
+                    postInvalidate();
                 }
             });
             //一直旋转，旋转次数————>无穷
@@ -229,7 +238,7 @@ public class SplashView extends View {
                     mCurrentRotationRadius = (float) mAnimation.getAnimatedValue();
 
                     //重新绘制----onDraw
-                    invalidate();
+                    postInvalidate();
                 }
             });
 
@@ -238,12 +247,13 @@ public class SplashView extends View {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    mState=new ExpandingState();
-                    invalidate();
+                    mState = new ExpandingState();
+                    //invalidate();
+                    postInvalidate();
                 }
             });            //一直旋转，旋转次数————>无穷
             // mAnimation.setRepeatCount(ValueAnimator.INFINITE);
-            //反过来计算
+            //翻转执行
             mAnimation.reverse();
 
         }
@@ -280,12 +290,10 @@ public class SplashView extends View {
                     mHoleRadius = (float) mAnimation.getAnimatedValue();
 
                     //重新绘制----onDraw
-                    invalidate();
+                    //invalidate();
+                    postInvalidate();
                 }
             });
-            //一直旋转，旋转次数————>无穷
-            // mAnimation.setRepeatCount(ValueAnimator.INFINITE);
-            //反过来计算
             mAnimation.start();
 
         }
