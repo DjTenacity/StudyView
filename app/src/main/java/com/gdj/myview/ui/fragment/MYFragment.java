@@ -23,6 +23,7 @@ import com.gdj.myview.entry.ItemModel;
 import com.gdj.myview.ui.activity.CoordinatorActivity2;
 import com.gdj.myview.ui.activity.MainActivity;
 import com.gdj.myview.ui.activity.MultiButtonActivity;
+import com.gdj.myview.ui.activity.QQStepActivity;
 import com.gdj.myview.ui.activity.QQzoneActivity;
 import com.gdj.myview.ui.activity.YahooNewsActivity;
 
@@ -67,7 +68,7 @@ public class MYFragment extends MainFragment {
         if (position == 2) startActivity(new Intent(context, MultiButtonActivity.class));
         if (position == 3) startActivity(new Intent(context, YahooNewsActivity.class));
         if (position == 4) startActivity(new Intent(context, QQzoneActivity.class));
-        if (position == 5) startActivity(new Intent(context, QQzoneActivity.class));
+        if (position == 5) startActivity(new Intent(context, QQStepActivity.class));
 
 
     }
