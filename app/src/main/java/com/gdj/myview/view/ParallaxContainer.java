@@ -1,13 +1,22 @@
 package com.gdj.myview.view;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
+import com.gdj.myview.R;
+import com.gdj.myview.ui.activity.SplashActivity;
 import com.gdj.myview.ui.fragment.ParallaxFragment;
+import com.gdj.myview.weight.ParallaxPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +28,16 @@ import java.util.List;
  * 在xml布局文件中调用Custom View,并且Custom View标签中还有自定义属性时,这里调用的还是第二个构造函数.
  * 也就是说,系统默认只会调用Custom View的前两个构造函数,至于第三个构造函数的调用,通常是我们自己在构造函数中主动调用的
  * （例如,在第二个构造函数中调用第三个构造函数）.
+ *
+ *
  */
 
-public class ParallaxContainer extends FrameLayout {
+public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageChangeListener {
 
     private List<ParallaxFragment> fragments;
+    private ParallaxPagerAdapter adapter;
+    private ParallaxFragment inFragment, outFragment;
+    ImageView iv_man;
 
     public ParallaxContainer(Context context) {
         this(context, null);
@@ -50,12 +64,109 @@ public class ParallaxContainer extends FrameLayout {
         }
 
         //实例化适配器
+        SplashActivity activity = (SplashActivity) getContext();
+        adapter = new ParallaxPagerAdapter(activity.getSupportFragmentManager(), fragments);
 
 
         //实例化viewpager
-
-
+        ViewPager vp = new ViewPager(getContext());
+        vp.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        vp.setId(R.id.parallax_pager);//部分控件不给id会出问题,重复性的id会出现覆盖
         //绑定
+        vp.setAdapter(adapter);
 
+        addView(vp);
+
+
+        vp.setOnPageChangeListener(this);
+    }
+
+    private float containerWidth;
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        this.containerWidth = widthMeasureSpec;
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        //在翻页的过程中，不断根据视图的标签中对应的动画参数，改变视图的位置或者透明度
+        //获取到进入的页面
+        try {
+            inFragment = fragments.get(position - 1);
+        } catch (Exception e) {
+        }
+        // 还有获取到退出的页面
+        try {
+            outFragment = fragments.get(position - 1);
+        } catch (Exception e) {
+        }
+        if (inFragment != null) {
+            //获取fragment上所有的视图，实现动画效果
+            List<View> inViews = inFragment.getParallaxViews();
+            if (inViews != null) {
+                for (View view : inViews) {
+
+                    //获取标签，从标签上获取所有的动画参数
+                    ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
+                    if (tag == null) continue;
+                    //(containerWidth-positionOffsetPixels) 最后为0，containerWidth 为宽
+                    //相对位置 left，根据xIn转换快慢
+                    view.setTranslationX((containerWidth - positionOffsetPixels) * tag.xIn);
+                    //top  根据滑动的距离来设定
+                    view.setTranslationY((containerWidth - positionOffsetPixels) * tag.yIn);
+                    // fade in
+                    view.setAlpha(1.0f - (containerWidth - positionOffsetPixels) * tag.alphaIn / containerWidth);
+                }
+            }
+
+        }
+        if (outFragment != null) {
+            List<View> outViews = inFragment.getParallaxViews();
+            if (outViews != null) {
+                for (View view : outViews) {
+
+                    //获取标签，从标签上获取所有的动画参数
+                    ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
+                    if (tag == null) continue;
+                    //(containerWidth-positionOffsetPixels) 最后为0，containerWidth 为宽
+                    //相对位置 left，根据xIn转换快慢
+                    view.setTranslationX((0 - positionOffsetPixels) * tag.xOut);
+                    //top  根据滑动的距离来设定
+                    view.setTranslationY((0 - positionOffsetPixels) * tag.yOut);
+
+                    view.setAlpha(1.0f - positionOffsetPixels * tag.alphaOut / containerWidth);
+                }
+            }
+
+        }
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        if (position==adapter.getCount()-1) {
+            iv_man.setVisibility(GONE);
+        }else{
+            iv_man.setVisibility(VISIBLE);
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        AnimationDrawable animationDrawable = (AnimationDrawable) iv_man.getBackground();
+        switch (state) {
+            case ViewPager.SCROLL_STATE_DRAGGING://完成
+                animationDrawable.start();
+                break;
+            case ViewPager.SCROLL_STATE_IDLE://完成
+                animationDrawable.stop();
+                break;
+        }
+
+    }
+
+    public void setIv_man(ImageView iv_man) {
+        this.iv_man = iv_man;
     }
 }

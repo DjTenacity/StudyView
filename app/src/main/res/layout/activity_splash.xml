@@ -9,13 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"></com.gdj.myview.view.ParallaxContainer>
 
-
     <ImageView
         android:id="@+id/iv_man"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="67dp"
+        android:layout_height="202dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@mipmap/checkbox_checked"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/intro_item_manrun_1"
+        android:visibility="visible" />
 </RelativeLayout>

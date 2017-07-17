@@ -52,8 +52,8 @@ public class MYFragment extends MainFragment {
 
         items.add(new ItemModel("qq空间头部",//
                                 "仿QQ控件值打造个性化可拉伸头部空间\n" ));
-
-        items.add(new ItemModel("防qq步数",  " \n" ));
+//
+        items.add(new ItemModel("微信下拉拍照",  " 高仿小红书欢迎界面\n" ));
 
         items.add(new ItemModel("微信下拉拍照",  " \n" ));
 
@@ -70,6 +70,6 @@ public class MYFragment extends MainFragment {
         if (position == 4) startActivity(new Intent(context, QQzoneActivity.class));
         if (position == 5) startActivity(new Intent(context, QQStepActivity.class));
 
-
+       // SplashActivity
     }
 }

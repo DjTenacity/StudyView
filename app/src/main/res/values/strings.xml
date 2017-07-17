@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">MyView</string>
     <string name="DoYouLove">DoYouKnow</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="phone_login">手机登录</string>
+
+    <string name="phone_reg">注册帐号</string>
 
     <string name="simple_view_behavior">com.gdj.myview.ui.behavior.SimpleViewBehavior</string>
     <string name="translate_up_down_behavior">com.gdj.myview.ui.behavior.TranslateUpDownBehavior</string>

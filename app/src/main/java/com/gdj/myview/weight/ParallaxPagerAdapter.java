@@ -13,18 +13,18 @@ import java.util.List;
  *  * 邮箱： @qq.com
  */
 
-public class parallaxPagerAdapter extends FragmentPagerAdapter {
+public class ParallaxPagerAdapter extends FragmentPagerAdapter {
 
     List<ParallaxFragment> fragments;
 
-    public parallaxPagerAdapter(FragmentManager fm, List<ParallaxFragment> fragments) {
+    public ParallaxPagerAdapter(FragmentManager fm, List<ParallaxFragment> fragments) {
         super(fm);
         this.fragments=fragments;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return null;
+        return fragments.get(position);
     }
 
     @Override

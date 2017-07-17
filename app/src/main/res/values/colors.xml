@@ -27,6 +27,8 @@
     <color name="font_color_more_text">#BB000000</color>
     <color name="line_color">#C4C4C4</color>
 
+    <color name="base_shallow_black">#818181</color>
+
     <array name="splash_circle_colors">
         <item>@color/purple</item>
         <item>@color/yellow</item>
