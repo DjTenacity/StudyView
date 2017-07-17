@@ -45,7 +45,7 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
                         // 输出apk名称为dumbo_v1.0_2015-01-15_yingyongbao.apk
-                        def fileName = "dumbo_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                        def fileName = "myView_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
                         output.outputFile = new File(outputFile.parent, fileName)
                     }
                 }
@@ -67,7 +67,7 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
             signingConfig signingConfigs.release
             minifyEnabled false//是否混淆
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//混淆de位置
+            //混淆de位置
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false

@@ -8,8 +8,8 @@
 
     <com.gdj.myview.view.QQStepView
         android:id="@+id/qqstep"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:borderWidth="6dp"
         app:innerColor="@color/colorAccent"
         app:outerColor="@color/colorPrimary"

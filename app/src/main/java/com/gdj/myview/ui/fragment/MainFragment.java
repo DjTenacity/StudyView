@@ -65,7 +65,12 @@ public abstract class MainFragment extends BaseFragment implements SwipeRefreshL
 
     @Override
     public void onLoadMoreRequested() {
-        adapter.loadComplete();
+        refreshLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapter.loadComplete();
+            }
+        }, 500);
     }
 
     @Override

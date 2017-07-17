@@ -44,6 +44,7 @@
         <activity android:name=".ui.activity.QQzoneActivity"/>
 
         <activity android:name=".ui.activity.YahooNewsActivity"/>
+
         <activity android:name=".ui.activity.QQStepActivity"/>
 
         <!--友盟统计  value是其他项目的,而且放心，我改了部分-->

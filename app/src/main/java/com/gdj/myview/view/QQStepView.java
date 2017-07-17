@@ -48,7 +48,7 @@ public class QQStepView extends View {
         //4 自定义 view 中获取自定义属性
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.QQStepView);
         mOuterColor = array.getColor(R.styleable.QQStepView_outerColor, mOuterColor);
-        mInnerColor = array.getColor(R.styleable.QQStepView_outerColor, mInnerColor);
+        mInnerColor = array.getColor(R.styleable.QQStepView_innerColor, mInnerColor);
 
         mBorderWidth = (int) array.getDimension(R.styleable.QQStepView_borderWidth, mBorderWidth);
         mStepTextSize = (int) array.getDimensionPixelOffset(R.styleable.QQStepView_stepTextSize, mStepTextSize);
@@ -92,7 +92,7 @@ public class QQStepView extends View {
         //宽度高度不一致 时，取最小值 ，确保是个正方形
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
-        //三步运算符，第五步完成
+        //三步运算符，第五步完成  ,取最小值
         setMeasuredDimension(width > height ? height : width, width > height ? height : width);
     }
 
@@ -104,7 +104,8 @@ public class QQStepView extends View {
 
         //6.1 外圓弧   描边有宽度，容易出现描边覆盖的问题
         //center-radius,center-radius,  +  ,  +
-        RectF rectF = new RectF(mBorderWidth / 2, mBorderWidth / 2, getWidth() + mBorderWidth / 2, getHeight() + mBorderWidth / 2);
+        // left, float top, float right, float bottom
+        RectF rectF = new RectF(mBorderWidth / 2, mBorderWidth / 2, getWidth() - mBorderWidth / 2, getHeight() - mBorderWidth / 2);
         // boolean useCenter  ,如果为true就会闭合
         canvas.drawArc(rectF, 135, 270, false, mOutPaint);
 
@@ -114,19 +115,29 @@ public class QQStepView extends View {
             return;
         }
 
-        float sweepAngle = mCurrentStep / mStepMax;
+        float sweepAngle = (float) mCurrentStep / mStepMax;//float 切记强转
         // boolean useCenter  ,如果为true就会闭合
         canvas.drawArc(rectF, 135, sweepAngle * 270, false, mInnPaint);
 
         //花蚊子
 
         String stepText = mCurrentStep + "";
+        //Rect类主要用于表示坐标系中的一块矩形区域，并可以对其做一些简单操作。这块矩形区域，需要用左上右下两个坐标点表示
+        //作为一个有一点经验的做图像或者矩阵运算或者编程的程序员来说，
+        // 大家的共识是，如果一个矩阵是MxN的，也就是M行N列，那么行号是[0,M-1],列号是[0,N-1]。
+        // 可是 Rect类并不是这样的！如果你这么声明一个Rect类：
+        // Rect rect=new Rect(100,50,300,500);  这个矩形实际区域是：(100,50,299,499)。Rect计算出的Height和Width倒是对的。
+        // 涉及Rect运算的时候，尽量不要使用它的右下角左边，即right和bottom。他们是错的。在你调用android自己的函数时，是可以使用的，因为Android里面一直保持这么奇葩的思维。
         Rect textBounds = new Rect();
-        mTextPaint.getTextBounds(stepText, 0, stepText.length() / 2, textBounds);
-        int dx = getWidth() / 2 - textBounds.width() / 2;
 
+        //参数1：字符串来衡量并返回它的界限
+        //参数2：索引的第一个字符的字符串来衡量
+        //参数3：过去的最后一个字符字符串
+        //参数4：返回联合边界的所有文本。必须分配给调用者
+        mTextPaint.getTextBounds(stepText, 0, stepText.length(), textBounds);
+        int dx = getWidth() / 2 - textBounds.width() / 2;//
 
-        //基线  baseLine
+        //基线  baseLine  大写字母位于基线上。最常见的例外是J和Q。不齐线数字（见阿拉伯数字）位于基线上。
         Paint.FontMetricsInt fontMetricsInt = mTextPaint.getFontMetricsInt();
 
         int dy = (fontMetricsInt.bottom - fontMetricsInt.top) / 2 - fontMetricsInt.bottom;
@@ -137,13 +148,13 @@ public class QQStepView extends View {
     }
 
     //动画
-    public synchronized void setCurrentStep(int mCurrentStep  ) {
-        this.mCurrentStep=mCurrentStep;
-
+    public synchronized void setCurrentStep(int mCurrentStep) {
+        this.mCurrentStep = mCurrentStep;
         invalidate();
 
     }
-    public synchronized void setStepMax(int mStepMax  ) {
-        this.mStepMax=mStepMax;
+
+    public synchronized void setStepMax(int mStepMax) {
+        this.mStepMax = mStepMax;
     }
 }

@@ -15,10 +15,7 @@
  */
 package com.gdj.myview.ui.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
-
-
 import com.gdj.myview.entry.ItemModel;
 import com.gdj.myview.ui.activity.CoordinatorActivity2;
 import com.gdj.myview.ui.activity.MainActivity;
@@ -37,8 +34,8 @@ public class MYFragment extends MainFragment {
 
         items.add(new ItemModel("手机信息与照相机",//
                                 "sdk版本与手机名字\n" +//
-                                "可以切换摄像头\n" +//
-                                "类似于微信" ));
+                                "类似于微信，可以切换摄像头\n" +//
+                                "" ));
 
         items.add(new ItemModel("CoordinatorLayout的用法2",//
                                 " rv的adapter没有填充数据，所以会有问题" +//
@@ -56,8 +53,11 @@ public class MYFragment extends MainFragment {
         items.add(new ItemModel("qq空间头部",//
                                 "仿QQ控件值打造个性化可拉伸头部空间\n" ));
 
-        items.add(new ItemModel("自定义Behavior玩转特效--滑动的卡片",//
-                " \n" ));
+        items.add(new ItemModel("防qq步数",  " \n" ));
+
+        items.add(new ItemModel("微信下拉拍照",  " \n" ));
+
+        items.add(new ItemModel("自定义Behavior玩转特效--滑动的卡片",  " \n" ));
 //
     }
 //给予erp的二次开发  以及周边app的开发  卖用户产品

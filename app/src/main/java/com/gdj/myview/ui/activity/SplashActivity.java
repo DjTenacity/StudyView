@@ -16,20 +16,24 @@ import butterknife.ButterKnife;
 
 public class SplashActivity extends AppCompatActivity {
     @BindView(R.id.parallax_container)
-    ParallaxContainer  container;
+    ParallaxContainer container;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.activity_splash);
 
         ButterKnife.bind(this);
 
         container.setUp(new int[]{
-
+                R.layout.view_intro_1,
+                R.layout.view_intro_2,
+                R.layout.view_intro_3,
+                R.layout.view_intro_4,
+                R.layout.view_intro_5,
+                R.layout.view_intro_6
         });
     }
 }
