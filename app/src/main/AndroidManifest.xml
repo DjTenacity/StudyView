@@ -47,6 +47,9 @@
 
         <activity android:name=".ui.activity.QQStepActivity"/>
 
+        <activity android:name=".ui.activity.SplashActivity"/>
+
+
         <!--友盟统计  value是其他项目的,而且放心，我改了部分-->
         <meta-data
             android:name="UMENG_APPKEY"

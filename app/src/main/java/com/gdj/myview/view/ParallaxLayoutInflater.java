@@ -44,9 +44,7 @@ public class ParallaxLayoutInflater extends LayoutInflater {
         public View onCreateView(String name, Context context, AttributeSet attrs) {
             //只需要传入name，有什么属性attrs，就会创建一个视图，然后将其返回，就会有自定义属性了
             //    public final View createView(String name, String prefix, AttributeSet attrs)
-            //
             // android.weight.TextView
-
             View view = null;
 
             //1，自定义控件不需要前缀——————自定义控件本来就是完整类名，直接根据完整类名去加载这个类，通过构造方法实例化
@@ -55,7 +53,7 @@ public class ParallaxLayoutInflater extends LayoutInflater {
             if (view == null) {
                 view = createViewOrFailQuietly(name, context, attrs);
             }
-//已经视图实例化完成
+            //已经视图实例化完成
             if (view != null) {
                 //获取自定义属性，通过标签关联到视图上
                 setViewTag(view, context, attrs);

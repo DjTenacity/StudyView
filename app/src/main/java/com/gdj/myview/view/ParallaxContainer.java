@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -28,15 +29,13 @@ import java.util.List;
  * 在xml布局文件中调用Custom View,并且Custom View标签中还有自定义属性时,这里调用的还是第二个构造函数.
  * 也就是说,系统默认只会调用Custom View的前两个构造函数,至于第三个构造函数的调用,通常是我们自己在构造函数中主动调用的
  * （例如,在第二个构造函数中调用第三个构造函数）.
- *
- *
  */
 
 public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageChangeListener {
 
     private List<ParallaxFragment> fragments;
     private ParallaxPagerAdapter adapter;
-    private ParallaxFragment inFragment, outFragment;
+
     ImageView iv_man;
 
     public ParallaxContainer(Context context) {
@@ -48,6 +47,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     }
 
     public ParallaxContainer(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+
         super(context, attrs, defStyleAttr);
     }
 
@@ -75,22 +75,19 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
         //绑定
         vp.setAdapter(adapter);
 
-        addView(vp);
-
-
         vp.setOnPageChangeListener(this);
+
+
+        addView(vp,0);
     }
 
     private float containerWidth;
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        this.containerWidth = widthMeasureSpec;
-    }
-
-    @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        containerWidth = getWidth();
+        ParallaxFragment inFragment = null;
+
         //在翻页的过程中，不断根据视图的标签中对应的动画参数，改变视图的位置或者透明度
         //获取到进入的页面
         try {
@@ -98,8 +95,9 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
         } catch (Exception e) {
         }
         // 还有获取到退出的页面
+        ParallaxFragment outFragment = null;
         try {
-            outFragment = fragments.get(position - 1);
+            outFragment = fragments.get(position);
         } catch (Exception e) {
         }
         if (inFragment != null) {
@@ -107,12 +105,14 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
             List<View> inViews = inFragment.getParallaxViews();
             if (inViews != null) {
                 for (View view : inViews) {
-
+                    Log.w("tag.xIn", inViews.size() + "/////");
                     //获取标签，从标签上获取所有的动画参数
                     ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
                     if (tag == null) continue;
                     //(containerWidth-positionOffsetPixels) 最后为0，containerWidth 为宽
                     //相对位置 left，根据xIn转换快慢
+
+                    Log.w("tag.xIn", tag.xIn + "/////" + tag.yIn);
                     view.setTranslationX((containerWidth - positionOffsetPixels) * tag.xIn);
                     //top  根据滑动的距离来设定
                     view.setTranslationY((containerWidth - positionOffsetPixels) * tag.yIn);
@@ -123,13 +123,16 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 
         }
         if (outFragment != null) {
-            List<View> outViews = inFragment.getParallaxViews();
+            List<View> outViews = outFragment.getParallaxViews();
             if (outViews != null) {
                 for (View view : outViews) {
+                    Log.w("tag.xIn", outViews.size() + "// ss");
 
                     //获取标签，从标签上获取所有的动画参数
                     ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
                     if (tag == null) continue;
+                    Log.w("tag.xIn", tag.xOut + "/////" + tag.yOut);
+
                     //(containerWidth-positionOffsetPixels) 最后为0，containerWidth 为宽
                     //相对位置 left，根据xIn转换快慢
                     view.setTranslationX((0 - positionOffsetPixels) * tag.xOut);
@@ -145,9 +148,9 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 
     @Override
     public void onPageSelected(int position) {
-        if (position==adapter.getCount()-1) {
+        if (position == adapter.getCount() - 1) {
             iv_man.setVisibility(GONE);
-        }else{
+        } else {
             iv_man.setVisibility(VISIBLE);
         }
     }

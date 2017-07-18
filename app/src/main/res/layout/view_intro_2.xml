@@ -10,8 +10,8 @@
         android:layout_height="19dp"
         android:layout_centerInParent="true"
         android:src="@drawable/intro2_item_0"
-        app:x_in="1.2"
-        app:x_out="1.2" />
+        app:x_in="1.4"
+        app:x_out="1.4" />
 
     <ImageView
         android:id="@+id/iv_1"
@@ -34,8 +34,8 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="129dp"
         android:background="@drawable/intro2_item_3"
-        app:x_in="1.1"
-        app:x_out="1.1" />
+        app:x_in="1.8"
+        app:x_out="1.8" />
 
     <ImageView
         android:id="@+id/iv_2"

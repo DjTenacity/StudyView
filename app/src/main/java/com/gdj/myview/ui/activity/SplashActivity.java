@@ -1,8 +1,10 @@
 package com.gdj.myview.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.gdj.myview.R;
@@ -16,11 +18,9 @@ import butterknife.ButterKnife;
  */
 
 public class SplashActivity extends AppCompatActivity {
-    @BindView(R.id.parallax_container)
     ParallaxContainer container;
-
-    @BindView(R.id.iv_man)
     ImageView iv_man;
+    ImageView rl_weibo;
 
 
     @Override
@@ -29,7 +29,9 @@ public class SplashActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
-        ButterKnife.bind(this);
+        container = (ParallaxContainer) findViewById(R.id.parallax_container);
+        iv_man = (ImageView) findViewById(R.id.iv_man);
+
 
         container.setUp(new int[]{
                 R.layout.view_intro_1,
@@ -40,6 +42,14 @@ public class SplashActivity extends AppCompatActivity {
                 R.layout.view_login
         });
 
+        rl_weibo = (ImageView) findViewById(R.id.rl_weibo);
+//        rl_weibo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+//                SplashActivity.this.finish();
+//            }
+//        });
         iv_man.setBackgroundResource(R.drawable.man_run);
         container.setIv_man(iv_man);
     }
