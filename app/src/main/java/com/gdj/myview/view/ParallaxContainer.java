@@ -27,8 +27,7 @@ import java.util.List;
  * 在代码中直接new一个Custom View实例的时候,会调用第一个构造函数
  * 在xml布局文件中调用Custom View的时候,会调用第二个构造函数 .
  * 在xml布局文件中调用Custom View,并且Custom View标签中还有自定义属性时,这里调用的还是第二个构造函数.
- * 也就是说,系统默认只会调用Custom View的前两个构造函数,至于第三个构造函数的调用,通常是我们自己在构造函数中主动调用的
- * （例如,在第二个构造函数中调用第三个构造函数）.
+ * 在布局layout中使用，但是会有style---第三个构造函数
  */
 
 public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageChangeListener {
