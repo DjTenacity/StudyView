@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
+//每一个Module都需要有一个gradle配置文件，语法都是一样，
+// 唯一不同的是开头声明的是 apply plugin: 'com.android.library'
 
+//模块内的gradle文件只对该模块起作用，而且其可以重写任何的参数来自于根目录下的gradle文件。
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"

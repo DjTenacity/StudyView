@@ -3,16 +3,17 @@
 //apply plugin:'kotlin-android'
 //apply plugin:'kotlin-android-extensions'
 
-buildscript {
+buildscript {//buildscript方法是定义了全局的相关属性
     //Configures the build script classpath for this project. 说白了就是设置脚本的运行环境
     // 配置驱动构建过程的代码，意思就是buildscript中的配置仅仅在构建过程中起作用，也就是构建程序所使用的配置。
     ext.kotlin_version = '1.1.2-4'
-    repositories {
+    repositories {//repositories定义了jcenter作为仓库。一个仓库代表着你的依赖包的来源，例如maven仓库
         //Returns a handler to create repositories which are used for retrieving dependencies and uploading artifacts produced by the project.
         // 大意就是支持java 依赖库管理（maven/ivy）,用于项目的依赖。这也是gradle 强力的地方，
         // gradle 对于包的管理，支持filesystem，maven，ivy
         jcenter()
-        //jcenter是一个声明仓库的源,之前版本则是mavenCentral(),jcenter可以理解成是一个新的中央远程仓库，兼容maven中心仓库，而且性能更优。
+        //jcenter是一个声明仓库的源,之前版本则是mavenCentral(),
+        // jcenter可以理解成是一个新的中央远程仓库，兼容maven中心仓库，而且性能更优。
         // 如果是mavenCentral()  声明了我们的构建程序会使用Maven中央仓库，从中央库里面获取依赖
         // 并且有一个classpath依赖是指向一个Maven库的。这个Maven库就是Android Gradle插件，版本号是2.3.3。
 
@@ -31,22 +32,21 @@ buildscript {
 //       }
     }
     dependencies {
+//dependencies用来定义构建过程。这意味着你不应该在该方法体内定义子模块的依赖包，
+// 你仅仅需要定义默认的Android插件就可以了，因为该插件可以让你执行相关Android的tasks。
+
         //应用格式: packageName:artifactId:version
 
-        //The dependency handler of this project.
-        // The returned dependency handler instance can be used for adding new dependencies.
-        // For accessing already declared dependencies, the configurations can be used.
         // 依赖包的定义。支持maven/ivy，远程，本地库，也支持单文件，
         // 如果前面定义了repositories{}maven 库，使用maven的依赖（我没接触过ivy。。）的时候
         // 只需要按照用类似于com.android.tools.build:gradle:0.4，gradle 就会自动的往远程库下载相应的依赖。
         classpath 'com.android.tools.build:gradle:2.3.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-       // classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+        // classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 
-
-      //  classpath 'com.novoda:bintray-release:0.3.4'  //快速发布开源项目到jcenter
+        //  classpath 'com.novoda:bintray-release:0.3.4'  //快速发布开源项目到jcenter
         // classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -56,6 +56,8 @@ buildscript {
 
 allprojects {
     repositories {
+        //  allprojects方法可以用来定义各个模块的默认属性，
+        // 你可以不仅仅局限于默认的配置，未来你可以自己创造tasks在allprojects方法体内，这些tasks将会在所有模块中可见。
 
         //        flatDir {
 //            dirs 'libs'

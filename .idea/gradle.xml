@@ -10,6 +10,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/camera" />
+            <option value="$PROJECT_DIR$/djheroknife" />
+            <option value="$PROJECT_DIR$/djknife" />
             <option value="$PROJECT_DIR$/dropdownmenu" />
             <option value="$PROJECT_DIR$/multichoicescirclebutton" />
           </set>

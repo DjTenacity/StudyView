@@ -1,19 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:scrollbars="none">
 
-
-    <com.gdj.myview.view.QQStepView
-        android:id="@+id/qqstep"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:borderWidth="6dp"
-        app:innerColor="@color/colorAccent"
-        app:outerColor="@color/colorPrimary"
-        app:stepTextColor="@color/colorAccent"
-        app:stepTextSize="16sp" />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <com.gdj.myview.view.QQStepView
+            android:id="@+id/qqstep"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:borderWidth="6dp"
+            app:innerColor="@color/colorAccent"
+            app:outerColor="@color/colorPrimary"
+            app:stepTextColor="@color/colorAccent"
+            app:stepTextSize="16sp" />
+
+
+        <com.gdj.myview.view.SingleLineFlowLayout
+            android:id="@+id/single_line_layout"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:text="Hello World!"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PregressView"/>
+
+        <com.gdj.myview.view.PregressView
+            android:id="@+id/view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:borderWidth="6dp"
+            app:progressoutCycleColor="@color/colorAccent"
+            app:progressinnerCycleColor="@color/colorPrimary"
+            app:progresstextSize="12sp"
+            app:progressCycleWidth="8dp" />
+    </LinearLayout>
+</ScrollView>

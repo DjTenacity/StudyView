@@ -1,1 +1,2 @@
-include ':app', ':camera', ':dropdownmenu',':multichoicescirclebutton'
+include ':app', ':camera', ':dropdownmenu', ':multichoicescirclebutton', ':djknife', ':djheroknife'
+//这个文件是全局的项目配置文件，里面主要声明一些需要加入gradle的module，

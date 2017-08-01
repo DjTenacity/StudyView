@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-//声明构建的项目类型，这里当然是android了。。。
+//声明构建的项目类型，这里当然是android了。是google的Android开发团队编写的插件，能够提供所有关于Android应用和依赖库的构建，打包和测试
 //只需要使用android插件，再使用Java插件会报错.
 //在local.properties中使用sdk.dir属性指定SDK路径，或者你可以使用ANDROID_HOME环境变量。
 
@@ -15,10 +15,19 @@ def releaseTime() {
 
 android { //设置编译android项目的参数，接下来，我们的构建android项目的所有配置都在这里完成。
     // 默认情况下，只需要指定compileSdkVersion和buildtoolsVersion，compileSdkVersion
-    // 指定使用哪个版本的sdk编译，buildToolsVersion指定使用哪个版本的构建工具。
+    // 指定使用哪个版本的sdk编译，
     compileSdkVersion 25
+    //buildToolsVersion指定使用哪个版本的构建工具。
     buildToolsVersion "25.0.3"
+
+    //defaultConfig方法包含了该app的核心属性，该属性会重写在AndroidManifest.xml中的对应属性。
+    //资源代码和R文件必须拥有相同的包名，否则你的资源代码将需要改变，
+    // 这就是为什么Android开发团队要将package name的两大功能拆分开。
+
+    // 在AndroidManifest文件中定义的package name依然被用来作为包名和R文件的包名。
+    // 而applicationid将被用在设备和各大应用商店中作为唯一的标示。
     defaultConfig {
+        // 应用的包名
         applicationId "com.gdj.myview"
         minSdkVersion 17
         targetSdkVersion 25
@@ -28,6 +37,13 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
         // 默认是yingyongbao的渠道
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
     }
+
+    // java版本
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
     signingConfigs { //打签名包
 //        debug {
 //            storeFile file('E:\\keystore\\dumbo_release.jks')
@@ -65,9 +81,11 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
         }
         release {
             signingConfig signingConfigs.release
-            minifyEnabled false//是否混淆
+            //是否进行混淆
+            minifyEnabled false
+            //混淆文件的位置
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //混淆de位置
+
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false
@@ -102,6 +120,7 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
 //}
 
 dependencies {
+    // 编译libs目录下的所有jar包
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -134,7 +153,10 @@ dependencies {
     //java注解
   //  compile 'org.glassfish:javax.annotation:10.0-b28'
 
+    // 编译extras目录下的camera模块
     compile project(':camera')
     compile project(':multichoicescirclebutton')
+    compile 'com.google.auto.service:auto-service:1.0-rc3'
+    compile project(path: ':djknife')
 
 }

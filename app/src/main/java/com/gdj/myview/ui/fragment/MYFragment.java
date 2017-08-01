@@ -16,11 +16,14 @@
 package com.gdj.myview.ui.fragment;
 
 import android.content.Intent;
+
 import com.gdj.myview.entry.ItemModel;
 import com.gdj.myview.ui.activity.CoordinatorActivity2;
+import com.gdj.myview.ui.activity.FlightSeatActivity;
 import com.gdj.myview.ui.activity.KTLockPatternActivity;
 import com.gdj.myview.ui.activity.MainActivity;
 import com.gdj.myview.ui.activity.MultiButtonActivity;
+import com.gdj.myview.ui.activity.PaintViewActivity;
 import com.gdj.myview.ui.activity.QQStepActivity;
 import com.gdj.myview.ui.activity.QQzoneActivity;
 import com.gdj.myview.ui.activity.SplashActivity;
@@ -35,34 +38,38 @@ public class MYFragment extends MainFragment {
     public void fillData(List<ItemModel> items) {
 
         items.add(new ItemModel("手机信息与照相机",//
-                                "sdk版本与手机名字\n" +//
-                                "类似于微信，可以切换摄像头\n" +//
-                                "" ));
+                "sdk版本与手机名字\n" +//
+                        "类似于微信，可以切换摄像头\n" +//
+                        ""));
 
         items.add(new ItemModel("CoordinatorLayout的用法2",//
-                                " rv的adapter没有填充数据，所以会有问题" +//
-                                " \n" +//
-                                "而且对主题有一定要求 \n" +//
-                                " "));
+                " rv的adapter没有填充数据，所以会有问题" +//
+                        " \n" +//
+                        "而且对主题有一定要求 \n" +//
+                        " "));
 
         items.add(new ItemModel("具有3D视差效果的多选按钮。",//
-                                "https://github.com/gjiazhe/MultiChoicesCircleButton\n" + //
-                                "灵感来自Nicola Felasquez Felaco的发布会，并引用JustinFincher / JZMultiChoicesCircleButton。"));
+                "https://github.com/gjiazhe/MultiChoicesCircleButton\n" + //
+                        "灵感来自Nicola Felasquez Felaco的发布会，并引用JustinFincher / JZMultiChoicesCircleButton。"));
 
         items.add(new ItemModel("加载动画",//
-                                "防雅虎新闻加载过渡动画之小球旋转跳跃然后团灭的故事\n" ));
+                "防雅虎新闻加载过渡动画之小球旋转跳跃然后团灭的故事3\n"));
 
         items.add(new ItemModel("qq空间头部",//
-                                "仿QQ控件值打造个性化可拉伸头部空间\n" ));
+                "仿QQ控件值打造个性化可拉伸头部空间\n"));
 //
-        items.add(new ItemModel("仿qq运动",  " \n" ));
+        items.add(new ItemModel("运动进度条", " 和一些碎控件\n"));
 
-        items.add(new ItemModel("高仿小红书欢迎界面",  " \n" ));
+        items.add(new ItemModel("高仿小红书欢迎界面", " \n"));
 
-        items.add(new ItemModel("九宫格",  " 微信下拉拍照自定义Behavior玩转特效--滑动的卡片\n" ));
-//
+        items.add(new ItemModel("九宫格", " 微信下拉拍照自定义Behavior玩转特效--滑动的卡片\n"));
+
+        items.add(new ItemModel("2222", " 微信下拉拍照自定义Behavior玩转特效--滑动的卡片\n"));
+
+        items.add(new ItemModel("飞机选位", ""));
     }
-//给予erp的二次开发  以及周边app的开发  卖用户产品
+
+    //给予erp的二次开发  以及周边app的开发  卖用户产品
     @Override
     public void onItemClick(int position) {
         if (position == 0) startActivity(new Intent(context, MainActivity.class));
@@ -74,6 +81,12 @@ public class MYFragment extends MainFragment {
         if (position == 6) startActivity(new Intent(context, SplashActivity.class));
 
         if (position == 7) startActivity(new Intent(context, KTLockPatternActivity.class));
-       //
+
+        if (position == 8) startActivity(new Intent(context, PaintViewActivity.class));
+
+        if (position == 9) startActivity(new Intent(context, FlightSeatActivity.class));
+
+
+        //
     }
 }

@@ -104,6 +104,13 @@
         <attr name="stepTextColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="progressView">
+        <attr name="progressoutCycleColor" format="color" />
+        <attr name="progressinnerCycleColor" format="color" />
+        <attr name="progresstextSize" format="dimension" />
+        <attr name="progressCycleWidth" format="dimension" />
+    </declare-styleable>
+
 
     <!--方小红书-->
 
