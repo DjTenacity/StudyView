@@ -8,22 +8,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.gdj.myview.R;
 
 /**
  * Comment:
  *
- * @author : ${user} DJ鼎尔东/ 1757286697@qq.com
+ * @author : DJ鼎尔东/ 1757286697@qq.com
  * @version : 1.0
  * @date : 2017/8/2 18:36
  */
-public class MailFragment extends BaseFragment {
-    public static final String TAG = "MailFragment";
+public class MailFragment2 extends BaseFragment {
+    public static final String TAG = "MailFragment2";
     //必须唯一
-    public static final String FUNCTION_NO_PARAM_NO_RESULR = MailFragment.class.getSimpleName() + "npnr";
+    public static final String FUNCTION_NO_PARAM_WITH_RESULR = MailFragment2.class.getSimpleName() + "npwr";
 
-    public MailFragment() {
+
+    public MailFragment2() {
 
     }
 
@@ -31,7 +33,7 @@ public class MailFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_mail, container, false);
+        return inflater.inflate(R.layout.fragment_mail2, container, false);
     }
 
 
@@ -43,11 +45,14 @@ public class MailFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 try {
-                    getFunctions().invokeFunction(FUNCTION_NO_PARAM_NO_RESULR);
+                    String cc = getFunctions().invokeFunction(FUNCTION_NO_PARAM_WITH_RESULR, String.class);
+                    Toast.makeText(getContext(), cc, Toast.LENGTH_SHORT).show();
+
                 } catch (FunctionExecption functionExecption) {
                     functionExecption.printStackTrace();
                 }
             }
         });
     }
+
 }

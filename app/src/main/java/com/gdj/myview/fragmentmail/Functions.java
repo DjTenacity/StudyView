@@ -9,8 +9,24 @@ import java.util.HashMap;
  */
 public class Functions {
 
-    HashMap<String, FunctionNoparamAndResult> mFunctionNoparamAndResult;
-    HashMap<String, FunctionNoparamWithResult> mFunctionNoparamWithResult;
+    private HashMap<String, FunctionNoparamAndResult> mFunctionNoparamAndResult;
+    private HashMap<String, FunctionNoparamWithResult> mFunctionNoparamWithResult;
+
+    private static Functions mFunctions;
+
+    private Functions() {
+    }
+
+    public static synchronized Functions getInstance() {
+        if (mFunctions == null) {
+            synchronized (Functions.class) {
+                if (mFunctions == null) {
+                    mFunctions = new Functions();
+                }
+            }
+        }
+        return mFunctions;
+    }
 
     //对于接口方法的抽象
     public static abstract class Function {
@@ -32,18 +48,48 @@ public class Functions {
         }
     }
 
-    /**调用函数**/
+    /**
+     * 调用函数
+     **/
     public void invokeFunction(String functionName) throws FunctionExecption {
 
-        FunctionNoparamAndResult f=null;
+        FunctionNoparamAndResult f = null;
         if (mFunctionNoparamAndResult != null) {
-            f=mFunctionNoparamAndResult.get(functionName);
-            if(f!=null){
-                f. function();
-            }else{
+            f = mFunctionNoparamAndResult.get(functionName);
+            if (f != null) {
+                f.function();
+            } else {
                 throw new FunctionExecption("has no Function" + functionName);
             }
         }
+    }
+
+    public void addFunction(FunctionNoparamWithResult function) {
+        if (mFunctionNoparamWithResult == null) {
+            mFunctionNoparamWithResult = new HashMap<String, FunctionNoparamWithResult>();
+        } else {
+            mFunctionNoparamWithResult.put(function.mFunctionName, function);
+        }
+    }
+
+    /**
+     * 调用函数
+     **/
+    public <Result> Result invokeFunction(String functionName, Class<Result> c) throws FunctionExecption {
+
+        FunctionNoparamWithResult f = null;
+        if (mFunctionNoparamWithResult != null) {
+            f = mFunctionNoparamWithResult.get(functionName);
+            if (f != null) {
+                if (c != null) {
+                    return c.cast(f.function());
+                }
+                return (Result) f.function();
+            } else {
+                throw new FunctionExecption("has no Function" + functionName);
+            }
+        }
+        return null;
     }
 
 
@@ -52,6 +98,7 @@ public class Functions {
         public FunctionNoparamAndResult(String functionName) {
             super(functionName);
         }
+
         public abstract void function();
     }
 
