@@ -5,14 +5,24 @@ import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ListPopupWindow;
+import android.support.v7.widget.PopupMenu;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.gdj.myview.R;
-import com.gdj.myview.view.SingleLineFlowLayout;
 import com.gdj.myview.view.PregressView;
 import com.gdj.myview.view.QQStepView;
+import com.gdj.myview.view.SingleLineFlowLayout;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -86,6 +96,40 @@ public class QQStepActivity extends AppCompatActivity {
             }
         });
         valueAnimator.start();
-
+        showListPop(btn);
     }
+
+    void showListPop(View view){
+        ArrayAdapter<String> adapter =new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mItems);
+        final ListPopupWindow listPopupWindow=new ListPopupWindow(this);
+        listPopupWindow.setAdapter(adapter);
+        listPopupWindow.setAnchorView(view);
+        listPopupWindow.setHeight(500);
+        listPopupWindow.setWidth(300);
+
+
+        listPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listPopupWindow.dismiss();
+                Toast.makeText(QQStepActivity.this, "ListPopupWindow"+position, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        listPopupWindow.show();
+    }
+
+    public void showPopupMenu(View view){
+        PopupMenu popup=new PopupMenu(this,view);
+        popup.getMenuInflater().inflate(R.menu.menu_web,popup.getMenu());
+        popup.setGravity(Gravity.CENTER);
+        popup.show();
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return false;
+            }
+        });
+    }
+
 }

@@ -7,26 +7,50 @@
     android:layout_height="match_parent"
     android:scrollbars="none">
 
-    <LinearLayout
+    <!--app:showDividers="end"  就会在最后一行的下面显示
+        middle就会在中间每一个显示
+        begin  那就是header了
+       -->
+    <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:divider="@drawable/audio_anim_03"
+        app:showDividers="beginning"
         android:orientation="vertical">
 
-        <com.gdj.myview.view.QQStepView
-            android:id="@+id/qqstep"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            app:borderWidth="6dp"
-            app:innerColor="@color/colorAccent"
-            app:outerColor="@color/colorPrimary"
-            app:stepTextColor="@color/colorAccent"
-            app:stepTextSize="16sp" />
+       <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.gdj.myview.view.QQStepView
+                android:id="@+id/qqstep"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:borderWidth="6dp"
+                app:innerColor="@color/colorAccent"
+                app:outerColor="@color/colorPrimary"
+                app:stepTextColor="@color/colorAccent"
+                app:stepTextSize="16sp" />
+            <View
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="wrap_content"/>
+
+            <com.gdj.myview.view.PregressView
+                android:id="@+id/view"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:borderWidth="6dp"
+                app:progressoutCycleColor="@color/colorAccent"
+                app:progressinnerCycleColor="@color/colorPrimary"
+                app:progresstextSize="12sp"
+                app:progressCycleWidth="8dp" />
+        </LinearLayout>
 
 
         <com.gdj.myview.view.SingleLineFlowLayout
             android:id="@+id/single_line_layout"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Hello World!"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -37,16 +61,15 @@
             android:id="@+id/btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PregressView"/>
+            android:text="listPopupWindow"/>
 
-        <com.gdj.myview.view.PregressView
-            android:id="@+id/view"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:borderWidth="6dp"
-            app:progressoutCycleColor="@color/colorAccent"
-            app:progressinnerCycleColor="@color/colorPrimary"
-            app:progresstextSize="12sp"
-            app:progressCycleWidth="8dp" />
-    </LinearLayout>
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="showPopupMenu"
+            android:text="showPopupMenu"/>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
 </ScrollView>

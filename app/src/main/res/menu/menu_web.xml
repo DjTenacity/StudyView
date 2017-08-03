@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_favorite"
+        android:title="@string/app_name"
+        android:orderInCategory="100"
+        android:icon="@mipmap/list_selected"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_share"
+        android:title="@string/app_name"
+        android:orderInCategory="100"
+        android:icon="@mipmap/checkbox_checked"
+        app:showAsAction="ifRoom" />
+</menu>
