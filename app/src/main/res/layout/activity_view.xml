@@ -45,6 +45,13 @@
                 app:progresstextSize="12sp"
                 app:progressCycleWidth="8dp" />
         </LinearLayout>
+        <com.gdj.myview.view.BrokenView
+            android:id="@+id/menu_chart"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_height="300dp" />
 
 
         <com.gdj.myview.view.SingleLineFlowLayout
