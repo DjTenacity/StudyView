@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/ll_frist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/verticallxhd"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startFrist"
+            android:text="显示" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/second"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startSecond"
+        android:scaleType="fitEnd"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/doctor"
+        android:text="显示" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_study"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="translateBtn"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="translateBtn2"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="translateBtn3"
+            android:src="@mipmap/ic_launcher_round" />
+    </LinearLayout>
+
+</RelativeLayout>

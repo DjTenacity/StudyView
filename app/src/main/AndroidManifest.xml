@@ -58,6 +58,7 @@
 
         <activity android:name=".ui.activity.KTLockPatternActivity"/>
         <activity android:name=".ui.activity.FlightSeatActivity" />
+        <activity android:name=".ui.activity.MyAnimationActivity" />
     </application>
 
 </manifest>

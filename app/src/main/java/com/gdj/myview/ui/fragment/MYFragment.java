@@ -23,6 +23,7 @@ import com.gdj.myview.ui.activity.FlightSeatActivity;
 import com.gdj.myview.ui.activity.KTLockPatternActivity;
 import com.gdj.myview.ui.activity.MainActivity;
 import com.gdj.myview.ui.activity.MultiButtonActivity;
+import com.gdj.myview.ui.activity.MyAnimationActivity;
 import com.gdj.myview.ui.activity.PaintViewActivity;
 import com.gdj.myview.ui.activity.QQStepActivity;
 import com.gdj.myview.ui.activity.QQzoneActivity;
@@ -47,7 +48,7 @@ public class MYFragment extends MainFragment {
                         " \n" +//
                         "而且对主题有一定要求 \n" +//
                         " "));
-
+//2
         items.add(new ItemModel("具有3D视差效果的多选按钮。",//
                 "https://github.com/gjiazhe/MultiChoicesCircleButton\n" + //
                         "灵感来自Nicola Felasquez Felaco的发布会，并引用JustinFincher / JZMultiChoicesCircleButton。"));
@@ -57,16 +58,17 @@ public class MYFragment extends MainFragment {
 
         items.add(new ItemModel("qq空间头部",//
                 "仿QQ控件值打造个性化可拉伸头部空间\n"));
-//
-        items.add(new ItemModel("运动进度条", " 和一些碎控件\n"));
+//5
+        items.add(new ItemModel("运动进度条", " 和一些小控件\n"));
 
         items.add(new ItemModel("高仿小红书欢迎界面", " \n"));
 
         items.add(new ItemModel("九宫格", " 微信下拉拍照自定义Behavior玩转特效--滑动的卡片\n"));
 
         items.add(new ItemModel("2222", " 微信下拉拍照自定义Behavior玩转特效--滑动的卡片\n"));
-
+//9
         items.add(new ItemModel("飞机选位", ""));
+        items.add(new ItemModel("动画", ""));
     }
 
     //给予erp的二次开发  以及周边app的开发  卖用户产品
@@ -85,7 +87,7 @@ public class MYFragment extends MainFragment {
         if (position == 8) startActivity(new Intent(context, PaintViewActivity.class));
 
         if (position == 9) startActivity(new Intent(context, FlightSeatActivity.class));
-
+        if (position == 10) startActivity(new Intent(context, MyAnimationActivity.class));
 
         //
     }

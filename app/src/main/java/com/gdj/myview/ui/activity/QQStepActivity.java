@@ -44,11 +44,11 @@ public class QQStepActivity extends AppCompatActivity {
     @BindView(R.id.single_line_layout)
     SingleLineFlowLayout mSingleLineFlowLayout;
 
-    @BindView(R.id.menu_chart)
     BrokenView menu_chart;
 
-    private String[] mItems = {"1311", "223222", "1131", "222322", "1131", "222232", "1411", "22222", "11133", "22222"};
-    private HashMap<Double, Double> map;
+    private String[] mItems = {"1311", "223222", "1131", "222322", "1131", "222232",
+            "1411", "1131", "222322", "1131", "222232", "22222", "11133", "22222"};
+    private HashMap<Double, Double> map   = new HashMap<>();;
 
 
     @Override
@@ -56,7 +56,7 @@ public class QQStepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         ButterKnife.bind(this);
-
+        menu_chart= (BrokenView) findViewById(R.id.menu_chart);
 
      //   mSingleLineFlowLayout = (SingleLineFlowLayout) findViewById(R.id.single_line_layout);
 
@@ -71,7 +71,6 @@ public class QQStepActivity extends AppCompatActivity {
                 }
             }
         });
-        map = new HashMap<>();
         map.put(0.0,0.0);
         map.put(1.0,3.0);
         map.put(2.0,13.0);
@@ -82,7 +81,7 @@ public class QQStepActivity extends AppCompatActivity {
         map.put(7.0,36.0);
         map.put(8.0,33.0);
 
-        menu_chart.setView(map,50,10,20,50,"s","b",true);
+     //   menu_chart.setView(map,50,10,20,50,"s","b" );
     }
 
 

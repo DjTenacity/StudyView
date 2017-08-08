@@ -28,13 +28,14 @@ import java.util.Set;
 public class BrokenView extends View {
 
     private int bWidth, bHeight;     //左边的边距,,  图表出来后下边距的距离
-    private int totalValue, jValue;  //总的和每一个  y
+    private int totalValue = 50;//总的
+    private int jValue = 10;  // 每一个  y
     private String xStr = "x";
     private String yStr = "y";
 
     ArrayList<Double> dlk = new ArrayList<>();
 
-    private int marginT, marginB;
+    private int marginT, marginB=20;
     private HashMap<Double, Double> map = new HashMap<>();//数学系的所有坐标集合
 
     public BrokenView(Context context) {
@@ -51,14 +52,14 @@ public class BrokenView extends View {
 
 
     public void setView(HashMap<Double, Double> map, int totalValue, int jValue,
-                        int marginT, int marginB, String s, String b, boolean b1) {
+                        int marginT, int marginB, String s, String b) {
         this.map = map;
-        this.jValue = jValue;
         this.totalValue = totalValue;
+        this.jValue = jValue;
         this.marginB = marginB;
         this.marginT = marginT;
-        this.xStr = s;
-        this.yStr = b;
+        // this.xStr = s;
+        //  this.yStr = b;
     }
 
     @Override

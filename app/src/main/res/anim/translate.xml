@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromXDelta="0"
+    android:fromYDelta="0"
+    android:toXDelta="50%p"
+    android:toYDelta="50%"
+    android:fillAfter="true"
+    android:duration="5600"
+    >
+
+    <!--50%p  父容器的50%
+      fillAfter 如果为true,动画完成后,就会停留在终点-->
+
+</translate>

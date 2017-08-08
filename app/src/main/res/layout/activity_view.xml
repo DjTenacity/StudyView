@@ -14,44 +14,73 @@
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:divider="@drawable/audio_anim_03"
-        app:showDividers="beginning"
-        android:orientation="vertical">
+        app:showDividers="end">
 
-       <LinearLayout
+        <com.gdj.myview.view.StudyView
+            android:layout_width="match_parent"
+            android:layout_height="180dp" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <com.gdj.myview.view.QQStepView
                 android:id="@+id/qqstep"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 app:borderWidth="6dp"
                 app:innerColor="@color/colorAccent"
                 app:outerColor="@color/colorPrimary"
                 app:stepTextColor="@color/colorAccent"
                 app:stepTextSize="16sp" />
+
             <View
-                android:layout_width="@dimen/dp_10"
-                android:layout_height="wrap_content"/>
+                android:layout_width="@dimen/dp_2"
+                android:layout_height="wrap_content" />
 
             <com.gdj.myview.view.PregressView
                 android:id="@+id/view"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 app:borderWidth="6dp"
-                app:progressoutCycleColor="@color/colorAccent"
+                app:progressCycleWidth="8dp"
                 app:progressinnerCycleColor="@color/colorPrimary"
-                app:progresstextSize="12sp"
-                app:progressCycleWidth="8dp" />
+                app:progressoutCycleColor="@color/colorAccent"
+                app:progresstextSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="listPopupWindow"
+                    android:textSize="@dimen/sp_12" />
+
+                <Button
+                    android:id="@+id/btn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="showPopupMenu"
+                    android:text="showPopupMenu"
+                    android:textSize="@dimen/sp_12" />
+            </LinearLayout>
+
         </LinearLayout>
+
         <com.gdj.myview.view.BrokenView
             android:id="@+id/menu_chart"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dp_20"
-            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_height="300dp"
             android:layout_marginBottom="@dimen/dp_20"
-            android:layout_height="300dp" />
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20" />
 
 
         <com.gdj.myview.view.SingleLineFlowLayout
@@ -64,18 +93,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="listPopupWindow"/>
 
-        <Button
-            android:id="@+id/btn2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="showPopupMenu"
-            android:text="showPopupMenu"/>
+
+
 
     </android.support.v7.widget.LinearLayoutCompat>
 

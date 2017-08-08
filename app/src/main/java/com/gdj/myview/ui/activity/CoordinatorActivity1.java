@@ -42,7 +42,7 @@ public class CoordinatorActivity1 extends BaseActivity {
         initToolBar(toolbar, false, "");
 
         items = new ArrayList<>();
-        items.add(new Pair<String, Fragment>("Ok，Go", new MYFragment()));
+        items.add(new Pair<String, Fragment>("自定义控件,动画等", new MYFragment()));
 
         viewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));
         tab.setupWithViewPager(viewPager);
