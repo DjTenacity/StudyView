@@ -11,11 +11,14 @@
         android:background="@mipmap/verticallxhd"
         android:orientation="vertical">
 
+        <!--android:background="?attr/selectableItemBackground"\
+        Borderless没有边界-->
         <Button
             android:id="@+id/btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="startFrist"
+            android:background="?attr/selectableItemBackground"
             android:text="显示" />
     </LinearLayout>
 
@@ -33,12 +36,10 @@
 
     <LinearLayout
         android:id="@+id/ll_study"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        android:visibility="gone">
-
+        android:orientation="vertical">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

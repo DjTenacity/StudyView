@@ -12,6 +12,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
     <!--toolbar替代actionbar后必须设置主题为NoActionBar-->
     <style name="AppTheme.NoActionBar">

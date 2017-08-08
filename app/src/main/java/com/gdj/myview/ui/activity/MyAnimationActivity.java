@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
 import android.widget.Button;
 
@@ -40,23 +43,33 @@ public class MyAnimationActivity extends AppCompatActivity {
     }
 
     //第一个 view 动画:翻转动画,透明度,缩小放大
-    public void startFrist(final View v) {
-        ObjectAnimator rotationFAnimation = ObjectAnimator.ofFloat(ll_frist, "rotationX", 0, 30f);
-        rotationFAnimation.setDuration(500);
+    public void startFrist(View v) {
+        //if(){ }
+
+            //圆形水波纹揭露效果
+            Animator ani = ViewAnimationUtils.createCircularReveal(btn, 0, 0, 0, (float) Math.hypot(btn.getWidth(), btn.getHeight()));
+            ani.setDuration(1000);
+            ani.setInterpolator(new AccelerateDecelerateInterpolator());
+            ani.start();
+
+
+
+//        ObjectAnimator rotationFAnimation = ObjectAnimator.ofFloat(ll_frist, "rotationX", 0, 25f);
+//        rotationFAnimation.setDuration(500);
 
         ObjectAnimator alphaFAnimation = ObjectAnimator.ofFloat(ll_frist, "alpha", 1f, 0.5f);
         alphaFAnimation.setDuration(500);
 
-        ObjectAnimator scaleXFAnimation = ObjectAnimator.ofFloat(ll_frist, "scaleX", 1f, 0.5f);
+        ObjectAnimator scaleXFAnimation = ObjectAnimator.ofFloat(ll_frist, "scaleX", 1f, 0.8f);
         scaleXFAnimation.setDuration(500);
 
-        ObjectAnimator scaleYFAnimation = ObjectAnimator.ofFloat(ll_frist, "scaleY", 1f, 0.5f);
+        ObjectAnimator scaleYFAnimation = ObjectAnimator.ofFloat(ll_frist, "scaleY", 1f, 0.8f);
         scaleYFAnimation.setDuration(500);
 
-        //执行完毕后再执行反向旋转
-        ObjectAnimator rotationFAnimation2 = ObjectAnimator.ofFloat(ll_frist, "rotationX", 30f, 0f);
-        rotationFAnimation2.setDuration(500);
-        rotationFAnimation2.setStartDelay(500);//延迟执行
+//        //执行完毕后再执行反向旋转
+//        ObjectAnimator rotationFAnimation2 = ObjectAnimator.ofFloat(ll_frist, "rotationX", 25f, 0f);
+//        rotationFAnimation2.setDuration(500);
+//        rotationFAnimation2.setStartDelay(500);//延迟执行
 
         //由于缩放造成了离顶部一段距离,需要平移上去, 不乘以0.1f,就飞没了  (自己高度的10%,getHeight()缩放后不变)
         ObjectAnimator translationFAnimation2 = ObjectAnimator.ofFloat(ll_frist, "translationY", 0f, -0.1f * ll_frist.getHeight());
@@ -80,27 +93,27 @@ public class MyAnimationActivity extends AppCompatActivity {
                 super.onAnimationEnd(animation);
                 btn.setClickable(false);
             }
-        });
+        });   //  rotationFAnimation,  rotationFAnimation2,
 
         AnimatorSet set = new AnimatorSet();
-        set.playTogether(rotationFAnimation, alphaFAnimation, scaleXFAnimation, scaleYFAnimation, rotationFAnimation2, translationFAnimation2, translationSecAnimation);
+        set.playTogether(alphaFAnimation, scaleXFAnimation, scaleYFAnimation, translationFAnimation2, translationSecAnimation);
         set.start();
 
 
     }
 
     //第二个 view 动画:平移动画
-    public void startSecond(final View v) {
-        ObjectAnimator rotationFAnimation = ObjectAnimator.ofFloat(ll_frist, "rotationX", 0f, 30f);
+    public void startSecond(View v) {
+        ObjectAnimator rotationFAnimation = ObjectAnimator.ofFloat(ll_frist, "rotationX", 0, 30);
         rotationFAnimation.setDuration(500);
 
         ObjectAnimator alphaFAnimation = ObjectAnimator.ofFloat(ll_frist, "alpha", 0.5f, 1f);
         alphaFAnimation.setDuration(500);
 
-        ObjectAnimator scaleXFAnimation = ObjectAnimator.ofFloat(ll_frist, "scaleX", 0.5f, 1f);
+        ObjectAnimator scaleXFAnimation = ObjectAnimator.ofFloat(ll_frist, "scaleX", 0.8f, 1f);
         scaleXFAnimation.setDuration(500);
 
-        ObjectAnimator scaleYFAnimation = ObjectAnimator.ofFloat(ll_frist, "scaleY", 0.5f, 1f);
+        ObjectAnimator scaleYFAnimation = ObjectAnimator.ofFloat(ll_frist, "scaleY", 0.8f, 1f);
         scaleYFAnimation.setDuration(500);
 
         //执行完毕后再执行反向旋转
@@ -109,30 +122,31 @@ public class MyAnimationActivity extends AppCompatActivity {
         rotationFAnimation2.setStartDelay(500);//延迟执行
 
         //由于缩放造成了离顶部一段距离,需要平移上去, 不乘以0.1f,就飞没了  (自己高度的10%,getHeight()缩放后不变)
-        ObjectAnimator translationFAnimation2 = ObjectAnimator.ofFloat(ll_frist, "translationY", 0.1f * ll_frist.getHeight(), 0f);
+        ObjectAnimator translationFAnimation2 = ObjectAnimator.ofFloat(ll_frist, "translationY", -0.1f * ll_frist.getHeight(), 0f);
         translationFAnimation2.setDuration(500);
         translationFAnimation2.setStartDelay(500);//延迟执行
 
-        ObjectAnimator translationSecAnimation = ObjectAnimator.ofFloat(second, "translationY", second.getHeight(), 0f);
+        ObjectAnimator translationSecAnimation = ObjectAnimator.ofFloat(second, "translationY", 0f, second.getHeight());
         translationSecAnimation.setDuration(500);
         translationSecAnimation.setStartDelay(500);//延迟执行
 
-        rotationFAnimation.addListener(new AnimatorListenerAdapter() {
+        translationFAnimation2.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                second.setVisibility(View.GONE);
+                btn.setClickable(true);
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                btn.setClickable(true);
+
+                second.setVisibility(View.INVISIBLE);
             }
         });
 
-        AnimatorSet set = new AnimatorSet();
-        set.playTogether(rotationFAnimation, alphaFAnimation, scaleXFAnimation, scaleYFAnimation, rotationFAnimation2, translationFAnimation2, translationSecAnimation);
+        AnimatorSet set = new AnimatorSet();//rotationFAnimation2,  rotationFAnimation2,
+        set.playTogether(alphaFAnimation, scaleXFAnimation, scaleYFAnimation, translationFAnimation2, translationSecAnimation);
         set.start();
     }
 
@@ -257,6 +271,7 @@ public class MyAnimationActivity extends AppCompatActivity {
                 v.setAlpha(0.5f + vaule / 600);
                 v.setScaleX(0.5f + vaule / 600);
                 v.setScaleY(0.5f + vaule / 600);
+                v.setRotation(60 * vaule / 600);
             }
         });
         oa.start();
@@ -279,6 +294,5 @@ public class MyAnimationActivity extends AppCompatActivity {
         oa.setInterpolator(new BounceInterpolator());
 
         oa.start();
-        findViewById(R.id.ll_study).setVisibility(View.GONE);
     }
 }

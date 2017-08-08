@@ -9,4 +9,14 @@
         <!--<item name="android:foreground">?selectableItemBackground</item>-->
     <!--</style>-->
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!--可以修改背景颜色和水波纹的颜色：-->
+        <item name="android:colorButtonNormal">@color/colorAccent</item>
+        <item name="android:colorControlHighlight">@color/colorAccent</item>
+    </style>
+
 </resources>
