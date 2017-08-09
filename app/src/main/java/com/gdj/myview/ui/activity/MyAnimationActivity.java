@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Slide;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -40,6 +41,13 @@ public class MyAnimationActivity extends AppCompatActivity {
         ll_frist = findViewById(R.id.ll_frist);
         second = findViewById(R.id.second);
         btn = (Button) findViewById(R.id.btn);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //21
+            Slide slide=new Slide();
+            slide.setDuration(500);
+            getWindow().setExitTransition(slide);//出去的动画
+            getWindow().setEnterTransition(slide);//进来的动画
+        }
     }
 
     //第一个 view 动画:翻转动画,透明度,缩小放大
