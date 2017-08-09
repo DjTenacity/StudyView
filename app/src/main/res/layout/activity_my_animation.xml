@@ -13,13 +13,18 @@
 
         <!--android:background="?attr/selectableItemBackground"\
         Borderless没有边界-->
-        <Button
-            android:id="@+id/btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="startFrist"
-            android:background="?attr/selectableItemBackground"
-            android:text="显示" />
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:background="@color/transparent_half_2"
+           android:layout_height="match_parent">
+           <Button
+               android:id="@+id/btn"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:onClick="startFrist"
+               android:background="?attr/selectableItemBackground"
+               android:text="显示" />
+       </LinearLayout>
     </LinearLayout>
 
     <ImageView
@@ -28,10 +33,11 @@
         android:layout_height="wrap_content"
         android:onClick="startSecond"
         android:scaleType="fitEnd"
+
         android:visibility="invisible"
         android:layout_alignParentBottom="true"
         android:background="@mipmap/doctor"
-        android:text="显示" />
+         />
 
 
     <LinearLayout
@@ -50,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="translateBtn2"
+            android:transitionName="iv_heard_image"
             android:src="@mipmap/ic_launcher_round" />
 
         <ImageView

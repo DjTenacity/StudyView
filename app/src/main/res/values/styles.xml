@@ -30,6 +30,14 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="AppTheme2" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme2.Common" parent="AppTheme2">
+    </style>
+
 
     <!--***************-->
 

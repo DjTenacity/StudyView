@@ -1,5 +1,7 @@
 package com.gdj.myview.ui.activity;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -37,6 +39,12 @@ public class MultiButtonActivity extends AppCompatActivity {
         multiChoicesCircleButton.setOnSelectedItemListener(new MultiChoicesCircleButton.OnSelectedItemListener() {
             @Override
             public void onSelected(MultiChoicesCircleButton.Item item, int index) {
+
+
+                startActivity(new Intent(MultiButtonActivity.this, MyAnimationActivity.class));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                    overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
                 Toast.makeText(MultiButtonActivity.this, item.getText(), Toast.LENGTH_SHORT).show();
             }
         });

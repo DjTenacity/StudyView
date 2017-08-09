@@ -3,5 +3,7 @@
     <style name="AppTheme.Common">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
+    <style name="AppTheme2.Common" parent="AppTheme2">
+    </style>
 
 </resources>

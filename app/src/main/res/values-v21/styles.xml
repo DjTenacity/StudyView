@@ -8,15 +8,12 @@
     <!--<style name="WrapContent.WidthMatchParent.RecyclerItem.Foreground">-->
         <!--<item name="android:foreground">?selectableItemBackground</item>-->
     <!--</style>-->
-
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
+    <style name="AppTheme2.Common" parent="AppTheme2">
         <!--可以修改背景颜色和水波纹的颜色：-->
         <item name="android:colorButtonNormal">@color/colorAccent</item>
         <item name="android:colorControlHighlight">@color/colorAccent</item>
+
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
 </resources>

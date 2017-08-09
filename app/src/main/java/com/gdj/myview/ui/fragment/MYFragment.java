@@ -57,7 +57,7 @@ public class MYFragment extends MainFragment {
                 "防雅虎新闻加载过渡动画之小球旋转跳跃然后团灭的故事3\n"));
 
         items.add(new ItemModel("qq空间头部",//
-                "仿QQ控件值打造个性化可拉伸头部空间\n"));
+                "仿QQ控件值打造个性化可拉伸头部空间\n"+"共享元素跳转"));
 //5
         items.add(new ItemModel("运动进度条", " 和一些小控件\n"));
 
@@ -78,6 +78,7 @@ public class MYFragment extends MainFragment {
         if (position == 1) startActivity(new Intent(context, CoordinatorActivity2.class));
         if (position == 2) startActivity(new Intent(context, MultiButtonActivity.class));
         if (position == 3) startActivity(new Intent(context, YahooNewsActivity.class));
+        //qq空间头部
         if (position == 4) startActivity(new Intent(context, QQzoneActivity.class));
         if (position == 5) startActivity(new Intent(context, QQStepActivity.class));
         if (position == 6) startActivity(new Intent(context, SplashActivity.class));
@@ -87,7 +88,11 @@ public class MYFragment extends MainFragment {
         if (position == 8) startActivity(new Intent(context, PaintViewActivity.class));
 
         if (position == 9) startActivity(new Intent(context, FlightSeatActivity.class));
-        if (position == 10) startActivity(new Intent(context, MyAnimationActivity.class));
+        if (position == 10) {
+            startActivity(new Intent(context, MyAnimationActivity.class));
+
+
+        }
 
         //
     }

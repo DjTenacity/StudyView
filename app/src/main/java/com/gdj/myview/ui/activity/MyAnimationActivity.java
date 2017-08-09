@@ -7,13 +7,13 @@ import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.graphics.PointF;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
 import android.widget.Button;
 
@@ -44,14 +44,14 @@ public class MyAnimationActivity extends AppCompatActivity {
 
     //第一个 view 动画:翻转动画,透明度,缩小放大
     public void startFrist(View v) {
-        //if(){ }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             //圆形水波纹揭露效果
             Animator ani = ViewAnimationUtils.createCircularReveal(btn, 0, 0, 0, (float) Math.hypot(btn.getWidth(), btn.getHeight()));
             ani.setDuration(1000);
             ani.setInterpolator(new AccelerateDecelerateInterpolator());
             ani.start();
-
+        }
 
 
 //        ObjectAnimator rotationFAnimation = ObjectAnimator.ofFloat(ll_frist, "rotationX", 0, 25f);
