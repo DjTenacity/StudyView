@@ -1,0 +1,26 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:ordering="sequentially">
+    <!--  android:ordering="sequentially" 动画集合  排序     sequentially按顺序
+    android:shareinterpolator="true"
+    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+    -->
+    <set android:ordering="together">
+        <objectAnimator
+            android:duration="300"
+            android:propertyName="scaleX"
+            android:valueFrom="0.0"
+            android:valueTo="1.0" />
+        <objectAnimator
+            android:duration="300"
+            android:propertyName="scaleY"
+            android:valueFrom="0.0"
+            android:valueTo="1.0" />
+    </set>
+    <objectAnimator
+        android:duration="500"
+        android:propertyName="rotation"
+        android:valueFrom="0"
+        android:valueTo="360" />
+
+</set>

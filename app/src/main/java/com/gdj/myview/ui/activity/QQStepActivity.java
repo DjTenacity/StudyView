@@ -81,7 +81,7 @@ public class QQStepActivity extends AppCompatActivity {
         map.put(7.0,36.0);
         map.put(8.0,33.0);
 
-     //   menu_chart.setView(map,50,10,20,50,"s","b" );
+//       menu_chart.setView(map,50,10,20,50,"s","b" );
     }
 
 

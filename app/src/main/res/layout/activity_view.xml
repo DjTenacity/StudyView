@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:divider="@drawable/audio_anim_03"
+        app:divider="@drawable/sss"
         app:showDividers="end">
 
         <com.gdj.myview.view.StudyView
@@ -74,13 +74,7 @@
 
         </LinearLayout>
 
-        <com.gdj.myview.view.BrokenView
-            android:id="@+id/menu_chart"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginBottom="@dimen/dp_20"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_20" />
+
 
 
         <com.gdj.myview.view.SingleLineFlowLayout
@@ -93,9 +87,13 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-
-
+        <com.gdj.myview.view.BrokenView
+            android:id="@+id/menu_chart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20" />
 
     </android.support.v7.widget.LinearLayoutCompat>
 

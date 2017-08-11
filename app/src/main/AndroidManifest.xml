@@ -43,11 +43,12 @@
         <activity android:name=".ui.activity.YahooNewsActivity" />
         <activity android:name=".ui.activity.QQStepActivity" />
         <activity android:name=".ui.activity.SplashActivity" />
-        <activity android:name=".ui.activity.PaintViewActivity" />
+        <activity android:name=".ui.activity.SVGViewActivity" />
         <activity android:name=".ui.activity.KTLockPatternActivity"/>
         <activity android:name=".ui.activity.FlightSeatActivity" />
         <activity android:name=".ui.activity.MyAnimationActivity"
             android:theme="@style/AppTheme2.Common"/>
+        <activity android:name=".fileup.UploadFileActivity" />
 
         <!-- 友盟统计  value是其他项目的,而且放心，我改了部分 -->
         <meta-data

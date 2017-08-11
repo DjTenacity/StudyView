@@ -1,12 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.gdj.myview.view.PainView
-
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <!--<com.gdj.myview.view.PainView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="anim1"
+            android:src="@drawable/path_tick2cross_anim" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="anim1"
+            android:src="@drawable/animate_vd_star" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="anim1"
+            android:layout_margin="@dimen/margin"
+            android:text="@string/example_from_documentation"
+            android:drawableBottom="@drawable/avd"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            android:onClick="anim1"
+            android:text="@string/rotation_only"
+            android:drawableBottom="@drawable/avd_rotation_only"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            android:onClick="anim1"
+            android:text="@string/path_morph_only"
+            android:drawableBottom="@drawable/avd_path_morph_only"/>
+
+        <!--<CheckBox-->
+            <!--android:id="@+id/text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@string/love_it"-->
+            <!--android:onClick="anim1"-->
+            <!--android:textSize="64sp"-->
+            <!--android:textColor="@color/heart_text"-->
+            <!--android:paddingLeft="16dp"-->
+            <!--android:button="@drawable/fill_in_heart"-->
+            <!--android:background="@null"/>-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:onClick="anim1"-->
+            <!--android:src="@drawable/smiling_face" />-->
+        <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:onClick="anim1"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:src="@drawable/nine_to_five" />-->
+    </LinearLayout>
+
+</ScrollView>

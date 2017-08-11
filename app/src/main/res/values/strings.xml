@@ -15,5 +15,84 @@
     <string name="behavior_user_head_move">com.gdj.myview.ui.behavior.AvatarImageBehavior</string>
 
     <string name="string_sample">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="example_from_documentation">Example from documentation</string>
+    <string name="rotation_only">Rotation only</string>
+    <string name="path_morph_only">Path morph only</string>
+    <string name="animate">Animate</string>
 
+    <string name="clock">Clock</string>
+
+    <string name="smiling_face">Smiling face</string>
+
+    <string name="fill_in_heart">Fill in heart</string>
+    <string name="love_it">Love it</string>
+
+
+    <string name="star_data">
+            M 200.30535,69.729172
+            C 205.21044,69.729172 236.50709,141.52218 240.4754,144.40532
+            C 244.4437,147.28846 322.39411,154.86809 323.90987,159.53312
+            C 325.42562,164.19814 266.81761,216.14828 265.30186,220.81331
+            C 263.7861,225.47833 280.66544,301.9558 276.69714,304.83894
+            C 272.72883,307.72209 205.21044,268.03603 200.30534,268.03603
+            C 195.40025,268.03603 127.88185,307.72208 123.91355,304.83894
+            C 119.94524,301.9558 136.82459,225.47832 135.30883,220.8133
+            C 133.79307,216.14828 75.185066,164.19813 76.700824,159.53311
+            C 78.216581,154.86809 156.16699,147.28846 160.13529,144.40532
+            C 164.1036,141.52218 195.40025,69.729172 200.30535,69.729172 z
+    </string>
+
+    <string name="star_lollipop">
+            M 223.42,133.484
+            C 237.895,98.1973 280.378,100.58 295.49,133.484
+            C 302.176,148.044 293.576,165.914 270.253,183.357
+            C 264.16,187.914 268.606,245.136 268.606,248.852
+            C 268.606,256.589 268.606,295.171 268.606,302.907
+            C 268.606,322.848 268.606,329.725 268.606,339.649
+            C 268.606,347.385 255.048,349.681 255.048,339.649
+            C 255.048,331.913 255.361,310.637 255.048,302.907
+            C 254.579,291.371 255.048,256.788 255.048,249.052
+            C 255.048,238.561 254.706,187.75 248.302,183.489
+            C 221.536,165.677 218.848,144.628 223.42,133.484 z
+    </string>
+    <string name="bird_path">
+            M60.377,337.822
+            c30.33,19.236,66.308,30.368,104.875,30.368c108.349,0,196.18-87.841,196.18-196.18
+            c0-2.705-0.057-5.39-0.161-8.067c3.919-3.084,28.157-22.511,34.098-35c0,0-19.683,8.18-38.947,10.107
+            c-0.038,0-0.085,0.009-0.123,0.009c0,0,0.038-0.019,0.104-0.066c1.775-1.186,26.591-18.079,29.951-38.207
+            c0,0-13.922,7.431-33.415,13.932c-3.227,1.072-6.605,2.126-10.088,3.103c-12.565-13.41-30.425-21.78-50.25-21.78
+            c-38.027,0-68.841,30.805-68.841,68.803c0,5.362,0.617,10.581,1.784,15.592c-5.314-0.218-86.237-4.755-141.289-71.423
+            c0,0-32.902,44.917,19.607,91.105c0,0-15.962-0.636-29.733-8.864c0,0-5.058,54.416,54.407,68.329c0,0-11.701,4.432-30.368,1.272
+            c0,0,10.439,43.968,63.271,48.077c0,0-41.777,37.74-101.081,28.885L60.377,337.822z
+    </string>
+
+    <string name="path_circle">
+    M 50,50
+    m -48,0
+    a 48,48 0 1,0 96,0
+    a 48,48 0 1,0 -96,0
+  </string>
+    <string name="path_face_left_eye">
+    M 35,40
+    m -7,0
+    a 7,7 0 1,0 14,0
+    a 7,7 0 1,0 -14,0
+  </string>
+    <string name="path_face_right_eye">
+    M 65,40
+    m -7,0
+    a 7,7 0 1,0 14,0
+    a 7,7 0 1,0 -14,0
+  </string>
+    <string name="path_face_mouth_sad">
+    M 30,75
+    Q 50,55 70,75
+  </string>
+    <string name="path_face_mouth_happy">
+    M 30,65
+    Q 50,85 70,65
+  </string>
+    <string name="heart">
+    M25.119,2.564c12.434,0.023,18.68,5.892,24.88,17.612  c6.2-11.721,12.446-17.589,24.877-17.612c13.81-0.025,25.035,10.575,25.061,23.66c0.033,23.708-24.952,47.46-49.938,71.212  C25.016,73.685,0.03,49.932,0.064,26.224C0.085,13.14,11.309,2.539,25.119,2.564z
+  </string>
 </resources>

@@ -36,7 +36,7 @@ public class BrokenView extends View {
     ArrayList<Double> dlk = new ArrayList<>();
 
     private int marginT, marginB=20;
-    private HashMap<Double, Double> map = new HashMap<>();//数学系的所有坐标集合
+    private HashMap<Double, Double> map  ;//数学系的所有坐标集合
 
     public BrokenView(Context context) {
         this(context, null);
@@ -90,16 +90,16 @@ public class BrokenView extends View {
         }
         ArrayList<Integer> xList = new ArrayList<>();
         //画竖轴
-        for (int i = 0; i < dlk.size(); i++) {
+        for (int j = 0; j < dlk.size(); j++) {
             //把所有的x坐标  转换为相对于  View的坐标
-            float x = bWidth + (width - bWidth) / dlk.size() * i;
+            float x = bWidth + (width - bWidth) / dlk.size() * j;
             xList.add((int) x);
 
             canvas.drawLine(x, marginT,
                     width, x, paint);
 
             //画x的刻度
-            drawText(i + xStr, (int) x, bHeight - 20, canvas);
+            drawText(j + xStr, (int) x, bHeight - 20, canvas);
         }
         //换算所有点的集合
         Point[] points = getPoints(xList, map, dlk, bHeight, totalValue);
