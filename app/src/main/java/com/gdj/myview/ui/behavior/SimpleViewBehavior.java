@@ -106,7 +106,7 @@ public class SimpleViewBehavior extends CoordinatorLayout.Behavior<View> {
             mAnimation.initialize(child.getWidth(), child.getHeight(), parent.getWidth(), parent.getHeight());
         }
         // 兼容5.0以上的沉浸模式
-        if (Build.VERSION.SDK_INT > 16 && parent.getFitsSystemWindows() && targetY != UNSPECIFIED_INT) {
+        if (Build.VERSION.SDK_INT >= 17 && parent.getFitsSystemWindows() && targetY != UNSPECIFIED_INT) {
             targetY += getStatusBarHeight(parent.getContext());
         }
         isPrepared = true;

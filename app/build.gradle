@@ -153,6 +153,11 @@ dependencies {
     //java注解
   //  compile 'org.glassfish:javax.annotation:10.0-b28'
 
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+
     // 编译extras目录下的camera模块
     compile project(':camera')
     compile project(':multichoicescirclebutton')

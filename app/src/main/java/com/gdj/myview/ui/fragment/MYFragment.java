@@ -19,14 +19,16 @@ import android.content.Intent;
 
 import com.gdj.myview.entry.ItemModel;
 import com.gdj.myview.fileup.UploadFileActivity;
+import com.gdj.myview.ui.activity.CVActivity;
 import com.gdj.myview.ui.activity.KTLockPatternActivity;
 import com.gdj.myview.ui.activity.MainActivity;
 import com.gdj.myview.ui.activity.MultiButtonActivity;
-import com.gdj.myview.ui.activity.MyAnimationActivity;
+import com.gdj.myview.ui.activity.AnimationActivity;
 import com.gdj.myview.ui.activity.SVGViewActivity;
 import com.gdj.myview.ui.activity.QQStepActivity;
 import com.gdj.myview.ui.activity.QQzoneActivity;
 import com.gdj.myview.ui.activity.SplashActivity;
+import com.gdj.myview.ui.activity.TranslateActivity;
 import com.gdj.myview.ui.activity.YahooNewsActivity;
 
 import java.util.List;
@@ -42,11 +44,9 @@ public class MYFragment extends MainFragment {
                         "类似于微信，可以切换摄像头\n" +//
                         ""));
 
-        items.add(new ItemModel("1CoordinatorLayout的用法2",//
-                " rv的adapter没有填充数据，所以会有问题" +//
-                        " \n" +//
-                        "而且对主题有一定要求 \n" +//
-                        " "));
+        items.add(new ItemModel("平行空间",//
+
+                " "));
 //2
         items.add(new ItemModel("2具有3D视差效果的多选按钮。",//
                 "https://github.com/gjiazhe/MultiChoicesCircleButton\n" + //
@@ -75,7 +75,7 @@ public class MYFragment extends MainFragment {
     @Override
     public void onItemClick(int position) {
         if (position == 0) startActivity(new Intent(context, MainActivity.class));
-    //    if (position == 1) startActivity(new Intent(context, CoordinatorActivity2.class));
+        if (position == 1) startActivity(new Intent(context, TranslateActivity.class));
         if (position == 2) startActivity(new Intent(context, MultiButtonActivity.class));
         if (position == 3) startActivity(new Intent(context, YahooNewsActivity.class));
         //qq空间头部
@@ -87,10 +87,10 @@ public class MYFragment extends MainFragment {
 
         if (position == 8) startActivity(new Intent(context, SVGViewActivity.class));
 
-       // if (position == 9) startActivity(new Intent(context, FlightSeatActivity.class));
+        if (position == 9) startActivity(new Intent(context, CVActivity.class));
 
         if (position == 10)
-            startActivity(new Intent(context, MyAnimationActivity.class));
+            startActivity(new Intent(context, AnimationActivity.class));
 
         if (position == 11)
             startActivity(new Intent(context, UploadFileActivity.class));

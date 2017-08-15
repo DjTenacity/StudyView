@@ -41,7 +41,7 @@ public class MultiButtonActivity extends AppCompatActivity {
             public void onSelected(MultiChoicesCircleButton.Item item, int index) {
 
 
-                startActivity(new Intent(MultiButtonActivity.this, MyAnimationActivity.class));
+                startActivity(new Intent(MultiButtonActivity.this, AnimationActivity.class));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                     overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
 

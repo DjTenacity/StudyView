@@ -27,7 +27,7 @@ import com.gdj.myview.R;
  * @version : ${user} 1.0
  * @date : 2017/8/8 14:10
  */
-public class MyAnimationActivity extends AppCompatActivity {
+public class AnimationActivity extends AppCompatActivity {
     int position = 0;
     private View ll_frist;
     private View second;

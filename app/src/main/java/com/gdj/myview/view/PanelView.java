@@ -78,6 +78,7 @@ public class PanelView extends View {
         mTextSize = a.getDimensionPixelSize(UIUtils.dip2px(R.styleable.PanelView_android_textSize), 24);
         mText = a.getString(R.styleable.PanelView_android_text);
         mScendArcWidth = 50;
+        a.recycle();
     }
 
 

@@ -76,7 +76,7 @@ public class QQzoneActivity extends AppCompatActivity {
                 ActivityOptionsCompat.makeSceneTransitionAnimation(QQzoneActivity.this, iv, "iv_heard_image");
 
         //最低兼容到16
-        Intent intent = new Intent(QQzoneActivity.this, MyAnimationActivity.class);
+        Intent intent = new Intent(QQzoneActivity.this, AnimationActivity.class);
         startActivity(intent, optionsCompat.toBundle());
     }
 

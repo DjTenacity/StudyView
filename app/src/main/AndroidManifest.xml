@@ -46,9 +46,12 @@
         <activity android:name=".ui.activity.SVGViewActivity" />
         <activity android:name=".ui.activity.KTLockPatternActivity"/>
         <activity android:name=".ui.activity.FlightSeatActivity" />
-        <activity android:name=".ui.activity.MyAnimationActivity"
+        <activity android:name=".ui.activity.AnimationActivity"
             android:theme="@style/AppTheme2.Common"/>
         <activity android:name=".fileup.UploadFileActivity" />
+        <activity android:name=".ui.activity.TranslateActivity" />
+        <activity android:name=".ui.activity.CVActivity" />
+        <activity android:name=".mobileperf.BusyUIThreadActivity" />
 
         <!-- 友盟统计  value是其他项目的,而且放心，我改了部分 -->
         <meta-data

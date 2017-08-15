@@ -36,6 +36,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
+ * CoordinatorLayout的用法2
+ *   " rv的adapter没有填充数据，所以会有问题" +//
+ * "而且对主题有一定要求 \n" +//
  * 作者：${LoveDjForever} on 2017/6/30 10:33
  *  * 邮箱： @qq.com
  */

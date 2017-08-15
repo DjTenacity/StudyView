@@ -169,7 +169,7 @@ public class UploadFileActivity extends AppCompatActivity {
                 pathImage = cursor.getString(cursor
                         .getColumnIndex(MediaStore.Images.Media.DATA));
                 list.add(pathImage);
-
+                cursor.close();
             }
         } // end if 打开图片
 

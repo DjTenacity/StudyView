@@ -72,7 +72,7 @@ public class BrokenView extends View {
         bHeight = height - marginB;
         bWidth = 50;
 
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);//ANTI_ALIAS_FLAG 提高画质
         paint.setColor(Color.RED);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
