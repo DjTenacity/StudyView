@@ -87,6 +87,12 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!--避免过度绘制-->
+        <com.gdj.myview.mobileperf.render.DroidCardsView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
         <com.gdj.myview.view.BrokenView
             android:id="@+id/menu_chart"
             android:layout_width="match_parent"

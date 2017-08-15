@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+    <!--Version 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/alex"
+            android:layout_margin="10dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Line 1:悲观者说，希望是地平线，就算看得见，也永远走不到；"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Line 2:乐观者说，希望是启明星，即使摘不到，也能告诉人们曙光就在前头。"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--Version 2 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/chris"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_line1"
+            android:layout_toRightOf="@id/iv_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Line 1:忙碌是一种幸福，让我们没时间体会痛苦；"/>
+
+        <TextView
+            android:id="@+id/tv_line2"
+            android:layout_toRightOf="@id/iv_icon"
+            android:layout_below="@id/tv_line1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Line 2:奔波是一种快乐，让我们真实的感受生活；疲惫是一种享受，让我们无暇空虚。"/>
+            
+    </RelativeLayout>
+
+</LinearLayout>

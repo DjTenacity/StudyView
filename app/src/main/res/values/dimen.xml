@@ -2,6 +2,13 @@
 <resources>
     <dimen name="margin">4dp</dimen>
     <dimen name="heart_size">48sp</dimen>
+    <dimen name="large_text_size">30dp</dimen>
+    <dimen name="dp_6">6dp</dimen>
+    <dimen name="wide_space">16dp</dimen>
+    <dimen name="chat_padding_bottom">5dp</dimen>
+    <dimen name="avatar_dimen">60dp</dimen>
+    <dimen name="avatar_layout_margin">10dp</dimen>
+    <dimen name="divider_height">10dp</dimen>
 
     <dimen name="dp_102">102dp</dimen>
     <dimen name="dp_104">104dp</dimen>

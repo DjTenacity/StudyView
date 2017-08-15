@@ -34,24 +34,34 @@
         <activity android:name=".ui.activity.CameraActivity" />
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.WebActivity" />
+
+        <activity android:name=".ui.activity.CVActivity" />
         <activity
             android:name=".ui.activity.CoordinatorActivity2"
             android:theme="@style/AppTheme.Common.Launch" />
         <activity android:name=".ui.activity.KotlinAndroidActivity" />
         <activity android:name=".ui.activity.MultiButtonActivity" />
         <activity android:name=".ui.activity.QQzoneActivity" />
+        <!--小球加载动画-->
         <activity android:name=".ui.activity.YahooNewsActivity" />
         <activity android:name=".ui.activity.QQStepActivity" />
+
         <activity android:name=".ui.activity.SplashActivity" />
+        <!--svg-->
         <activity android:name=".ui.activity.SVGViewActivity" />
         <activity android:name=".ui.activity.KTLockPatternActivity"/>
         <activity android:name=".ui.activity.FlightSeatActivity" />
+        <!--动画-->
         <activity android:name=".ui.activity.AnimationActivity"
             android:theme="@style/AppTheme2.Common"/>
         <activity android:name=".fileup.UploadFileActivity" />
+        <!--平行空间-->
         <activity android:name=".ui.activity.TranslateActivity" />
-        <activity android:name=".ui.activity.CVActivity" />
+
+        <!--性能优化-->
         <activity android:name=".mobileperf.BusyUIThreadActivity" />
+        <activity android:name=".mobileperf.render.ChatumLatinumActivity" />
+        <activity android:name=".mobileperf.render.RenderActivity" />
 
         <!-- 友盟统计  value是其他项目的,而且放心，我改了部分 -->
         <meta-data
