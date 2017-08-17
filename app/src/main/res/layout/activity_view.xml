@@ -12,11 +12,20 @@
         begin  那就是header了
        -->
     <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:divider="@drawable/sss"
         app:showDividers="end">
+
+        <!--<com.gdj.myview.view.BrokenView-->
+            <!--android:id="@+id/menu_chart"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="300dp"-->
+            <!--android:layout_marginBottom="@dimen/dp_20"-->
+            <!--android:layout_marginLeft="@dimen/dp_20"-->
+            <!--android:layout_marginTop="@dimen/dp_20" />-->
 
         <com.gdj.myview.view.StudyView
             android:layout_width="match_parent"
@@ -89,17 +98,8 @@
 
         <!--避免过度绘制-->
         <com.gdj.myview.mobileperf.render.DroidCardsView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-
-        <com.gdj.myview.view.BrokenView
-            android:id="@+id/menu_chart"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginBottom="@dimen/dp_20"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_20" />
+            android:layout_width="300dp"
+            android:layout_height="180dp"/>
 
     </android.support.v7.widget.LinearLayoutCompat>
 

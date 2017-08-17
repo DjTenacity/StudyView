@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.PopupMenu;
 import android.view.Gravity;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gdj.myview.R;
+import com.gdj.myview.mobileperf.render.DroidCardsView;
 import com.gdj.myview.view.BrokenView;
 import com.gdj.myview.view.PregressView;
 import com.gdj.myview.view.QQStepView;
@@ -43,6 +45,8 @@ public class QQStepActivity extends AppCompatActivity {
     Button btn;
     @BindView(R.id.single_line_layout)
     SingleLineFlowLayout mSingleLineFlowLayout;
+    @BindView(R.id.ll)
+    LinearLayoutCompat ll;
 
     BrokenView menu_chart;
 
@@ -56,7 +60,7 @@ public class QQStepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         ButterKnife.bind(this);
-        menu_chart= (BrokenView) findViewById(R.id.menu_chart);
+     //   menu_chart= (BrokenView) findViewById(R.id.menu_chart);
 
      //   mSingleLineFlowLayout = (SingleLineFlowLayout) findViewById(R.id.single_line_layout);
 
@@ -82,6 +86,9 @@ public class QQStepActivity extends AppCompatActivity {
         map.put(8.0,33.0);
 
 //       menu_chart.setView(map,50,10,20,50,"s","b" );
+
+        DroidCardsView deddd=new DroidCardsView(this);
+        ll.addView(deddd);
     }
 
 

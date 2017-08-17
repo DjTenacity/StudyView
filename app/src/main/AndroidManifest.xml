@@ -33,6 +33,7 @@
         </activity>
         <activity android:name=".ui.activity.CameraActivity" />
         <activity android:name=".ui.activity.MainActivity" />
+        <!--web网页-->
         <activity android:name=".ui.activity.WebActivity" />
 
         <activity android:name=".ui.activity.CVActivity" />
