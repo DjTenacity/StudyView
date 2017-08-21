@@ -27,6 +27,8 @@
     <string name="fill_in_heart">Fill in heart</string>
     <string name="love_it">Love it</string>
 
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
 
     <string name="star_data">
             M 200.30535,69.729172

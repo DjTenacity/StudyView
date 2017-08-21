@@ -121,43 +121,36 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
 
 dependencies {
     // 编译libs目录下的所有jar包
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+   // compile 'com.android.support:palette-v7:23.4.0-alpha1'
+    compile 'com.android.support:palette-v7:25.3.1'
     //compile 'com.android.support:appcompat-v7:25.3.1'
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.android.support:design:$supportVersion"
     compile "com.android.support:recyclerview-v7:$supportVersion"
     compile "com.android.support:cardview-v7:$supportVersion"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-
     //compile(name: 'camera-debug', ext: 'aar')   类似于 compile project(':camera')，不过camera是我改的源码，前者是原作者的封装
-
     // compile 'cn.zhimadi.android.common.lib:android-common-lib:1.0.0-SNAPSHOT'
-
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-
     compile 'com.lzy.widget:imagepicker:0.3.2'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v2.0.7'
-
     // circle image,圆形头像
     compile 'de.hdodenhof:circleimageview:2.1.0'
-//dagger2
-  //  compile 'com.google.dagger:dagger:2.4'
-  //  apt 'com.google.dagger:dagger-compiler:2.4'
+    //dagger2
+    //  compile 'com.google.dagger:dagger:2.4'
+    //  apt 'com.google.dagger:dagger-compiler:2.4'
     //java注解
-  //  compile 'org.glassfish:javax.annotation:10.0-b28'
-
-
+    //  compile 'org.glassfish:javax.annotation:10.0-b28'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-
     // 编译extras目录下的camera模块
     compile project(':camera')
     compile project(':multichoicescirclebutton')

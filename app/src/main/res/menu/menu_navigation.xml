@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_favorite"
+        android:title="收藏"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_capture"/>
+    <item
+        android:id="@+id/menu_setting"
+        android:title="设置"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_close"/>
+    <item
+        android:id="@+id/menu_login"
+        android:title="登录"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_capture"/>
+    <item
+        android:id="@+id/menu_img"
+        android:title="图片"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_capture"/>
+</menu>

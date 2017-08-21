@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Pair;
 import android.view.View;
+import android.widget.TextView;
 
 import com.gdj.myview.R;
 import com.gdj.myview.ui.fragment.MYFragment;
@@ -35,6 +36,7 @@ public class CoordinatorActivity1 extends BaseActivity {
     TabLayout tab;
 
     private List<Pair<String, Fragment>> items;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,15 @@ public class CoordinatorActivity1 extends BaseActivity {
 
         viewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));
         tab.setupWithViewPager(viewPager);
+        for (int i = 0; i < tab.getTabCount(); i++) {
+            TabLayout.Tab tab2 = tab.getTabAt(i);
+            //tab.setText(Html.toHtml(text))
+            // View view = View.inflate(this, R.layout.bottom_navigation, null);
+            //  TextView tv_name = (TextView) view.findViewById(R.id.tv_name);
+            //   tv_name.setText(title[i]);
+            // tab2.setCustomView(view);
+            tab2.setIcon(getResources().getDrawable(R.drawable.drawable_gradient));
+        }
     }
 
     @OnClick(R.id.fab)

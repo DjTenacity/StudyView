@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#991B7AEA</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
@@ -55,5 +55,49 @@
     <color name="shailen_color">#ffaa713b</color>
 
     <color name="chris_color">#ffaa3699</color>
+
+
+    <color name="color_bg_1976d0">#1976D0</color>
+    <color name="color_bg_303f9f">#303F9F</color>
+    <color name="color_bg_e0e0e0">#E0E0E0</color>
+    <color name="color_bg_eeeeee">#EEEEEE</color>
+    <color name="color_bg_f1f1f1">#F1F1F1</color>
+    <color name="color_bg_f44336">#F44336</color>
+    <color name="color_bg_f5f5f5">#F5F5F5</color>
+    <color name="color_bg_ff8a80">#FF8A80</color>
+    <color name="color_bg_ffffff">#FFFFFF</color>
+    <color name="color_divider_1f000000">#1F000000</color>
+    <color name="color_divider_b6b6b6">#B6B6B6</color>
+    <color name="color_divider_bdbdbd">#BDBDBD</color>
+    <color name="color_divider_e0e0e0">#E0E0E0</color>
+    <color name="color_divider_eeeeee">#EEEEEE</color>
+    <color name="color_divider_f5f5f5">#F5F5F5</color>
+    <color name="color_text_00c853">#00C853</color>
+    <color name="color_text_1f000000">#1F000000</color>
+    <color name="color_text_1fffffff">#1FFFFFFF</color>
+    <color name="color_text_212121">#212121</color>
+    <color name="color_text_333333">#333333</color>
+    <color name="color_text_40c4ff">#40C4FF</color>
+    <color name="color_text_42000000">#42000000</color>
+    <color name="color_text_4dffffff">#4DFFFFFF</color>
+    <color name="color_text_536dfe">#536DFE</color>
+    <color name="color_text_727272">#727272</color>
+    <color name="color_text_80d8ff">#80D8FF</color>
+    <color name="color_text_8a000000">#8A000000</color>
+    <color name="color_text_8c9eff">#8C9EFF</color>
+    <color name="color_text_b3000000">#B3000000</color>
+    <color name="color_text_b3ffffff">#B3FFFFFF</color>
+    <color name="color_text_b6b6b6">#B6B6B6</color>
+    <color name="color_text_d50000">#D50000</color>
+    <color name="color_text_de000000">#DE000000</color>
+    <color name="color_text_fafafa">#FAFAFA</color>
+    <color name="color_text_ff000000">#000000</color>
+    <color name="color_text_ff3d00">#FF3D00</color>
+    <color name="color_text_ff4444">#FF4444</color>
+    <color name="color_text_ff6e40">#FF6E40</color>
+    <color name="color_text_ff9e00">#FF9E00</color>
+    <color name="color_text_ffffff">#FFFFFF</color>
+    <color name="color_text_ffffffff">#FFFFFFFF</color>
+
 
 </resources>

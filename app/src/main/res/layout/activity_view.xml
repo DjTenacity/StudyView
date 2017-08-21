@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none">
+    android:layout_height="match_parent">
 
-    <!--app:showDividers="end"  就会在最后一行的下面显示
-        middle就会在中间每一个显示
-        begin  那就是header了
-       -->
-    <android.support.v7.widget.LinearLayoutCompat
-        android:id="@+id/ll"
+    <com.gdj.myview.view.TranslucentsScrollView
+        android:id="@+id/scrollow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:divider="@drawable/sss"
-        app:showDividers="end">
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingTop="?attr/actionBarSize"
+        android:scrollbars="none">
 
-        <!--<com.gdj.myview.view.BrokenView-->
+        <!--app:showDividers="end"  就会在最后一行的下面显示
+            middle就会在中间每一个显示
+            begin  那就是header了
+           -->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:divider="@drawable/sss"
+            app:showDividers="end">
+
+            <!--<com.gdj.myview.view.BrokenView-->
             <!--android:id="@+id/menu_chart"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="300dp"-->
@@ -27,87 +33,121 @@
             <!--android:layout_marginLeft="@dimen/dp_20"-->
             <!--android:layout_marginTop="@dimen/dp_20" />-->
 
-        <com.gdj.myview.view.StudyView
-            android:layout_width="match_parent"
-            android:layout_height="180dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.gdj.myview.view.QQStepView
-                android:id="@+id/qqstep"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                app:borderWidth="6dp"
-                app:innerColor="@color/colorAccent"
-                app:outerColor="@color/colorPrimary"
-                app:stepTextColor="@color/colorAccent"
-                app:stepTextSize="16sp" />
-
-            <View
-                android:layout_width="@dimen/dp_2"
-                android:layout_height="wrap_content" />
-
-            <com.gdj.myview.view.PregressView
-                android:id="@+id/view"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                app:borderWidth="6dp"
-                app:progressCycleWidth="8dp"
-                app:progressinnerCycleColor="@color/colorPrimary"
-                app:progressoutCycleColor="@color/colorAccent"
-                app:progresstextSize="12sp" />
+            <com.gdj.myview.view.StudyView
+                android:layout_width="match_parent"
+                android:layout_height="180dp" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="listPopupWindow"
-                    android:textSize="@dimen/sp_12" />
+                <com.gdj.myview.view.QQStepView
+                    android:id="@+id/qqstep"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:borderWidth="6dp"
+                    app:innerColor="@color/colorAccent"
+                    app:outerColor="@color/colorPrimary"
+                    app:stepTextColor="@color/colorAccent"
+                    app:stepTextSize="16sp" />
 
-                <Button
-                    android:id="@+id/btn2"
+                <View
+                    android:layout_width="@dimen/dp_2"
+                    android:layout_height="wrap_content" />
+
+                <com.gdj.myview.view.PregressView
+                    android:id="@+id/view"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:borderWidth="6dp"
+                    app:progressCycleWidth="8dp"
+                    app:progressinnerCycleColor="@color/colorPrimary"
+                    app:progressoutCycleColor="@color/colorAccent"
+                    app:progresstextSize="12sp" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="showPopupMenu"
-                    android:text="showPopupMenu"
-                    android:textSize="@dimen/sp_12" />
-                <Button
-                    android:id="@+id/btn3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="showMySnackbar"
-                    android:text="toast和snackbar"
-                    android:textSize="@dimen/sp_12" />
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="listPopupWindow"
+                        android:textSize="@dimen/sp_12" />
+
+                    <Button
+                        android:id="@+id/btn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="showPopupMenu"
+                        android:text="showPopupMenu"
+                        android:textSize="@dimen/sp_12" />
+                </LinearLayout>
+
             </LinearLayout>
 
-        </LinearLayout>
 
+            <com.gdj.myview.view.SingleLineFlowLayout
+                android:id="@+id/single_line_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hello World!"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/iv"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@mipmap/doctor" />
 
-        <com.gdj.myview.view.SingleLineFlowLayout
-            android:id="@+id/single_line_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv"
+                    android:padding="16dp"
+                    android:text="调色板的使用" />
+            </RelativeLayout>
 
-        <!--避免过度绘制-->
-        <com.gdj.myview.mobileperf.render.DroidCardsView
-            android:layout_width="300dp"
-            android:layout_height="180dp"/>
+            <!--避免过度绘制-->
+            <com.gdj.myview.mobileperf.render.DroidCardsView
+                android:layout_width="300dp"
+                android:layout_height="180dp" />
 
-    </android.support.v7.widget.LinearLayoutCompat>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:counterTextAppearance="@color/bg1_green"
+                android:animateLayoutChanges="true"
+                app:errorEnabled="true">
 
-</ScrollView>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+    </com.gdj.myview.view.TranslucentsScrollView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="控件集合显示">
+
+    </android.support.v7.widget.Toolbar>
+
+</RelativeLayout>

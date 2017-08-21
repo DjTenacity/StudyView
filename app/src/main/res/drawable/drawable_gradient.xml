@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!--
+    angle
+    0或者360  从左到右
+    90 从上到下
+    180 从右到左
+    angle里面的值就是所需要旋转的角度,只是这个旋转角度必须是45的整数倍
+
+      渐变有起始色和中止色两个颜色,其实还可以设置中建设,即先由起始色过渡到中间色,再由中间色到终止色
+      centerX 和 centerY是设定中间色的左边位置
+    -->
+
+    <gradient
+        android:angle="135"
+        android:endColor="@color/yellow"
+        android:gradientRadius="8dp"
+        android:startColor="@color/base_shallow_black"
+        android:type="linear" />
+    <corners android:radius="5dp" />
+</shape>
