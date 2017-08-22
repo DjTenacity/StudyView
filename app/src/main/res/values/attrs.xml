@@ -124,6 +124,7 @@
 
     <declare-styleable name="PanelView">
         <attr name="arcColor" format="color" />
+        <attr name="arcWidth" format="dimension"/>
         <attr name="pointerColor" format="color"/>
         <attr name="tikeCount" format="integer"/>
         <attr name="android_textSize" format="integer"/>

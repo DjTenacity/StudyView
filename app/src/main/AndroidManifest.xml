@@ -42,9 +42,10 @@
             android:theme="@style/AppTheme.Common.Launch" />
         <activity android:name=".ui.activity.KotlinAndroidActivity" />
         <activity android:name=".ui.activity.MultiButtonActivity" />
-        <activity android:name=".ui.activity.QQzoneActivity"
+        <activity
+            android:name=".ui.activity.QQzoneActivity"
 
-            android:theme="@style/AppTheme.Common.Launch"/>
+            android:theme="@style/AppTheme.Common.Launch" />
         <!--小球加载动画-->
         <activity android:name=".ui.activity.YahooNewsActivity" />
         <activity android:name=".ui.activity.QQStepActivity" />
@@ -52,10 +53,10 @@
         <activity android:name=".ui.activity.SplashActivity" />
         <!--svg-->
         <activity android:name=".ui.activity.SVGViewActivity" />
-        <activity android:name=".ui.activity.KTLockPatternActivity"/>
+        <activity android:name=".ui.activity.KTLockPatternActivity" />
         <activity android:name=".ui.activity.FlightSeatActivity" />
         <!--动画-->
-        <activity android:name=".ui.activity.AnimationActivity"/>
+        <activity android:name=".ui.activity.AnimationActivity" />
         <activity android:name=".fileup.UploadFileActivity" />
         <!--平行空间-->
         <activity android:name=".ui.activity.TranslateActivity" />
@@ -65,6 +66,12 @@
         <activity android:name=".mobileperf.render.ChatumLatinumActivity" />
         <activity android:name=".mobileperf.render.RenderActivity" />
         <activity android:name=".ui.activity.RecyclerViewActivity" />
+        <!--滑动隐藏-->
+        <activity android:name=".ui.activity.JustMoveActivity" />
+        <!--内存泄漏-->
+        <activity android:name=".mobileperf.MobileActivity" />
+        <!--面对对象,,,fragment和activity通信-->
+        <activity android:name=".fragmentmail.FragmentMailActivity" />
 
         <!-- 友盟统计  value是其他项目的,而且放心，我改了部分 -->
         <meta-data

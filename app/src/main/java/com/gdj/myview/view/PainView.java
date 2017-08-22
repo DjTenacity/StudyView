@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -34,7 +35,7 @@ public class PainView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //不能new在这里
-       mPaint.reset();
+        mPaint.reset();
 
 //        mPaint.setAlpha(255);
 //        mPaint.setStyle(Paint.Style.STROKE);//描边
@@ -62,7 +63,6 @@ public class PainView extends View {
 //        mPaint.setStrokeJoin(Paint.Join.BEVEL);//直线
 //        canvas.drawPath(path, mPaint);
 //        canvas.drawCircle(100, 100, 90, mPaint);
-
 
 
         //文字绘制
@@ -99,12 +99,36 @@ public class PainView extends View {
 
         //canvas.drawText();
 
-        int top =100;
-        int baseLineX=0;
+        int top = 60;
+        int baseLineX = 0;
         mPaint.setColor(Color.BLUE);
-        mPaint.setTextSize(20);
+        mPaint.setTextSize(50);
         mPaint.setTextAlign(Paint.Align.LEFT);
-        canvas.drawLine(100,0,100,200,mPaint);
-        canvas.drawText(str,0,0,mPaint);
+
+
+        canvas.drawText(str, 0, 0, mPaint);
+
+        //文本metrics信息
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+        //基线  baseLine  大写字母位于基线上。最常见的例外是J和Q。不齐线数字（见阿拉伯数字）位于基线上。
+        //Paint.FontMetricsInt fontMetricsInt = mTextPaint.getFontMetricsInt();  获取int,上面是float
+        //fontMetrics.top   (descent)
+        //fontMetrics.ascent   (bottom)
+
+        Log.w("baseLineY", "top:" + fontMetrics.top + ",bottom" + fontMetrics.bottom);
+        //drawText是不是是从基线开始画的,
+        float baseLineY = top - fontMetrics.top;
+        canvas.drawText("0, 0开始 ", 0, baseLineY, mPaint);
+        canvas.drawLine(0, baseLineY, 1000, baseLineY, mPaint);
+        mPaint.setColor(Color.RED);
+        canvas.drawText("60高度 ", baseLineX, top, mPaint);
+        canvas.drawLine(0, top, 1000, top, mPaint);
+        mPaint.setColor(Color.BLACK);
+        canvas.drawText("文本中间", baseLineX, (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom, mPaint);
+
+        canvas.drawLine(0, (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom, 1000,
+                (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom, mPaint);
+
+        canvas.drawText("文本基线的学习",  getWidth()/2, (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom +getHeight()/2, mPaint);
     }
 }
