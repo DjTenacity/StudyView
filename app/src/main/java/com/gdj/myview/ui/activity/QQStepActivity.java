@@ -137,7 +137,7 @@ public class QQStepActivity extends AppCompatActivity implements TranslucentsScr
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float currentStep = (float) animation.getAnimatedValue();//提供了float对象，在下面抢转
-                rpv.setCurrentStep(  currentStep);
+                rpv.setCurrentStep(currentStep);
             }
         });
         valueAnimator.start();
@@ -147,12 +147,13 @@ public class QQStepActivity extends AppCompatActivity implements TranslucentsScr
 
         //开始计数
         //text_input.setCounterEnabled(true);
-       // text_input.setCounterMaxLength(6);//最大输入限制
+        // text_input.setCounterMaxLength(6);//最大输入限制
         text_input.getEditText().addTextChangedListener(new MinLengthTextChanged());
     }
 
-    class MinLengthTextChanged implements TextWatcher{
-        public MinLengthTextChanged( ){}
+    class MinLengthTextChanged implements TextWatcher {
+        public MinLengthTextChanged() {
+        }
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -167,9 +168,9 @@ public class QQStepActivity extends AppCompatActivity implements TranslucentsScr
         @Override
         public void afterTextChanged(Editable s) {
             //改变后
-            if(s.toString().length()<=6){
+            if (s.toString().length() <= 6) {
 
-            }else{
+            } else {
                 text_input.setCounterEnabled(true);
                 text_input.setError("呵呵菜鸟最多6位");
             }
@@ -377,6 +378,5 @@ public class QQStepActivity extends AppCompatActivity implements TranslucentsScr
     public void TranslucentsListener(float alpht) {
         toolbar.setAlpha(alpht);
     }
-
 
 }

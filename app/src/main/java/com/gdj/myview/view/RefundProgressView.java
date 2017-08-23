@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -32,6 +33,7 @@ public class RefundProgressView extends View {
     private int num;
     private int y;
     private int length;
+    private Paint loadingPoint;
 
     public RefundProgressView(Context context) {
         this(context, null);
@@ -47,6 +49,7 @@ public class RefundProgressView extends View {
 
         paint = new Paint();
         tvPaint = new Paint();
+        loadingPoint = new Paint();
 
         tvPaint.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.sp_12));
         tvPaint.setColor(Color.GRAY);
@@ -54,10 +57,10 @@ public class RefundProgressView extends View {
         paddingBothSides = context.getResources().getDimensionPixelSize(R.dimen.dp_28);
         radius = context.getResources().getDimensionPixelSize(R.dimen.dp_8);
         stringList.add("提交申请");
-        stringList.add("提交申请");
-        stringList.add("提交申请");
-        stringList.add("提交申请");
-        stringList.add("提交申请");
+        stringList.add("提交");
+        stringList.add("提交申");
+        stringList.add("提");
+        stringList.add("提交申请啊");
 
 
     }
@@ -74,8 +77,9 @@ public class RefundProgressView extends View {
         if (num == 0) return;
 
         paint.setStyle(Paint.Style.FILL);
-
         paint.setStrokeWidth(radius);
+        loadingPoint.setStyle(Paint.Style.FILL);
+        loadingPoint.setStrokeWidth(radius);
 
         y = paddingBothSides + radius;
 
@@ -88,33 +92,27 @@ public class RefundProgressView extends View {
         if (num == 1) lineLength = length;
 
         paint.setColor(Color.GRAY);
-
+        loadingPoint.setColor(Color.GREEN);
         //全长的灰线
         canvas.drawLine(y, y, getWidth() - y, y, paint);
 
-        Paint.FontMetrics fontMetrics = tvPaint.getFontMetrics();
+        Rect textBounds = new Rect();
 
         for (int i = 0; i < num; i++) {
-            float textMe = paint.measureText(stringList.get(i));
+            tvPaint.getTextBounds(stringList.get(i), 0, stringList.get(i).length(), textBounds);
 
-            canvas.drawText(stringList.get(i), y + lineLength * i - textMe, y + radius * 4 + fontMetrics.bottom, tvPaint);
+            canvas.drawText(stringList.get(i), y + lineLength * i - textBounds.width() / 2, y + radius * 4, tvPaint);
+            canvas.drawCircle(y + lineLength * i, y, radius, paint);
 
-            if (i > position) {
-                paint.setColor(Color.GRAY);
-                canvas.drawCircle(y + lineLength * i, y, radius, paint);
-            } else {
+            if (i <= position) {
 
-                paint.setColor(Color.GREEN);
-
-                if (y + lineLength * (position + 0.5f) * currentStep >= y + lineLength * i) {
-                    canvas.drawCircle(y + lineLength * i, y, radius, paint);
+                if (y + lineLength * (position + 0.5f) * currentStep >= radius * 0.2f + y + lineLength * i) {
+                    canvas.drawCircle(y + lineLength * i, y, radius, loadingPoint);
                 }
             }
         }
 
-        paint.setColor(Color.GREEN);
-
-        canvas.drawLine(y, y, y + lineLength * (position + 0.5f) * currentStep, y, paint);
+        canvas.drawLine(y, y, y + lineLength * (position + 0.5f) * currentStep, y, loadingPoint);
 
         // canvas.drawCircle((length + paddingBothSides) / 2, y, radius, paint);
         // canvas.drawCircle(length - radius, y, radius, paint);

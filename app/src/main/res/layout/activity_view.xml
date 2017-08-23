@@ -38,7 +38,7 @@
             <com.gdj.myview.view.RefundProgressView
                 android:id="@+id/rpv"
                 android:layout_width="match_parent"
-                android:layout_height="140dp" />
+                android:layout_height="100dp" />
 
             <com.gdj.myview.view.StudyView
                 android:layout_width="match_parent"

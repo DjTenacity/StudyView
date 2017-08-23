@@ -140,7 +140,9 @@ public class QQStepView extends View {
 
         //基线  baseLine  大写字母位于基线上。最常见的例外是J和Q。不齐线数字（见阿拉伯数字）位于基线上。
         Paint.FontMetricsInt fontMetricsInt = mTextPaint.getFontMetricsInt();
+
         Log.w("baseLineYQQ", "top:" + fontMetricsInt.top + ",bottom" + fontMetricsInt.bottom);
+
         int dy = (fontMetricsInt.bottom - fontMetricsInt.top) / 2 - fontMetricsInt.bottom;
         int baseLine = getHeight() / 2 + dy;
         canvas.drawText(stepText, dx, baseLine, mTextPaint);
