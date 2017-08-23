@@ -104,8 +104,9 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:orientation="horizontal"
                 android:layout_height="wrap_content">
 
                 <ImageView
@@ -121,12 +122,20 @@
                     android:layout_toRightOf="@+id/iv"
                     android:padding="16dp"
                     android:text="调色板的使用" />
-            </RelativeLayout>
+
+                <com.gdj.myview.view.CustomImageView
+                    android:layout_toRightOf="@+id/iv"
+                    android:layout_width="match_parent"
+                    app:radius="18"
+                    android:src="@mipmap/doctor"
+                    app:horn_gravity="left_top"
+                    android:layout_height="80dp" />
+            </LinearLayout>
 
             <!--避免过度绘制-->
             <com.gdj.myview.mobileperf.render.DroidCardsView
                 android:layout_width="300dp"
-                android:layout_height="180dp" />
+                android:layout_height="130dp" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/text_input"
@@ -144,6 +153,7 @@
             <com.gdj.myview.view.PainView
                 android:layout_width="match_parent"
                 android:layout_height="80dp" />
+
 
         </android.support.v7.widget.LinearLayoutCompat>
 

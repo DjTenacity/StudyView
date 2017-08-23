@@ -124,54 +124,55 @@
 
     <declare-styleable name="PanelView">
         <attr name="arcColor" format="color" />
-        <attr name="arcWidth" format="dimension"/>
-        <attr name="pointerColor" format="color"/>
-        <attr name="tikeCount" format="integer"/>
-        <attr name="android_textSize" format="integer"/>
-        <attr name="android_text" format="string"/>
+        <attr name="arcWidth" format="dimension" />
+        <attr name="pointerColor" format="color" />
+        <attr name="tikeCount" format="integer" />
+        <attr name="android_textSize" format="integer" />
+        <attr name="android_text" format="string" />
     </declare-styleable>
 
-    -<declare-styleable name="PercentLayout_Layout">
+    -
+    <declare-styleable name="PercentLayout_Layout">
 
-    <attr name="layout_widthPercent" format="string"/>
+        <attr name="layout_widthPercent" format="string" />
 
-    <attr name="layout_heightPercent" format="string"/>
+        <attr name="layout_heightPercent" format="string" />
 
-    <attr name="layout_marginPercent" format="string"/>
+        <attr name="layout_marginPercent" format="string" />
 
-    <attr name="layout_marginLeftPercent" format="string"/>
+        <attr name="layout_marginLeftPercent" format="string" />
 
-    <attr name="layout_marginTopPercent" format="string"/>
+        <attr name="layout_marginTopPercent" format="string" />
 
-    <attr name="layout_marginRightPercent" format="string"/>
+        <attr name="layout_marginRightPercent" format="string" />
 
-    <attr name="layout_marginBottomPercent" format="string"/>
+        <attr name="layout_marginBottomPercent" format="string" />
 
-    <attr name="layout_marginStartPercent" format="string"/>
+        <attr name="layout_marginStartPercent" format="string" />
 
-    <attr name="layout_marginEndPercent" format="string"/>
+        <attr name="layout_marginEndPercent" format="string" />
 
-    <attr name="layout_textSizePercent" format="string"/>
+        <attr name="layout_textSizePercent" format="string" />
 
-    <attr name="layout_maxWidthPercent" format="string"/>
+        <attr name="layout_maxWidthPercent" format="string" />
 
-    <attr name="layout_maxHeightPercent" format="string"/>
+        <attr name="layout_maxHeightPercent" format="string" />
 
-    <attr name="layout_minWidthPercent" format="string"/>
+        <attr name="layout_minWidthPercent" format="string" />
 
-    <attr name="layout_minHeightPercent" format="string"/>
+        <attr name="layout_minHeightPercent" format="string" />
 
-    <attr name="layout_paddingPercent" format="string"/>
+        <attr name="layout_paddingPercent" format="string" />
 
-    <attr name="layout_paddingTopPercent" format="string"/>
+        <attr name="layout_paddingTopPercent" format="string" />
 
-    <attr name="layout_paddingBottomPercent" format="string"/>
+        <attr name="layout_paddingBottomPercent" format="string" />
 
-    <attr name="layout_paddingLeftPercent" format="string"/>
+        <attr name="layout_paddingLeftPercent" format="string" />
 
-    <attr name="layout_paddingRightPercent" format="string"/>
+        <attr name="layout_paddingRightPercent" format="string" />
 
-</declare-styleable>
+    </declare-styleable>
 
     <!--方小红书-->
 
@@ -186,6 +187,17 @@
     <attr name="y_in" format="float" />
 
     <attr name="y_out" format="float" />
+
+    <attr name="radius" format="integer" />
+    <declare-styleable name="CustomImageView">
+        <attr name="radius" />
+        <attr name="horn_gravity">
+            <enum name="left_top" value="1" />
+            <enum name="right_top" value="2" />
+            <enum name="left_bottom" value="3" />
+            <enum name="right_bottom" value="4" />
+        </attr>
+    </declare-styleable>
 
 
 </resources>
