@@ -38,6 +38,7 @@ import com.gdj.myview.mobileperf.render.DroidCardsView;
 import com.gdj.myview.view.BrokenView;
 import com.gdj.myview.view.PregressView;
 import com.gdj.myview.view.QQStepView;
+import com.gdj.myview.view.RefundProgressView;
 import com.gdj.myview.view.SingleLineFlowLayout;
 import com.gdj.myview.view.TranslucentsScrollView;
 
@@ -76,6 +77,8 @@ public class QQStepActivity extends AppCompatActivity implements TranslucentsScr
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.rpv)
+    RefundProgressView rpv;
 
     BrokenView menu_chart;
 
@@ -125,6 +128,19 @@ public class QQStepActivity extends AppCompatActivity implements TranslucentsScr
 
         DroidCardsView deddd = new DroidCardsView(this);
         ll.addView(deddd);
+
+
+        ValueAnimator valueAnimator = ObjectAnimator.ofFloat(0, 1);
+        valueAnimator.setDuration(3000);
+        valueAnimator.setInterpolator(new DecelerateInterpolator());//插值器，先快后慢
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float currentStep = (float) animation.getAnimatedValue();//提供了float对象，在下面抢转
+                rpv.setCurrentStep(  currentStep);
+            }
+        });
+        valueAnimator.start();
     }
 
     private void studyTextInputLayout() {

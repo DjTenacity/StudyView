@@ -188,9 +188,8 @@
 
     <attr name="y_out" format="float" />
 
-    <attr name="radius" format="integer" />
     <declare-styleable name="CustomImageView">
-        <attr name="radius" />
+        <attr name="radius" format="integer" />
         <attr name="horn_gravity">
             <enum name="left_top" value="1" />
             <enum name="right_top" value="2" />
@@ -198,6 +197,13 @@
             <enum name="right_bottom" value="4" />
         </attr>
     </declare-styleable>
-
+    <declare-styleable name="RefundProgressView">
+        <attr name="pvBackgroundColor" format="color" />
+        <attr name="pvPassBackgroundColor" format="color" />
+        <attr name="pvTextColor" format="color" />
+        <attr name="pvTextSize" format="dimension" />
+        <attr name="pvTextPaddingTop" format="dimension" />
+        <attr name="pvPadding" format="dimension" />
+    </declare-styleable>
 
 </resources>

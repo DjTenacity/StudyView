@@ -4,12 +4,14 @@
     <dimen name="heart_size">48sp</dimen>
     <dimen name="large_text_size">30dp</dimen>
     <dimen name="dp_6">6dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
     <dimen name="wide_space">16dp</dimen>
     <dimen name="chat_padding_bottom">5dp</dimen>
     <dimen name="avatar_dimen">60dp</dimen>
     <dimen name="avatar_layout_margin">10dp</dimen>
     <dimen name="divider_height">10dp</dimen>
 
+    <dimen name="dp_64">64dp</dimen>
     <dimen name="dp_102">102dp</dimen>
     <dimen name="dp_104">104dp</dimen>
     <dimen name="dp_106">106dp</dimen>
@@ -52,6 +54,6 @@
     <dimen name="dp_256">256dp</dimen>
     <dimen name="dp_26">26dp</dimen>
     <dimen name="dp_28">28dp</dimen>
-
+    <dimen name="dp_48">48dp</dimen>
 
 </resources>

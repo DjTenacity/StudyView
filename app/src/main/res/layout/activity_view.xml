@@ -8,12 +8,12 @@
         android:id="@+id/scrollow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:paddingTop="?attr/actionBarSize"
-        android:scrollbars="none"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:scrollbars="none">
 
         <!--app:showDividers="end"  就会在最后一行的下面显示
             middle就会在中间每一个显示
@@ -35,7 +35,10 @@
             <!--android:layout_marginLeft="@dimen/dp_20"-->
             <!--android:layout_marginTop="@dimen/dp_20" />-->
 
-
+            <com.gdj.myview.view.RefundProgressView
+                android:id="@+id/rpv"
+                android:layout_width="match_parent"
+                android:layout_height="140dp" />
 
             <com.gdj.myview.view.StudyView
                 android:layout_width="match_parent"
@@ -106,8 +109,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/iv"
@@ -124,12 +127,12 @@
                     android:text="调色板的使用" />
 
                 <com.gdj.myview.view.CustomImageView
-                    android:layout_toRightOf="@+id/iv"
                     android:layout_width="match_parent"
-                    app:radius="18"
+                    android:layout_height="80dp"
+                    android:layout_toRightOf="@+id/iv"
                     android:src="@mipmap/doctor"
                     app:horn_gravity="left_top"
-                    android:layout_height="80dp" />
+                    app:radius="18" />
             </LinearLayout>
 
             <!--避免过度绘制-->
@@ -141,8 +144,8 @@
                 android:id="@+id/text_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:counterTextAppearance="@color/bg1_green"
                 android:animateLayoutChanges="true"
+                app:counterTextAppearance="@color/bg1_green"
                 app:errorEnabled="true">
 
                 <EditText
