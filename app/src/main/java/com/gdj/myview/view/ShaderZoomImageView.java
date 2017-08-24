@@ -10,14 +10,12 @@ import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
-import android.graphics.drawable.shapes.Shape;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 
 import com.gdj.myview.R;
 
@@ -33,11 +31,13 @@ public class ShaderZoomImageView extends View {
     private Bitmap bitmap;
     Paint textPaint;
     private LinearGradient linearGradient;
-    private Matrix matrix;
+    private Matrix matrix = new Matrix();
     private ShapeDrawable drawable;
 
     //放大倍数
-    final int FACTOR = 3;
+    static final int FACTOR = 3;
+    //放大半径
+    static final int RADIUS = 100;
 
     public ShaderZoomImageView(Context context) {
         super(context);
@@ -50,7 +50,9 @@ public class ShaderZoomImageView extends View {
     }
 
     private void inint() {
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon2);
+
+
+        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.doctor);
         Bitmap bmp = bitmap;
         //放大后的整个图片
         bmp = Bitmap.createScaledBitmap(bmp, bmp.getWidth() * FACTOR, bmp.getHeight() * FACTOR, true);
@@ -61,6 +63,8 @@ public class ShaderZoomImageView extends View {
 
         drawable = new ShapeDrawable(new OvalShape());
         drawable.getPaint().setShader(shader);
+        //切除矩形,绘制出圆(内切圆)
+        drawable.setBounds(0, 0, RADIUS * 2, RADIUS * 2);
     }
 
     public ShaderZoomImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -73,5 +77,21 @@ public class ShaderZoomImageView extends View {
 
         canvas.drawBitmap(bitmap, 0, 0, null);
         //画制作好的圆形图片
+        drawable.draw(canvas);
+
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        //平移x,y
+        matrix.setTranslate(RADIUS - x * FACTOR,RADIUS - y * FACTOR );
+        drawable.getPaint();
+        drawable.setBounds(x - RADIUS, y - RADIUS, x + RADIUS, y + RADIUS);
+
+        postInvalidate();
+        return super.onTouchEvent(event);
     }
 }

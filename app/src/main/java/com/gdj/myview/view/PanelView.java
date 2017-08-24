@@ -117,6 +117,7 @@ public class PanelView extends View {
             mHeight = DisplayUtils.dp2px(200);
         }
         setMeasuredDimension(mWidth, mHeight);
+
     }
     //分解成如下：1.最外面的弧   2.里面的粗弧   3.中间小圆   4.最小的圆  5.刻度   6.指针  7.矩形  8.文字
 

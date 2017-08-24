@@ -28,7 +28,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -130,7 +129,7 @@ public class QQStepActivity extends AppCompatActivity implements TranslucentsScr
         ll.addView(deddd);
 
 
-        ValueAnimator valueAnimator = ObjectAnimator.ofFloat(0, 1);
+        ValueAnimator valueAnimator = ObjectAnimator.ofFloat(0f, 1f);
         valueAnimator.setDuration(3000);
         valueAnimator.setInterpolator(new DecelerateInterpolator());//插值器，先快后慢
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

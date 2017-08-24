@@ -197,13 +197,14 @@
             <enum name="right_bottom" value="4" />
         </attr>
     </declare-styleable>
+
     <declare-styleable name="RefundProgressView">
         <attr name="pvBackgroundColor" format="color" />
         <attr name="pvPassBackgroundColor" format="color" />
         <attr name="pvTextColor" format="color" />
+        <attr name="pvPassTextColor" format="color" />
         <attr name="pvTextSize" format="dimension" />
-        <attr name="pvTextPaddingTop" format="dimension" />
-        <attr name="pvPadding" format="dimension" />
+        <attr name="pvRadius" format="dimension" />
     </declare-styleable>
 
 </resources>
