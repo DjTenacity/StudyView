@@ -91,7 +91,7 @@ public class ShaderZoomImageView extends View {
         drawable.getPaint();
         drawable.setBounds(x - RADIUS, y - RADIUS, x + RADIUS, y + RADIUS);
 
-        postInvalidate();
+        invalidate();
         return super.onTouchEvent(event);
     }
 }

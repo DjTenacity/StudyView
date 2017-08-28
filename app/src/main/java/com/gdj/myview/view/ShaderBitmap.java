@@ -20,7 +20,7 @@ import android.view.View;
 import com.gdj.myview.R;
 
 /**
- * Comment:
+ * Comment:渲染
  *
  * @author :DJ鼎尔东 / 1757286697@qq.cn
  * @version : Administrator1.0
@@ -105,10 +105,12 @@ public class ShaderBitmap extends View {
 //		paint.setShader(linearGradient);
 //		canvas.drawRect(0, 0, 400, 400, paint);
 
+        //环形渲染   水波纹,,调色板
 //		radialGradient = new RadialGradient(300, 300, 100, colors, null, TileMode.REPEAT);
 //		paint.setShader(radialGradient);
 //		canvas.drawCircle(300, 300, 300, paint);
 
+        //梯度渲染  雷达  微信等雷达扫描效果。手机卫士垃圾扫描
 //		sweepGradient = new SweepGradient(300, 300, colors, null);
 //		paint.setShader(sweepGradient);
 //		canvas.drawCircle(300, 300, 300, paint);

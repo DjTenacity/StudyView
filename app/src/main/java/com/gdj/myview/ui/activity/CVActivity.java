@@ -13,20 +13,21 @@ import android.support.v7.app.AppCompatActivity;
 import com.gdj.myview.R;
 import com.gdj.myview.ui.fragment.NewsDetailFragment;
 
+/**TabLayout 和viewpager**/
 public class CVActivity extends AppCompatActivity {
 
 	private TabLayout tabLayout;
 	private String[] title = {
-		"ͷ��",
-		"����",
-		"����",
-		"����",
-		"�Ƽ�",
-		"��Ů",
-		"�ƾ�",
-		"����",
-		"����",
-		"ͷ��"
+		"1",
+		"2",
+		"3",
+		"4",
+		"5",
+		"6",
+		"7",
+		"9",
+		"8",
+		"0"
 	};
 
 	@Override
@@ -42,8 +43,7 @@ public class CVActivity extends AppCompatActivity {
 			
 			@Override
 			public void onTabUnselected(Tab arg0) {
-				// TODO Auto-generated method stub
-				
+
 			}
 			
 			@Override
@@ -54,8 +54,7 @@ public class CVActivity extends AppCompatActivity {
 			
 			@Override
 			public void onTabReselected(Tab arg0) {
-				// TODO Auto-generated method stub
-				
+
 			}
 		});
 		//2.ViewPager��������tabLayout

@@ -44,6 +44,7 @@
                 app:pvRadius="@dimen/dp_10"
                 app:pvPassTextColor="#3FCC5B" />
 
+
             <com.gdj.myview.view.ShaderZoomImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp" />

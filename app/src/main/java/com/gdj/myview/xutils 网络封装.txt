@@ -1,0 +1,195 @@
+https://github.com/gdjsdk/hulubaozhimadi.git
+
+https://github.com/gdjsdk/-yeyeye.git
+
+
+package org.lovedj.googleplay.http;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Map;
+
+import org.lovedj.googleplay.utils.Constans;
+import org.lovedj.googleplay.utils.FileUtils;
+import org.lovedj.googleplay.utils.IOUtils;
+
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseStream;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+
+/**
+ * @描述: 网络协议的基类
+ */
+public abstract class BaseProtocol<T>
+{
+
+	protected abstract String getInterfaceKey();
+
+	protected abstract T parseJson(String json);
+
+	/**
+	 * 如果孩子有自己定义的参数，复写此方法
+	 */
+	protected Map<String, String> getParams()
+	{
+		return null;
+	}
+
+	public T loadData(int index) throws Exception
+	{
+		// 1. 到本地中去缓存数据
+		T data = getDataFromLocal(index);
+		if (data != null)
+		{
+			System.out.println("使用本地缓存");
+			return data;
+		}
+
+		// 2. 到网络中取数据
+		return getDataFromNet(index);
+	}
+
+	/**
+	 * 去本地获取缓存
+	 *
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	private T getDataFromLocal(int index) throws Exception
+	{
+		File file = getCahceFile(index);
+		if (!file.exists())
+		{
+			// 如果不存在
+			return null;
+		}
+
+		// 读取file，拿到json字符
+		BufferedReader reader = null;
+		try
+		{
+			reader = new BufferedReader(new FileReader(file));
+			String timeString = reader.readLine();// 第一行： 时间戳
+			long time = Long.valueOf(timeString);
+
+			if (System.currentTimeMillis() > (time + Constans.REFRESH_DELAY))
+			{
+				// 数据过期，无效
+				return null;
+			}
+
+			// 将json解析返回
+			String json = reader.readLine();// 第二行:json
+			return parseJson(json);
+		}
+		finally
+		{
+			IOUtils.close(reader);
+		}
+	}
+
+	private T getDataFromNet(int index) throws Exception
+	{
+		HttpUtils utils = new HttpUtils();
+		// method,url,header,params
+		String url = Constans.SERVER_URL + getInterfaceKey();
+		RequestParams params = new RequestParams();
+
+		Map<String, String> parameters = getParams();
+		if (parameters == null)
+		{
+			params.addQueryStringParameter("index", index + "");
+		}
+		else
+		{
+			for (Map.Entry<String, String> me : parameters.entrySet())
+			{
+				params.addQueryStringParameter(me.getKey(), me.getValue());
+			}
+		}
+
+		ResponseStream stream = utils.sendSync(HttpMethod.GET, url, params);
+
+		// 响应码
+		int statusCode = stream.getStatusCode();
+		if (200 == statusCode)
+		{
+			// ##### 1. 数据 json ##########
+			// 访问接口成功
+			// 获取json字符
+			String json = stream.readString();
+			// ##########################
+
+			System.out.println("存储到本地");
+			// 存储到本地
+			write2Local(index, json);
+
+			// ##### 2. 解析 json ##########
+			// 解析json字符
+			return parseJson(json);
+			// ###########################
+		}
+		return null;
+	}
+
+	private void write2Local(int index, String json) throws Exception
+	{
+		File file = getCahceFile(index);
+
+		// 将json字符写入文件中
+
+		BufferedWriter writer = null;
+		try
+		{
+			writer = new BufferedWriter(new FileWriter(file));
+
+			// 第一行：存储时间戳-->保存缓存的时间
+			// 第二行：存储json字符
+			writer.write("" + System.currentTimeMillis());// 第一行：存储时间戳
+			writer.write("\r\n");// 换行
+			writer.write(json);
+		}
+		finally
+		{
+			IOUtils.close(writer);
+		}
+	}
+
+	private File getCahceFile(int index)
+	{
+		// 到文件当中读取缓存
+		// 文件存储的路径，以及格式
+		// 1. 缓存数据的时效性
+		// //通过文件内容格式来确定时效性
+		// // 第一行：存储时间戳-->保存缓存的时间
+		// // 第二行：存储json字符
+		// 2. 文件地址的存放和命名
+		// // 存储的路径 sd---> Android/data/包名/json/
+		// // 文件名称 : InterfaceKey + "." + index
+		String dir = FileUtils.getDir("json");
+		String name = null;
+		Map<String, String> params = getParams();
+		if (params != null)
+		{
+			StringBuffer sb = new StringBuffer();
+			for (Map.Entry<String, String> me : params.entrySet())
+			{
+				sb.append("_" + me.getValue());
+			}
+			name = getInterfaceKey() + sb.toString();
+		}
+		else
+		{
+			name = getInterfaceKey() + "." + index;
+		}
+
+		// 获取缓存文件
+		return new File(dir, name);
+	}
+}

@@ -1,0 +1,47 @@
+目标
+
+1：尽可能的避免内存溢出
+	a:根据图片的显示大小来压缩图片
+	b:使用缓存对图片进行管理——Lrucacher
+
+2：用户操作UI控件必须充分的流畅
+
+	getView里面尽可能不进行耗时操作（异步加载  +   回调显示）
+
+3：用户预期展示的团片尽可能的快（图片的加载策略的选择）
+
+		last in frist  out，FIFO
+
+
+ImageLoader
+
+
+	getVIew(){
+		url->Bitmap
+		url->LruCache查找
+		   ->找到返回，
+		   ->找不到  url->Task->TaskQueue且发送一个通知
+			去提醒后台轮巡线程
+
+
+
+Task->run(){(根据url加载图片
+		1：获得图片显示的大小
+		2：使用Options对图片进行压缩
+		3，加载图片切放入Lrucache
+
+后台轮询线程
+
+TaskQueue-》Task->线程池去执行
+
+new  Thread（）{run(){while(true){}}}.start();
+
+在这里使用的是：handler
+	Handler+Loopter+Message
+
+	MessageQueue
+
+		
+		)} 
+	}
+

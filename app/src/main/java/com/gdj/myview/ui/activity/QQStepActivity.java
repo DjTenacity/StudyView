@@ -79,6 +79,8 @@ public class QQStepActivity extends AppCompatActivity implements TranslucentsScr
     @BindView(R.id.rpv)
     RefundProgressView rpv;
 
+
+
     BrokenView menu_chart;
 
     private String[] mItems = {"1311", "223222", "1131", "222322", "1131", "222232",
