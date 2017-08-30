@@ -1,6 +1,7 @@
 package com.gdj.myview.view;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.gdj.myview.R;
@@ -16,5 +17,12 @@ public class ContentView extends ImageView {
 
         //主界面
         setImageResource(R.mipmap.ic_sc2);
+
+        this.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }

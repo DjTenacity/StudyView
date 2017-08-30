@@ -48,10 +48,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 防QQ步数
+ * 仿QQ步数
+ * <p>
+ * drawable里面的shape 就是利用的canvas
  */
 
-public class QQStepActivity extends AppCompatActivity implements TranslucentsScrollView.TranslucentsListener {
+public class QQStepActivity extends AppCompatActivity {
     @BindView(R.id.qqstep)
     QQStepView qqs;
     @BindView(R.id.view)
@@ -86,8 +88,6 @@ public class QQStepActivity extends AppCompatActivity implements TranslucentsScr
     private String[] mItems = {"1311", "223222", "1131", "222322", "1131", "222232",
             "1411", "1131", "222322", "1131", "222232", "22222", "11133", "22222"};
     private HashMap<Double, Double> map = new HashMap<>();
-    ;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -99,7 +99,12 @@ public class QQStepActivity extends AppCompatActivity implements TranslucentsScr
         //   mSingleLineFlowLayout = (SingleLineFlowLayout) findViewById(R.id.single_line_layout);
 
         setSupportActionBar(toolbar);
-        scrollow.setTranslucentsListener(this);
+        scrollow.setTranslucentsListener(new TranslucentsScrollView.TranslucentsListener() {
+            @Override
+            public void TranslucentsListener(float alpht) {
+                toolbar.setAlpha(alpht);
+            }
+        });
         //学习调色板
         studyPalette();
         studyTextInputLayout();
@@ -375,9 +380,9 @@ public class QQStepActivity extends AppCompatActivity implements TranslucentsScr
 
     }
 
-    @Override
-    public void TranslucentsListener(float alpht) {
-        toolbar.setAlpha(alpht);
-    }
+//    @Override
+//    public void TranslucentsListener(float alpht) {
+//        toolbar.setAlpha(alpht);
+//    }
 
 }

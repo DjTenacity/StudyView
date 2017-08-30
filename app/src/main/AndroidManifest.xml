@@ -83,6 +83,9 @@
         <!-- 友盟统计 -->
 
 
+        <service android:name=".service.DownloadService" />
+        <service android:name=".service.MyIntentService" />
+        <service android:name=".service.MyBindService" />
     </application>
 
 </manifest>

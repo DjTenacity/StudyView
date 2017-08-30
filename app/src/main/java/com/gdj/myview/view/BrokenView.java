@@ -37,6 +37,7 @@ public class BrokenView extends View {
 
     private int marginT, marginB=20;
     private HashMap<Double, Double> map  ;//数学系的所有坐标集合
+    private Paint paint;
 
     public BrokenView(Context context) {
         this(context, null);
@@ -48,8 +49,14 @@ public class BrokenView extends View {
 
     public BrokenView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        //ANTI_ALIAS_FLAG 提高画质
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.RED);
+    //    paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(2);
     }
-
+    ArrayList<Integer> xList = new ArrayList<>();
 
     public void setView(HashMap<Double, Double> map, int totalValue, int jValue,
                         int marginT, int marginB, String s, String b) {
@@ -60,23 +67,19 @@ public class BrokenView extends View {
         this.marginT = marginT;
         // this.xStr = s;
         //  this.yStr = b;
+        dlk = getIntfromMap(map);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        dlk = getIntfromMap(map);
+
         int height = getHeight();
         int width = getWidth();
 
         bHeight = height - marginB;
         bWidth = 50;
 
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);//ANTI_ALIAS_FLAG 提高画质
-        paint.setColor(Color.RED);
-        paint.setAntiAlias(true);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(2);
         int jSize = totalValue / jValue;
 
         //画横轴
@@ -88,7 +91,7 @@ public class BrokenView extends View {
             drawText(jValue * i + yStr, bWidth / 2,
                     bHeight - (bHeight - marginT) / jSize * i, canvas);
         }
-        ArrayList<Integer> xList = new ArrayList<>();
+
         //画竖轴
         for (int j = 0; j < dlk.size(); j++) {
             //把所有的x坐标  转换为相对于  View的坐标
