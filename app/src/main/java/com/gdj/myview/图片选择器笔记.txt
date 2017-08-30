@@ -1,3 +1,6 @@
+dispatchTouchEvent---->onIntercept   ture(拦截)---->自己的super.dispatch()--->onTouch( true 自己消耗,FALSE就返回给上一层dispatchTouchEvent)
+
+
 目标
 
 1：尽可能的避免内存溢出

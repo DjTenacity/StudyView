@@ -86,6 +86,11 @@
         <service android:name=".service.DownloadService" />
         <service android:name=".service.MyIntentService" />
         <service android:name=".service.MyBindService" />
+        <service android:name=".AidlService">
+            <intent-filter>
+                <action android:name="com.gdj.myview.DataService"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Parcel;
 import android.os.PersistableBundle;
+import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,6 +32,7 @@ public class StudyServiceActivity extends AppCompatActivity {
     TextView tv_des;
     MyBindService myBindService;
     boolean mBind = false;//默认是不绑定的
+    private MyBindService.LocalBinder localBinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
@@ -53,6 +57,7 @@ public class StudyServiceActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MyBindService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
+
     // 调用service的方法
     public void bind2(View v) {
         if (mBind) {
@@ -60,12 +65,26 @@ public class StudyServiceActivity extends AppCompatActivity {
         }
     }
 
+    public void data(View v) {
+        //往service中传递值得对象
+        Parcel data = Parcel.obtain();
+        data.writeInt(25);
+        data.writeString("jackkk");
+        Parcel reply = Parcel.obtain();
+        try {
+            localBinder.transact(IBinder.LAST_CALL_TRANSACTION,data,reply,0);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        Log.w("Activity","readString:"+reply.readString()+"readInt:"+reply.readInt());
+    }
+
     //ServiceConnection 客户端和服务端的桥梁
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
 
-            MyBindService.LocalBinder localBinder = (MyBindService.LocalBinder) service;
+            localBinder = (MyBindService.LocalBinder) service;
             myBindService = localBinder.getService();
 
             mBind = true;

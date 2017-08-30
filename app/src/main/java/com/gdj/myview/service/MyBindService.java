@@ -4,7 +4,10 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.Parcel;
+import android.os.RemoteException;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import java.util.Random;
 
@@ -38,5 +41,12 @@ public class MyBindService extends Service {
             return MyBindService.this;
         }
 
+        @Override
+        protected boolean onTransact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
+            Log.w("BIND", data.readString() + "****" + data.readInt());
+            reply.writeString("rose");
+            reply.writeInt(getRandom());
+            return super.onTransact(code, data, reply, flags);
+        }
     }
 }
