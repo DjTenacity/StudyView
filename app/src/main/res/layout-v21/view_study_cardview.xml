@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_16"
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="水波纹"
+        android:stateListAnimator="@animator/drawable_z_translation"
+        app:cardCornerRadius="@dimen/dp_16"
+        app:cardElevation="4dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/doctor" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/dp_8"
+        app:cardCornerRadius="@dimen/dp_10"
+        app:cardElevation="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="doctor" />
+    </android.support.v7.widget.CardView>
+
+</LinearLayout><!--1.特性
+	1) 边框圆角效果
+		5.x 图片和布局都可以很好的呈现圆角效果，图片也变圆角了
+		4.x 图不能变成圆角，如果要做成5.x一样的效果：通过加载图片的时候自己去处理成圆角
+	2）阴影效果
+
+	3）5.x上有Ripple水波纹效果（低版本需要自己做自定义的）
+		android:foreground="?attr/selectableItemBackground"
+		android:clickable="true"
+	4）5.x实现按下的互动效果-下沉，松开弹起-Z轴位移效果 （低版本也需要自己自定义做）
+        android:stateListAnimator="@animator/drawable_z_translation"
+	5）可以设置内容的内边距
+	 app:contentPadding="5dp"
+
+同一套布局的兼容性开发：(5.x上面不需要设置app:contentPadding="5dp"，而4.x上面不需要设置)
+layout
+layout-v21
+
+细节：
+	5.x上面，边距阴影比较小，需要手动添加margin边距16dp
+	4.x上面，边距太大， 手动修改边距0dp（原因：兼容包里面设置阴影效果自动设置了margin来处理16dp）
+
+
+<CardView
+	app:cardCornerRadius="10dp" 圆角（半径值越大圆角就越明显）
+	app:cardElevation="10dp" 阴影效果 （值越大阴影效果越明显）
+	>
+	<Linearlayout><TextView></>
+</CardView>
+
+-->

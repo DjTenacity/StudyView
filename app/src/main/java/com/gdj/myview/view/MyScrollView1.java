@@ -5,6 +5,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
 
+import java.util.LinkedList;
+
 /**
  * Comment:
  *
@@ -34,7 +36,7 @@ public class MyScrollView1 extends ScrollView {
     @Override
     protected void onOverScrolled(int scrollX, int scrollY, boolean clampedX, boolean clampedY) {
         super.onOverScrolled(scrollX, scrollY, clampedX, clampedY);
-        if(clampedY){
+        if (clampedY) {
             requestDisallowInterceptTouchEvent(false);//拦截
         }
     }
@@ -47,3 +49,4 @@ public class MyScrollView1 extends ScrollView {
 //        super.onMeasure(widthMeasureSpec, expandedHeight);
 //    }
 }
+//--x  先减再赋值

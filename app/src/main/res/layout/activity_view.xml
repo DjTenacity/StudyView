@@ -8,12 +8,12 @@
         android:id="@+id/scrollow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:paddingTop="?attr/actionBarSize"
-        android:scrollbars="none"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:scrollbars="none">
 
         <!--app:showDividers="end"  就会在最后一行的下面显示
             middle就会在中间每一个显示
@@ -41,8 +41,8 @@
                 android:layout_height="100dp"
                 app:pvBackgroundColor="@color/gray"
                 app:pvPassBackgroundColor="#3FCC5B"
-                app:pvRadius="@dimen/dp_10"
-                app:pvPassTextColor="#3FCC5B" />
+                app:pvPassTextColor="#3FCC5B"
+                app:pvRadius="@dimen/dp_10" />
 
 
             <com.gdj.myview.view.ShaderZoomImageView
@@ -179,5 +179,7 @@
         app:title="控件集合显示">
 
     </android.support.v7.widget.Toolbar>
+
+    <include layout="@layout/view_float_button" />
 
 </RelativeLayout>

@@ -82,7 +82,6 @@ public class QQStepActivity extends AppCompatActivity {
     RefundProgressView rpv;
 
 
-
     BrokenView menu_chart;
 
     private String[] mItems = {"1311", "223222", "1131", "222322", "1131", "222232",
@@ -385,4 +384,13 @@ public class QQStepActivity extends AppCompatActivity {
 //        toolbar.setAlpha(alpht);
 //    }
 
+    boolean reverse = false;
+
+    public void rotate(View view) {
+        reverse = !reverse;
+        float toDegree = reverse ? -180 : 180;
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, "rotation", 0.0f, toDegree)
+                .setDuration(500);
+        objectAnimator.start();
+    }
 }

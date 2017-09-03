@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.FloatingActionButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/float_action_bar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentEnd="true"
+    android:layout_margin="@dimen/dp_16"
+    android:backgroundTint="@color/color_bg_ffffff"
+    android:clickable="true"
+    android:elevation="@dimen/dp_10"
+    android:onClick="rotate"
+    android:src="@drawable/icon2"
+    app:pressedTranslationZ="@dimen/dp_16"
+    app:rippleColor="@color/alex_color" />
