@@ -3,7 +3,7 @@ package com.gdj.myview.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
@@ -11,7 +11,6 @@ import com.gdj.myview.R;
 import com.gdj.myview.weight.MyItemTouchHelperCallback;
 import com.gdj.myview.weight.StrAdapter;
 
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,10 +35,10 @@ public class RecyclerViewActivity extends AppCompatActivity implements StrAdapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rv);
         ButterKnife.bind(this);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setLayoutManager(new GridLayoutManager(this,2));
 
         List<String> Strs = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 16; i++) {
             Strs.add(Math.random() + "望断天涯路" + i);
         }
 

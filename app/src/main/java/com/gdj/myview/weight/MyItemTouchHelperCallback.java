@@ -37,7 +37,7 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
         int swipeFlags = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;  //0
 
 
-        return makeMovementFlags(dragFlags, swipeFlags);//不想实现的就为0
+        return makeMovementFlags(0, swipeFlags);//不想实现的就为0
     }
 
     //是否允许长按拖拽
@@ -106,7 +106,7 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
 }
 /**
  * 滑动删除的时候,然后在滑动页面,结果有的条目会出现空白
- * 1.解决课上的bug：滑动删除的时候，然后再滑动页面，结果有的条目不出现了 有空白的地方。
+ * 1.解决 bug：滑动删除的时候，然后再滑动页面，结果有的条目不出现了 有空白的地方。
  * 原因：ListView和RecyclerView都会有复用条目itemView。这样就会导致上面的问题。
  * 解决：很多。比如在clearView回调方法里面去恢复这些条目的状态
  *
@@ -132,7 +132,7 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
  * }
  * 方法二：ItemView就是一个ViewPager，上面的view可以朝反方向设置TranslationX
  * <p>
- * 1.解决课上的bug：滑动删除的时候，然后再滑动页面，结果有的条目不出现了 有空白的地方。
+ * 1.解决 bug：滑动删除的时候，然后再滑动页面，结果有的条目不出现了 有空白的地方。
  * 原因：ListView和RecyclerView都会有复用条目itemView。这样就会导致上面的问题。
  * 解决：很多。比如在clearView回调方法里面去恢复这些条目的状态    或者在onChildDraw方法中最后判断如果透明度为0,则设置为1
  * @Override public void clearView(RecyclerView recyclerView, ViewHolder viewHolder) {
@@ -156,64 +156,4 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
  * viewHolder.itemView.setTranslationX(dX);
  * }
  * 方法二：ItemView就是一个ViewPager，上面的view可以朝反方向设置TranslationX
- * <p>
- * 1.解决课上的bug：滑动删除的时候，然后再滑动页面，结果有的条目不出现了 有空白的地方。
- * 原因：ListView和RecyclerView都会有复用条目itemView。这样就会导致上面的问题。
- * <p>
- * 数据被删除了,但是条目的复用问题,条目的状态还是透明,所以要重新设置为1
- * <p>
- * 解决：很多。比如在clearView回调方法里面去恢复这些条目的状态
- * 或者在onChildDraw方法中最后判断如果透明度为0,则设置为1
- * @Override public void clearView(RecyclerView recyclerView, ViewHolder viewHolder) {
- * // 恢复
- * viewHolder.itemView.setBackgroundColor(Color.WHITE);
- * <p>
- * //		viewHolder.itemView.setAlpha(1);//1~0
- * //		viewHolder.itemView.setScaleX(1);//1~0
- * //		viewHolder.itemView.setScaleY(1);//1~0
- * super.clearView(recyclerView, viewHolder);
- * }
- * <p>
- * <p>
- * 2.类似QQ的条目侧滑一半的效果
- * 提示：
- * 方法一：判断
- * //判断是否超出或者达到width/2，就让其setTranslationX位一般的位置
- * if(Math.abs(dX)<=viewHolder.itemView.getWidth()/2){
- * viewHolder.itemView.setTranslationX(-0.5f*viewHolder.itemView.getWidth());
- * }else{
- * viewHolder.itemView.setTranslationX(dX);
- * }
- * 方法二：ItemView就是一个ViewPager，上面的view可以朝反方向设置TranslationX
- */
-
-/**
- * 1.解决课上的bug：滑动删除的时候，然后再滑动页面，结果有的条目不出现了 有空白的地方。
- 原因：ListView和RecyclerView都会有复用条目itemView。这样就会导致上面的问题。
-
- 数据被删除了,但是条目的复用问题,条目的状态还是透明,所以要重新设置为1
-
- 解决：很多。比如在clearView回调方法里面去恢复这些条目的状态
- 或者在onChildDraw方法中最后判断如果透明度为0,则设置为1
- @Override public void clearView(RecyclerView recyclerView, ViewHolder viewHolder) {
- // 恢复
- viewHolder.itemView.setBackgroundColor(Color.WHITE);
-
- //		viewHolder.itemView.setAlpha(1);//1~0
- //		viewHolder.itemView.setScaleX(1);//1~0
- //		viewHolder.itemView.setScaleY(1);//1~0
- super.clearView(recyclerView, viewHolder);
- }
-
-
- 2.类似QQ的条目侧滑一半的效果
- 提示：
- 方法一：判断
- //判断是否超出或者达到width/2，就让其setTranslationX位一般的位置
- if(Math.abs(dX)<=viewHolder.itemView.getWidth()/2){
- viewHolder.itemView.setTranslationX(-0.5f*viewHolder.itemView.getWidth());
- }else{
- viewHolder.itemView.setTranslationX(dX);
- }
- 方法二：ItemView就是一个ViewPager，上面的view可以朝反方向设置TranslationX
  */

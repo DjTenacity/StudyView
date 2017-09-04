@@ -19,15 +19,15 @@ import android.content.Intent;
 
 import com.gdj.myview.entry.ItemModel;
 import com.gdj.myview.fileup.UploadFileActivity;
+import com.gdj.myview.ui.activity.AnimationActivity;
 import com.gdj.myview.ui.activity.CVActivity;
 import com.gdj.myview.ui.activity.KTLockPatternActivity;
 import com.gdj.myview.ui.activity.MainActivity;
 import com.gdj.myview.ui.activity.MultiButtonActivity;
-import com.gdj.myview.ui.activity.AnimationActivity;
-import com.gdj.myview.ui.activity.SVGViewActivity;
 import com.gdj.myview.ui.activity.QQStepActivity;
 import com.gdj.myview.ui.activity.QQzoneActivity;
-import com.gdj.myview.ui.activity.SplashActivity;
+import com.gdj.myview.ui.activity.RecyclerViewActivity;
+import com.gdj.myview.ui.activity.SVGViewActivity;
 import com.gdj.myview.ui.activity.TranslateActivity;
 import com.gdj.myview.ui.activity.YahooNewsActivity;
 
@@ -44,9 +44,7 @@ public class MYFragment extends MainFragment {
                         "类似于微信，可以切换摄像头\n" +//
                         ""));
 
-        items.add(new ItemModel("平行空间",//
-
-                " "));
+        items.add(new ItemModel("平行空间", " "));
 //2
         items.add(new ItemModel("2具有3D视差效果的多选按钮。",//
                 "https://github.com/gjiazhe/MultiChoicesCircleButton\n" + //
@@ -58,15 +56,15 @@ public class MYFragment extends MainFragment {
         items.add(new ItemModel("4qq空间头部",//
                 "仿QQ控件值打造个性化可拉伸头部空间\n" + "共享元素跳转"));
 //5
-        items.add(new ItemModel("5运动进度条", " 和一些小控件\n"));
+        items.add(new ItemModel("5 运动进度条", " 和一些小控件\n"));
 
-        items.add(new ItemModel("6高仿小红书欢迎界面", " \n"));
+        items.add(new ItemModel("6  RecyclerView   交互效果", " \n"));
 
         items.add(new ItemModel("7九宫格", " \n"));
 
-        items.add(new ItemModel("8Paint", "  \n"));
+        items.add(new ItemModel("8 Paint", "  \n"));
 //9
-        items.add(new ItemModel("9.....", ""));
+        items.add(new ItemModel("9 TabLayout 和viewpager", ""));
         items.add(new ItemModel("10属性动画的学习与实现", ""));
         items.add(new ItemModel("11", ""));
     }
@@ -81,7 +79,7 @@ public class MYFragment extends MainFragment {
         //qq空间头部
         if (position == 4) startActivity(new Intent(context, QQzoneActivity.class));
         if (position == 5) startActivity(new Intent(context, QQStepActivity.class));
-        if (position == 6) startActivity(new Intent(context, SplashActivity.class));
+        if (position == 6) startActivity(new Intent(context, RecyclerViewActivity.class));
 
         if (position == 7) startActivity(new Intent(context, KTLockPatternActivity.class));
 
