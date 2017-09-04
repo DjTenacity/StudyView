@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 
 import com.gdj.myview.R;
 
@@ -31,13 +32,14 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
         //return 0x0011;   ItemTouchHelper.UP   DOWN
         //makeMovementFlags()
         //拖拽方向是哪两个
-        int dragFlags = ItemTouchHelper.DOWN | ItemTouchHelper.UP;
+        int dragFlags = ItemTouchHelper. UP| ItemTouchHelper.DOWN ;
 
         //侧滑方向是哪两个
         int swipeFlags = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;  //0
 
 
-        return makeMovementFlags(0, swipeFlags);//不想实现的就为0
+        int flags = makeMovementFlags(dragFlags, swipeFlags);
+        return flags;//不想实现的就为0
     }
 
     //是否允许长按拖拽
@@ -54,8 +56,10 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
             return false;
         }
 
-        itemTouchMoveListener.onItemMove(srcHolder.getAdapterPosition(), target.getAdapterPosition());
-        return true;
+        // 在拖拽的过程当中不断地调用adapter.notifyItemMoved(from,to);
+        boolean result = itemTouchMoveListener.onItemMove(srcHolder.getAdapterPosition(), target.getAdapterPosition());
+       Log.w("result",result+"result");
+        return result;
     }
 
     //当侧滑的时候,回调的方法-

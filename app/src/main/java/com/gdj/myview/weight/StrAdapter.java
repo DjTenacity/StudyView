@@ -2,6 +2,7 @@ package com.gdj.myview.weight;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gdj.myview.R;
+import com.gdj.myview.ui.listener.DragListener;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,16 +24,15 @@ import java.util.List;
  */
 public class StrAdapter extends RecyclerView.Adapter<StrAdapter.StrViewHolder> implements ItemTouchMoveListener {
     List<String> strs;
-    Context context;
 
-    public StrAdapter(Context context, List<String> strs) {
+    public StrAdapter(DragListener dragListener, List<String> strs) {
         this.strs = strs;
-        this.context = context;
+        this.dragListener = dragListener;
     }
 
     @Override
     public StrViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new StrViewHolder(LayoutInflater.from(context).inflate(R.layout.item_main_type, parent, false));
+        return new StrViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main_type, parent, false));
     }
 
     @Override
@@ -61,7 +62,7 @@ public class StrAdapter extends RecyclerView.Adapter<StrAdapter.StrViewHolder> i
     public boolean onItemMove(int fromPosition, int toPosition) {
         //数据的交换,刷新
         Collections.swap(strs, fromPosition, toPosition);//reserve 反转
-
+        Log.w("result", fromPosition + "result" + toPosition);
         notifyItemMoved(fromPosition, toPosition);//刷新
         return false;
     }
@@ -85,16 +86,16 @@ public class StrAdapter extends RecyclerView.Adapter<StrAdapter.StrViewHolder> i
 
     DragListener dragListener;
 
-    public interface DragListener {
-        /**
-         * 该接口用于需要主动回调拖拽效果
-         **/
-        public void startDragListener(RecyclerView.ViewHolder viewHolder);
-    }
-
-    public void setDragListener(DragListener dragListenerl) {
-        this.dragListener = dragListenerl;
-    }
+//    public interface DragListener {
+//        /**
+//         * 该接口用于需要主动回调拖拽效果
+//         **/
+//        public void startDragListener(RecyclerView.ViewHolder viewHolder);
+//    }
+//
+//    public void setDragListener(DragListener dragListenerl) {
+//        this.dragListener = dragListenerl;
+//    }
 
 
 }
