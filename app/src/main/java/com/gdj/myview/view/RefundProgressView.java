@@ -85,9 +85,10 @@ public class RefundProgressView extends View {
         loadingPoint.setStyle(Paint.Style.FILL);
         loadingPoint.setStrokeWidth(radius);
 
+        stringList.add("提交申");
         stringList.add("提交申请");
         stringList.add("提交申");
-        stringList.add("提交申请啊");
+        stringList.add("提交申请 ");
         num = stringList.size();
     }
 

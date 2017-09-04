@@ -1,20 +1,15 @@
 package com.gdj.myview.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.gdj.myview.R;
 import com.gdj.myview.view.ParallaxContainer;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
- * Created by Administrator on 2017/7/16.
+ * 高仿小红书欢迎界面
  */
 
 public class SplashActivity extends AppCompatActivity {
