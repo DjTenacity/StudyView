@@ -106,18 +106,19 @@ public class ShaderBitmap extends View {
 //		canvas.drawRect(0, 0, 400, 400, paint);
 
         //环形渲染   水波纹,,调色板
-//		radialGradient = new RadialGradient(300, 300, 100, colors, null, TileMode.REPEAT);
-//		paint.setShader(radialGradient);
-//		canvas.drawCircle(300, 300, 300, paint);
+        radialGradient = new RadialGradient(300, 300, 100, colors,  new float[]{0, 0.5f, 0.7f,1}, Shader.TileMode.REPEAT);
+        paint.setShader(radialGradient);
+        canvas.drawCircle(300, 300, 300, paint);
 
-        //梯度渲染  雷达  微信等雷达扫描效果。手机卫士垃圾扫描
-//		sweepGradient = new SweepGradient(300, 300, colors, null);
-//		paint.setShader(sweepGradient);
-//		canvas.drawCircle(300, 300, 300, paint);
+        //梯度渲染  雷达  微信等雷达扫描效果。手机卫士垃圾扫描    Color.BLUE, Color.YELLOW);//
+        sweepGradient = new SweepGradient(300, 300, new int[]{0x22ffffff, 0xffffffff, 0x22ffffff}, new float[]{0, 0.5f, 1});
+        //colors, new float[]{0, 0.1f,0.5f ,1});
+        paint.setShader(sweepGradient);
+        canvas.drawCircle(300, 300, 300, paint);
 
-        composeShader = new ComposeShader(linearGradient, bitmapShader, PorterDuff.Mode.SRC_OVER);
-        paint.setShader(composeShader);
-        canvas.drawRect(0, 0, 800, 1000, paint);
+//        composeShader = new ComposeShader(linearGradient, bitmapShader, PorterDuff.Mode.SRC_OVER);
+//        paint.setShader(composeShader);
+//        canvas.drawRect(0, 0, 800, 1000, paint);
 
     }
 }

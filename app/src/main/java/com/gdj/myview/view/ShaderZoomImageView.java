@@ -87,8 +87,8 @@ public class ShaderZoomImageView extends View {
         int x = (int) event.getX();
         int y = (int) event.getY();
         //平移x,y
-        matrix.setTranslate(RADIUS - x * FACTOR,RADIUS - y * FACTOR );
-        drawable.getPaint();
+        matrix.setTranslate(RADIUS - x * FACTOR, RADIUS - y * FACTOR);
+        drawable.getPaint().getShader().setLocalMatrix(matrix);
         drawable.setBounds(x - RADIUS, y - RADIUS, x + RADIUS, y + RADIUS);
 
         invalidate();

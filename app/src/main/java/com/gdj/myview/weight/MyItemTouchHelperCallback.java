@@ -32,7 +32,7 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
         //return 0x0011;   ItemTouchHelper.UP   DOWN
         //makeMovementFlags()
         //拖拽方向是哪两个
-        int dragFlags = ItemTouchHelper. UP| ItemTouchHelper.DOWN ;
+        int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
 
         //侧滑方向是哪两个
         int swipeFlags = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;  //0
@@ -58,7 +58,7 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
         // 在拖拽的过程当中不断地调用adapter.notifyItemMoved(from,to);
         boolean result = itemTouchMoveListener.onItemMove(srcHolder.getAdapterPosition(), target.getAdapterPosition());
-       Log.w("result",result+"result");
+        Log.w("result", result + "result");
         return result;
     }
 

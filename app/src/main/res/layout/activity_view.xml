@@ -35,6 +35,14 @@
             <!--android:layout_marginLeft="@dimen/dp_20"-->
             <!--android:layout_marginTop="@dimen/dp_20" />-->
 
+            <com.gdj.myview.view.ShaderLigntTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/gray"
+                android:text="我的控件和VIEW,CANVAS等的学习之旅"
+                android:textColor="@color/green"
+                android:textSize="30sp" />
+
             <com.gdj.myview.view.RefundProgressView
                 android:id="@+id/rpv"
                 android:layout_width="match_parent"
@@ -44,10 +52,22 @@
                 app:pvPassTextColor="#3FCC5B"
                 app:pvRadius="@dimen/dp_10" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:orientation="horizontal">
 
-            <com.gdj.myview.view.ShaderZoomImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp" />
+
+                <com.gdj.myview.view.ShaderZoomImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_weight="1" />
+
+                <com.gdj.myview.view.ShaderBitmap
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
             <com.gdj.myview.view.StudyView
                 android:layout_width="match_parent"
