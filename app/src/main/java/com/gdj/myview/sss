@@ -1,0 +1,155 @@
+class DeviceAdapter(context: Context, //是否收关闭
+                    var flag: Boolean) : BaseRecyclerViewAdapter<Device>(context) {
+    var num = 2
+
+    override fun onCreateNormalViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder {
+
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_rv_device, null)
+
+        return DeviceViewHolder(view)
+    }
+
+    override fun getDataCount(): Int {
+        return list.size
+    }
+
+    internal inner class DeviceViewHolder(itemView: View) : BaseRecyclerViewHolder(itemView) {
+
+        @BindView(R.id.tv_code)
+        var tv_code: TextView? = null
+        @BindView(R.id.tv_available_time)
+        var tv_available_time: TextView? = null
+        @BindView(R.id.tv_status)
+        var tv_status: TextView? = null
+
+        init {
+            ButterKnife.bind(this, itemView)
+        }
+
+        override fun onBindViewHolder(position: Int) {
+            //  final Device devices = getList().get(position);
+            val device = list[position]
+            tv_code!!.text = device.unit_sn
+            // tv_available_time.setText("有效期至:"+device.getExpire_time());
+            tv_available_time!!.text = String.format(context.resources.getString(R.string.str_available_time), device.expire_time)
+            //            if (!"0".equals(device.getUnit_status())) {
+            if (StringUtils.isBlank(device.uid)) {
+                tv_status!!.text = "已关闭"
+                tv_status!!.setTextColor(context.resources.getColor(R.color.color_bg_ff7895))
+            }
+        }
+
+        override fun onItemClick(view: View, position: Int) {
+            val device = list[position]
+            if ("0" != device.unit_status) {
+                flag = false
+            } else {
+                flag = true
+            }
+            DeviceDetailActivity.start(context, flag, device.uid)
+            //getTutkUid(device.getUnit_sn());
+        }
+
+        private fun getTutkUid(unit_sn: String) {
+            DeviceService.getTutkUid(unit_sn).subscribe(MySubscriber(Consumer { responseData ->
+                ToastUtils.normal(responseData.msg).show()
+                if (responseData.isSuccess) {
+                    val deviceuid = responseData.data
+                    // long expire_time = deviceuid.getExpire_time();
+                    val UID = deviceuid.uid
+                    DeviceDetailActivity.start(context, flag, UID)
+                }
+            }, null))
+        }
+    }
+
+}
+
+//////////////////////////////////////////////////////////////////////////
+package com.hulubao.android.tyc.ui.fragment
+
+import com.hulubao.android.tyc.R.id.sliding_tab_layout
+import com.flyco.tablayout.SlidingTabLayout
+import com.hulubao.android.tyc.ui.widget.ViewPagerAdapter
+import cn.zhimadi.android.common.lib.util.SPUtils
+import com.hulubao.android.tyc.R.id.view_pager
+import android.support.v4.view.ViewPager
+import android.os.Bundle
+import android.view.ViewGroup
+import android.view.LayoutInflater
+import android.support.test.InstrumentationRegistry.getArguments
+
+
+
+/**
+ * Comment:
+ *
+ * @author : DJ鼎尔东/ 1757286697@qq.com
+ * @version : ${user} 1.0
+ * @date : 2017/9/8 17:09
+ */
+class OrderFragment : Fragment() {
+
+    private var mAdapter: ViewPagerAdapter? = null
+    private var viewPager: ViewPager? = null
+    private val mShowTitles = arrayOf("全部", "待付款", "待使用", "待评价", "退款")
+    private val mGoodsTitles = arrayOf("待领取", "待评价", "已完成")
+    private val mCardTitles = arrayOf("全部", "待付款", "待使用", "已使用", "退款")
+
+    private val mFragments = ArrayList()
+    private var type: String? = null
+
+    fun onCreate(savedInstanceState: Bundle) {
+        super.onCreate(savedInstanceState)
+        mFragments.clear()
+        type = getArguments().getString(Constant.INTENT_ORDER_TYPE)
+
+    }
+
+    fun onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle): View {
+        val view = inflater.inflate(R.layout.fragment_order, container, false)
+        viewPager = view.findViewById(R.id.view_pager)
+        if (type == getActivity().getString(R.string.str_order_show)) {
+            for (i in 1..5) {
+                mFragments.add(OrderShowListFragment.newInstance(i))
+            }
+            mAdapter = ViewPagerAdapter(getChildFragmentManager(), Arrays.asList(mShowTitles), mFragments)
+        } else if (type == getActivity().getString(R.string.str_order_goods)) {
+            for (i in 1..3) {
+                mFragments.add(OrderGoodsListFragment.newInstance(i))
+            }
+            mAdapter = ViewPagerAdapter(getChildFragmentManager(), Arrays.asList(mGoodsTitles), mFragments)
+        } else if (type == getActivity().getString(R.string.str_order_card) || type == "年卡") {
+            for (i in 1..5) {
+                mFragments.add(OrderCardListFragment.newInstance(i))
+            }
+            if (type == "年卡") {
+                SPUtils.setString(Constant.SP_ORDER_TYPE, getString(R.string.str_order_card))
+            }
+            mAdapter = ViewPagerAdapter(getChildFragmentManager(), Arrays.asList(mCardTitles), mFragments)
+        }
+
+        viewPager!!.adapter = mAdapter
+
+        val tabs = view.findViewById(R.id.sliding_tab_layout) as SlidingTabLayout
+        tabs.setViewPager(viewPager!!)
+        viewPager!!.currentItem = 0
+
+        return view
+    }
+
+    fun onDestroyView() {
+        super.onDestroyView()
+    }
+
+    companion object {
+
+        fun newInstance(type: String): OrderFragment {
+            val fragment = OrderFragment()
+            val args = Bundle()
+            args.putString(Constant.INTENT_ORDER_TYPE, type)
+            fragment.setArguments(args)
+            return fragment
+        }
+    }
+}

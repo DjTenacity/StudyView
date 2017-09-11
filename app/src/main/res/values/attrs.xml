@@ -215,4 +215,12 @@
         <attr name="contentHeight" format="dimension"></attr>
     </declare-styleable>
 
+    <!-- 电池 -->
+    <declare-styleable name="MyBattery">
+        <attr name="mb_showPercent" format="boolean"/>
+        <attr name="mb_powerColor" format="color"/>
+        <attr name="mb_baseColor" format="color"/>
+        <attr name="mb_percentTextSize" format="dimension"/>
+    </declare-styleable>
+
 </resources>

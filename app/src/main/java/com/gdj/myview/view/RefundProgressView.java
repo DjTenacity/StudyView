@@ -25,9 +25,8 @@ import java.util.List;
 public class RefundProgressView extends View {
 
     private Paint paint;
-    int position = 2;
+    int position = 4;
     int paddingBothSides;
-    int paddingTop;
     int radius;//半径
     private Paint tvPaint;
     private int num;
@@ -146,15 +145,20 @@ public class RefundProgressView extends View {
 
         if (num == 1) lineLength = length;
 
-
-        //全长的灰线
-        canvas.drawLine(y, y, getWidth() - y, y, paint);
-
         //终点的x坐标
         float end = y + lineLength * (position + 0.5f);
         if (end >= getWidth() - y) {
             end = getWidth() - y;
         }
+
+        //全长的灰线
+        paint.setStrokeWidth(radius / 4);
+        canvas.drawLine(y, y, getWidth() - y, y, paint);
+        paint.setStrokeWidth(radius);
+
+        //第一个圆先画
+        canvas.drawCircle(y, y, radius, loadingPoint);
+
         Rect textBounds = new Rect();
         for (int i = 0; i < num; i++) {
             tvPaint.getTextBounds(stringList.get(i), 0, stringList.get(i).length(), textBounds);
@@ -164,15 +168,15 @@ public class RefundProgressView extends View {
                 tvPaint.setColor(pvTextColor);
             }
             canvas.drawText(stringList.get(i), y + lineLength * i - textBounds.width() / 2, y + radius * 4, tvPaint);
-            canvas.drawCircle(y + lineLength * i, y, radius, paint);
+            if (i > 0) canvas.drawCircle(y + lineLength * i, y, radius, paint);
 
-            if (i <= position) {
-                if (end * currentStep >= y + lineLength * i) { //radius * 0.2f +
+            if (i > 0 && i <= position) {
+                if ((end - y) * currentStep + y >= y + lineLength * i) { //radius * 0.2f +
                     canvas.drawCircle(y + lineLength * i, y, radius, loadingPoint);
                 }
             }
         }
-
+        loadingPoint.setStrokeWidth(radius / 4);
         canvas.drawLine(y, y, (end - y) * currentStep + y, y, loadingPoint);
     }
 
