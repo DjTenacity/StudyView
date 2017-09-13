@@ -34,6 +34,9 @@
             <!--android:layout_marginBottom="@dimen/dp_20"-->
             <!--android:layout_marginLeft="@dimen/dp_20"-->
             <!--android:layout_marginTop="@dimen/dp_20" />-->
+            <com.gdj.myview.view.CircularDataView
+                android:layout_width="130dp"
+                android:layout_height="130dp" />
 
             <com.gdj.myview.view.ShaderLigntTextView
                 android:layout_width="wrap_content"

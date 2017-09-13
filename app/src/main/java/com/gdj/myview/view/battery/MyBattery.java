@@ -13,6 +13,8 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.gdj.myview.R;
+
 
 /**
  * @author kongdy
