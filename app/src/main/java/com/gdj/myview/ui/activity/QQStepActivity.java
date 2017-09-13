@@ -35,6 +35,7 @@ import android.widget.Toast;
 import com.gdj.myview.R;
 import com.gdj.myview.mobileperf.render.DroidCardsView;
 import com.gdj.myview.view.BrokenView;
+import com.gdj.myview.view.CircularDataView;
 import com.gdj.myview.view.PregressView;
 import com.gdj.myview.view.QQStepView;
 import com.gdj.myview.view.RefundProgressView;
@@ -80,6 +81,8 @@ public class QQStepActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.rpv)
     RefundProgressView rpv;
+    @BindView(R.id.cdv)
+    CircularDataView cdv;
 
 
     BrokenView menu_chart;
@@ -128,6 +131,9 @@ public class QQStepActivity extends AppCompatActivity {
         map.put(6.0, 46.0);
         map.put(7.0, 36.0);
         map.put(8.0, 33.0);
+       cdv.setTopStr("2017年", true);
+        cdv.setCenterStr("09月", true);
+        cdv.setBottomStr("21日", true);
 
 //       menu_chart.setView(map,50,10,20,50,"s","b" );
 

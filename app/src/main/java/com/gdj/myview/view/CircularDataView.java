@@ -10,6 +10,7 @@ import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,14 +25,16 @@ import com.gdj.myview.R;
  */
 public class CircularDataView extends View {
 
-    private int radiu;
+    private float radiu;
     private Paint paintCirular, tvPaint;
-    private int center;
+    private float center;
 
     String topStr, centerStr, bottomStr;
     private Rect textBounds;
-    private Path path;
     private int padding;
+    private int paddingCenter;
+    private float baseLine;
+    private Paint paintSmallCirular;
 
 
     public CircularDataView(Context context) {
@@ -49,22 +52,24 @@ public class CircularDataView extends View {
 
     private void init() {
         paintCirular = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paintCirular.setStyle(Paint.Style.STROKE);
-
         tvPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintSmallCirular = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-        paintCirular.setStrokeWidth(4f);
+        paintSmallCirular.setStyle(Paint.Style.FILL);
+        paintCirular.setStyle(Paint.Style.FILL);
+
         paintCirular.setColor(Color.parseColor("#B3D962"));
+        paintSmallCirular.setColor(Color.parseColor("#6FB513"));
+        tvPaint.setColor(Color.WHITE);
 
-        tvPaint.setColor(Color.parseColor("#6FB513"));
-        padding = getContext().getResources().getDimensionPixelSize(R.dimen.dp_4);
+        padding = getContext().getResources().getDimensionPixelSize(R.dimen.dp_8);
         tvPaint.setTextSize(getContext().getResources().getDimensionPixelSize(R.dimen.sp_12));
-        tvPaint.setStyle(Paint.Style.FILL);
 
         textBounds = new Rect();
 
-        path = new Path();
+        //  path = new Path();
     }
+    //  private Path path;
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -74,42 +79,48 @@ public class CircularDataView extends View {
 
         //DisplayUtils.dp2px(4f)
         center = Math.min(width, height);
-        radiu = center / 2 - 2;
-        setMeasuredDimension(center, center);
+        radiu = center / 2 - 16f;
+        //cirularCenter = center / 2 - 8f;
+        setMeasuredDimension((int) center + 8, (int) center);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        // canvas.draw(center, center, center, paintCirular);
-        RectF rectF = new RectF(0, 0, center, center);
+        canvas.drawCircle(center / 2, center / 2, center / 2, paintCirular);
+        // RectF rectF = new RectF(0, 0, center, center);
         // path.reset();
-        path.arcTo(rectF, 0, 360, true);
-        canvas.drawPath(path, paintCirular);
+        //path.arcTo(rectF,  90, 450 , true);
+        // canvas.drawPath(path, paintCirular);
 
-        canvas.drawCircle(center / 2, center / 2, radiu, tvPaint);
+        canvas.drawCircle(center / 2, center / 2, radiu, paintSmallCirular);
 
+        //基线  baseLine  大写字母位于基线上。最常见的例外是J和Q。不齐线数字（见阿拉伯数字）位于基线上。
+        Paint.FontMetricsInt fontMetricsInt = tvPaint.getFontMetricsInt();
+        float dy = (fontMetricsInt.bottom - fontMetricsInt.top) / 2 - fontMetricsInt.bottom;
+        baseLine = center / 2 + dy;
 
         if (!TextUtils.isEmpty(centerStr)) {
             if (setBunds(centerStr, textBounds)) {
-                canvas.drawText(centerStr, center / 2 - textBounds.width() / 2, center / 2 - textBounds.height() / 2, tvPaint);
+                paddingCenter = textBounds.height() / 2;
+                canvas.drawText(centerStr, center / 2 - textBounds.width() / 2, baseLine, tvPaint);
             }
         }
 
 
         if (!TextUtils.isEmpty(bottomStr) && TextUtils.isEmpty(topStr)) {
             if (setBunds(bottomStr, textBounds)) {
-            }
-            float x = Math.min(judgeDistance(textBounds), padding);
-            canvas.drawText(bottomStr, center / 2 - textBounds.width() / 2, center / 2 - textBounds.height() / 2 + x, tvPaint);
 
+                float x = Math.min(judgeDistance(textBounds), padding);
+                canvas.drawText(bottomStr, center / 2 - textBounds.width() / 2, baseLine + x + paddingCenter, tvPaint);
+
+            }
         }
 
         if (TextUtils.isEmpty(bottomStr) && !TextUtils.isEmpty(topStr)) {
             if (setBunds(topStr, textBounds)) {
                 float x = Math.min(judgeDistance(textBounds), padding);
-                canvas.drawText(topStr, center / 2 - textBounds.width() / 2, center / 2 - textBounds.height() / 2 - x, tvPaint);
+                canvas.drawText(topStr, center / 2 - textBounds.width() / 2, baseLine - x - paddingCenter, tvPaint);
             }
         }
         //上下的text都有,统一padding
@@ -118,20 +129,23 @@ public class CircularDataView extends View {
     }
 
     private float judgeDistance(Rect textBounds) {
-        return (float) (Math.sqrt(radiu * radiu - textBounds.width() * textBounds.width() / 4) - textBounds.height());
+        return (float) (Math.sqrt(radiu * radiu - textBounds.width() * textBounds.width() / 4 - padding * padding) - textBounds.height());
     }
 
     private void drawUniteText(Canvas canvas, String topStr, String bottomStr, Paint tvPaint) {
         String str = topStr;
-        if (topStr.length() - bottomStr.length() < 0) {
+        if (topStr.length() - bottomStr.length() > 0) {
 
         } else {
             str = bottomStr;
+            bottomStr = topStr;
         }
+        //str 是长的,bottomStr是短的
         if (setBunds(str, textBounds)) {
             float x = Math.min(judgeDistance(textBounds), padding);
-            canvas.drawText(topStr, center / 2 - textBounds.width() / 2, center / 2 - textBounds.height() / 2 - x, tvPaint);
-            canvas.drawText(bottomStr, center / 2 - textBounds.width() / 2, center / 2 - textBounds.height() / 2 + x, tvPaint);
+            canvas.drawText(topStr, center / 2 - textBounds.width() / 2, baseLine - x - paddingCenter, tvPaint);
+            setBunds(bottomStr, textBounds);
+            canvas.drawText(bottomStr, center / 2 - textBounds.width() / 2, baseLine + x + paddingCenter, tvPaint);
         }
     }
 
@@ -145,18 +159,18 @@ public class CircularDataView extends View {
         }
     }
 
-    public void setTopStr(String topStr) {
+    public void setTopStr(String topStr, boolean b) {
         this.topStr = topStr;
-        invalidate();
+        if (b) invalidate();
     }
 
-    public void setCenterStr(String centerStr) {
+    public void setCenterStr(String centerStr, boolean b) {
         this.centerStr = centerStr;
-        invalidate();
+        if (b) invalidate();
     }
 
-    public void setBottomStr(String bottomStr) {
+    public void setBottomStr(String bottomStr, boolean b) {
         this.bottomStr = bottomStr;
-        invalidate();
+        if (b) invalidate();
     }
 }

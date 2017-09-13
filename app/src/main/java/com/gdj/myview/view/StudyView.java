@@ -29,10 +29,13 @@ public class StudyView extends View {
     int mWidth = 0;
     private int mColor;
     private int mMode;
-    private int mWaveWidth, mWaveCount,mHeight ;
-    private float mRectWidth,mRectHeight;
-    private float  startX,startY;
+    private int mWaveWidth, mWaveCount, mHeight;
+    private float mRectWidth, mRectHeight;
+    private float startX, startY;
     private Paint paint;
+    private Path pathR;
+    private Path path;
+    private Path path2;
 
     public StudyView(Context context) {
         this(context, null);
@@ -51,8 +54,11 @@ public class StudyView extends View {
         mMode = typedArray.getInteger(R.styleable.WaveView_mode, -2);
         mColor = typedArray.getColor(R.styleable.WaveView_android_color, Color.parseColor("#2C97DE"));
         typedArray.recycle();
-
+        pathR = new Path();
+        path = new Path();
         paint = new Paint();
+        path2 = new Path();
+
     }
 
     @Override
@@ -76,7 +82,7 @@ public class StudyView extends View {
 
             //如果是wrap_content 直接给一个定值
         } else if (widthMode == MeasureSpec.AT_MOST) {
-            mWidth = UIUtils. dip2px(300 );
+            mWidth = UIUtils.dip2px(300);
 
             mRectWidth = (float) (mWidth * 0.8);
         }
@@ -89,7 +95,7 @@ public class StudyView extends View {
             //如果是wrap_content 直接给一个定值
         } else if (heightMode == MeasureSpec.AT_MOST) {
 
-            mHeight = UIUtils. dip2px(200 );
+            mHeight = UIUtils.dip2px(200);
 
             mRectHeight = (float) (mHeight * 0.8);
         }
@@ -116,7 +122,6 @@ public class StudyView extends View {
         Log.w("getTop", getTop() + "width");
 
 
-
         paint.setColor(Color.BLUE);//ff7895
         //如果设置了圆弧的宽度,那么就要注意圆心了兄弟
         // paint.setStrokeWidth(getContext().getResources().getDimensionPixelSize(R.dimen.dp_4));
@@ -128,7 +133,6 @@ public class StudyView extends View {
         //left, top, right, bottom
         canvas.drawRoundRect(new RectF(getLeft() + 3 * r, 0, getLeft() + 7 * r, 4 * r), 10, 10, paint);
 
-        Path path = new Path();
         path.moveTo(getLeft() + 5 * r - 10, 4 * r);
         path.lineTo(getLeft() + 5 * r, 4 * r + 16);
         path.lineTo(getLeft() + 5 * r + 10, 4 * r);
@@ -146,11 +150,11 @@ public class StudyView extends View {
         //计算padding
         float padding = ((mWidth - mRectWidth) / 2);
         //left, top, right, bottom
-        canvas.drawRect(padding , padding+3*r, mRectWidth + padding, mRectHeight + padding, paint);
+        canvas.drawRect(padding, padding + 3 * r, mRectWidth + padding, mRectHeight + padding, paint);
 
         //绘制左边的波浪
-        startX = padding ;
-        startY = padding+3*r;
+        startX = padding;
+        startY = padding + 3 * r;
         path.moveTo(startX, startY);
         for (int i = 0; i < mWaveCount; i++) {
             path.lineTo(startX - mWaveWidth, startY + i * mWaveHeight + (mWaveHeight / 2));
@@ -158,8 +162,7 @@ public class StudyView extends View {
         }
         //绘制右边的波浪
         float startX = padding + mRectWidth;
-        float startY = padding+3*r;
-        Path pathR = new Path();
+        float startY = padding + 3 * r;
         pathR.moveTo(startX, startY);
         for (int i = 0; i < mWaveCount; i++) {
             pathR.lineTo(startX + mWaveWidth, startY + i * mWaveHeight + (mWaveHeight / 2));
@@ -168,10 +171,21 @@ public class StudyView extends View {
         }
         pathR.close();
         canvas.drawPath(pathR, paint);
-        pathR.close();
+        path.close();
         canvas.drawPath(path, paint);
         //波浪 end
 
+        paint.setColor(Color.RED);
+
+        path2.moveTo(100, 100);
+        //三级贝塞尔曲线
+        path2.cubicTo(200, 200, 300, 0, 400, 100);
+
+        path2.cubicTo(200, 200, 300, 0, 400, 100);
+
+        path2.cubicTo(200, 200, 300, 0, 400, 100);
+
+        canvas.drawPath(path2, paint);
 
     }
 }
