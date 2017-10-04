@@ -1,0 +1,210 @@
+    -------------------------------CoordinatorLayout----------------------------------------
+    1.CoordinatorLayout
+        监听滑动控件的滑动通过Behavior反馈到其他子控件并执行一些动画。
+        注意：滑动控件指的是：RecyclerView/NestedScrollView/ViewPager，意味着ListView、ScrollView不行。
+    谷歌有个bug在最新版的Design包里面解决了：snackbar弹出的时候会遮挡住fab.
+    解决：用CoordinatorLayout将其包裹在里面就可以解决了。
+    源码：
+
+    2.AppBarLayout
+    AppBarLayout extends android.widget.LinearLayout
+        app:layout_scrollFlags="scroll"
+        flag包括：
+            scroll: 里面所有的子控件想要当滑出屏幕的时候view都必须设置这个flag，
+                没有设置flag的view将被固定在屏幕顶部。
+            enterAlways:('quick return' pattern)
+            enterAlwaysCollapsed：当你的视图设置了minHeight属性的时候，那么视图只能以最小高度进入，
+                        只有当滚动视图到达顶部时才扩大到完整高度。
+            exitUntilCollapsed：滚动退出屏幕，最后折叠在顶端。
+            snap：
+
+        1）NestedScrollView
+        android.support.v4.widget.NestedScrollView; 在v4包里面，是ScrollView的升级版
+        2)ViewPager+TabLayout+Fragment + AppBarLayout
+
+
+
+    3.CollapsingToolbarLayout
+        可以实现Toolbar折叠效果.
+
+        注意:1.AppBarLayout设置固定高度，并且要实现折叠效果必须比toolbar的高度要高。
+             2.CollapsingToolbarLayout最好设置成match_parent
+
+        app:layout_collapseMode="parallax"
+            parallax:视差模式，在折叠的时候会有折叠视差效果。
+                一般搭配layout_collapseParallaxMultiplier=“0.5”视差的明显程度
+                 be between 0.0 and 1.0.
+            none:没有任何效果，往上滑动的时候toolbar会首先被固定并推出去。
+            pin:固定模式，在折叠的时候最后固定在顶端。
+
+
+      <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app1:collapsedTitleTextAppearance=""
+                app1:expandedTitleMargin="5dp"
+            app1:contentScrim="@color/colorPrimary_pink"//内容部分的沉浸式效果：toolbar和imageview有一个渐变过渡的效果
+                app1:statusBarScrim="@color/colorPrimary_pink"//和状态栏的沉浸式效果：指定颜色。
+                app1:title="学习"
+                >
+
+    4.Behavior(CoordinatorLayout.Behavior/FloatingActionButton.Behavior)
+        桥梁,监听者,包裹在里面的所有子控件或者容器产生联动的效果.
+
+         public static abstract class Behavior<V extends View>
+
+         可以做到下面两种情况:
+            1.某个view需要监听另外一个view的状态(比如:位置,大小,显示状态)
+                    ( 需要重写方法:layoutDependsOn / onDependentViewChanged )
+            2.某个view需要监听CoordinateLayout里面所有控件的滑动状态.
+                    ( 需要重写方法:onStartNestedScroll , onNestedScroll,或者onNestedPreScroll )
+                      注意:能被CoordinateLayout捕获到滑动状态的控件只有那几个
+
+    ///////////////////////////////////////////////////////////////////
+
+    1、如何监听CollapsingToolbarLayout的展开与折叠
+    使用官方提供的 AppBarLayout.OnOffsetChangedListener就能实现了，不过要封装一下才好用。
+
+    自定义一个继承了 AppBarLayout.OnOffsetChangedListener的类，这里命名为AppBarStateChangeListener：
+
+    public abstract class AppBarStateChangeListener implements AppBarLayout.OnOffsetChangedListener {
+
+        public enum State {
+            EXPANDED,
+            COLLAPSED,
+            IDLE
+        }
+
+        private State mCurrentState = State.IDLE;
+
+        @Override
+        public final void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+            if (i == 0) {
+                if (mCurrentState != State.EXPANDED) {
+                    onStateChanged(appBarLayout, State.EXPANDED);
+                }
+                mCurrentState = State.EXPANDED;
+            } else if (Math.abs(i) >= appBarLayout.getTotalScrollRange()) {
+                if (mCurrentState != State.COLLAPSED) {
+                    onStateChanged(appBarLayout, State.COLLAPSED);
+                }
+                mCurrentState = State.COLLAPSED;
+            } else {
+                if (mCurrentState != State.IDLE) {
+                    onStateChanged(appBarLayout, State.IDLE);
+                }
+                mCurrentState = State.IDLE;
+            }
+        }
+
+        public abstract void onStateChanged(AppBarLayout appBarLayout, State state);
+    }
+
+    然后这样使用它：
+
+    mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
+               @Override
+               public void onStateChanged(AppBarLayout appBarLayout, State state) {
+                   Log.d("STATE", state.name());
+                   if( state == State.EXPANDED ) {
+
+                       //展开状态
+
+                   }else if(state == State.COLLAPSED){
+
+                       //折叠状态
+
+                   }else {
+
+                       //中间状态
+
+                   }
+               }
+           });
+
+    2、常用属性
+
+    android:fitsSystemWindows="true"
+    是一个boolean值的内部属性，让view可以根据系统窗口(如status bar)来调整自己的布局，如果值为true,就会调整view的paingding属性来给system windows留出空间...
+    用于实现状态栏，即 沉浸式状态栏！
+
+    Toolbar
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:layout_scrollFlags="scroll|enterAlways" （CoordinatorLayout属性，子布局通过设置该属性确定是否可滑动）
+
+    说明：
+    app:popupTheme，这个属性就是用来自定义我们弹出的菜单的样式，在之前的Actionbar的溢出菜单，我们是不能自定义他的样式的，只能根据你的theme来选择黑白两种，不能自己定义，现在我们可以定义弹出菜单的样式。
+
+    CoordinatorLayout
+    app:layout_scrollFlags （子布局设置是否可滑动）
+    android:layout_gravity 属性控制组件在布局中的位置
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" 通知布局中包含滑动组件！
+
+    子布局通过app:layout_scrollFlags确定是否可滑动.给需要滑动的组件设置 app:layout_scrollFlags="scroll|enterAlways" 属性。
+    设置的layout_scrollFlags有如下几种选项： scroll: 所有想滚动出屏幕的view都需要设置这个flag- 没有设置这个flag的view将被固定在屏幕顶部。
+     enterAlways:
+    这个flag让任意向下的滚动都会导致该view变为可见，启用快速“返回模式”。 enterAlwaysCollapsed:
+    当你的视图已经设置minHeight属性又使用此标志时，你的视图只能已最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度。
+     exitUntilCollapsed: 滚动退出屏幕，最后折叠在顶端。
+
+
+
+
+    CollapsingToolbarLayout
+    app:collapsedTitleGravity 指定折叠状态的标题如何放置，可选值:top、bottom等
+    app:collapsedTitleTextAppearance="@style/TextAppearance.CollapsedTitle"
+    指定折叠状态标题文字的样貌
+    app:expandedTitleTextAppearance="@style/TextAppearance.ExpandedTitle"
+    指定展开状态标题文字的样貌
+    app:contentScrim="?attr/colorPrimaryDark"
+    指定CollapsingToolbarLayout完全被滚出到屏幕外时的ColorDrawable
+    app:expandedTitleGravity  展开状态的标题如何放置
+    app:titleEnabled指定是否显示标题文本
+    app:toolbarId指定与之关联的ToolBar，如果未指定则默认使用第一个被发现的ToolBar子View
+    app:expandedTitleMarginStart="10dp"
+    app:expandedTitleMargin
+    app:expandedTitleMarginBottom
+    app:expandedTitleMarginEnd
+    展开状态改变标题文字的位置，通过margin设置
+    app:layout_collapseParallaxMultiplier="0.7"
+    设置视差的系数，介于0.0-1.0之间。
+    app:layout_collapseMode="pin"（子布局设置折叠模式）
+    有两种“pin”：固定模式，在折叠的时候最后固定在顶端；“parallax”：视差模式，在折叠的时候会有个视差折叠的效果。
+
+    CollapsingToolbarLayout主要是提供一个可折叠的Toolbar容器，对容器中的不同View设置layout_collapseMode折叠模式，来达到不同的折叠效果。
+
+    FloatingActionButton (FAB)
+     app:fabSize="normal" 是用来定义 FAB 的大小的，normal 的意思是在大多数情况下标准尺寸为 56dp 的按钮，
+                            但是万一你想使用较小的一个， mini 是另一个选择，它的大小将变成 40dp。
+
+
+
+    app:elevation 　　为空闲状态下的阴影深度，
+
+    app:pressedTranslationZ　　 为按下状态的。
+
+
+
+    app:backgroundTint 　　是指定默认的背景颜色
+    app:rippleColor 　　是指定点击时的背景颜色
+    app:border 　　 Width 　border的宽度
+    app:fabSize 　　是指FloatingActionButton的大小，可选normal|mini
+    app:pressedTranslationZ  　　按下去时的z轴的便宜
+
+
+
+    TabLayout
+    app:tabIndicatorColor  　　tab的指示符颜色
+    app:tabSelectedTextColor  　　选择tab的文本颜色
+    app:tabTextColor  　　普通tab字体颜色
+    app:tabMode  　　模式，可选fixed和scrollable fixed是指固定个数，scrollable是可以横行滚动app:tabGravity  对齐方式，可选fill和center
+
+
+    app:layout_scrollFlags有5种参数：
+    1.scroll: 所有想滚动出屏幕的view都需要设置这个flag， 没有设置这个flag的view将被固定在屏幕顶部。例如，TabLayout 没有设置这个值，将会停留在屏幕顶部。
+    2.snap:当下拉不到一定高度时，Toolbar回弹回去，如果上滑不到一定高度，Toolbar不会收缩。但是上滑时会全隐藏Toolbar
+    3.enterAlways: 设置这个flag时，向下的滚动都会导致该view变为可见，启用快速“返回模式”。
+    4.enterAlwaysCollapsed: 当你的视图已经设置minHeight属性又使用此标志时，你的视图只能已最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度。
+    5.exitUntilCollapsed: 滚动退出屏幕，最后折叠在顶端，向下滑时要等item是第一个时才能滑出Toolbar。

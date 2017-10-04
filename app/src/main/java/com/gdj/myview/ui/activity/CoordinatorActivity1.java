@@ -2,6 +2,7 @@ package com.gdj.myview.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +21,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static android.support.design.widget.Snackbar.LENGTH_SHORT;
 
 /**
  * 作者：${LoveDjForever} on 2017/6/30 10:33
@@ -61,7 +64,15 @@ public class CoordinatorActivity1 extends BaseActivity {
 
     @OnClick(R.id.fab)
     public void fab(View view) {
-        WebActivity.runActivity(this, "我的Github,欢迎star", "https://github.com/DoYouLove");
+        //FloatingActionButton 与 Snackbar 会出现覆盖问题,已经在CoordinatorLayout中不会出现,是在snackbar里面解决的
+        //view是锚点,为了追溯父容器
+        Snackbar.make(view, "要去看看我的GitHub么", LENGTH_SHORT).setAction("确定", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+                WebActivity.runActivity(CoordinatorActivity1.this, "我的Github,欢迎star", "https://github.com/DjTenacity");
+            }
+        }).show();
     }
 
     @Override

@@ -72,6 +72,7 @@
         <activity android:name=".mobileperf.MobileActivity" />
         <!--面对对象,,,fragment和activity通信-->
         <activity android:name=".fragmentmail.FragmentMailActivity" />
+        <activity android:name=".ui.activity.CoordinatorActivity3" />
 
         <!-- 友盟统计  value是其他项目的,而且放心，我改了部分 -->
         <meta-data

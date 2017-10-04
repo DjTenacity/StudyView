@@ -1,0 +1,147 @@
+
+补间动画(Tween Animation)
+a. 渐变动画支持四种类型：平移（Translate）、旋转（Rotate）、缩放（Scale）、不透明度（Alpha）。
+b. 只是显示的位置变动，View的实际位置未改变，表现为View移动到其他地方，点击事件仍在原处才能响应。
+c. 组合使用步骤较复杂。
+d. View Animation 也是指此动画。
+
+帧动画(Frame Animation)
+a. 用于生成连续的Gif效果图。
+b. DrawableAnimation也是指此动画。
+
+属性动画(Property Animation)
+a. 支持对所有View能更新的属性的动画（需要属性的setXxx()和getXxx()）。
+b. 更改的是View实际的属性，所以不会影响其在动画执行后所在位置的正常使用。
+c. Android3.0 （API11）及以后出现的功能，3.0之前的版本可使用github第三方开源库nineoldandroids.jar进行支持。
+
+
+常用API
+ObjectAnimator ：对象动画执行类。
+PropertyValuesHolder : 属性存储器，为两个执行类提供更新多个属性的功能。
+AnimatorListener ：动画执行监听，在动画开始、重复、结束、取消时进行回调。
+Keyframe ：为 PropertyValuesHolder提供多个关键帧的操作值。
+AnimatorSet ：一组动画的执行集合类：设置执行的先后顺序，时间等。
+TimeInterpolator ：时间插值，用于控制动画执行过程。
+ValueAnimator ：值动画执行类，常配合AnimatorUpdateListener使用。
+AnimatorUpdateListener ：动画更新监听。
+TypeEvaluator ：类型估值，用于设置复杂的动画操作属性的值。
+
+1）translationX 和 translationY：这两个属性控制了View所处的位置，它们的值是由layout容器设置的，是相对于坐标原点（0，0左上角）的一个偏移量。
+2）rotation, rotationX 和 rotationY：控制View绕着轴点（pivotX和pivotY）旋转。
+3）scaleX 和 scaleY：控制View基于pivotX和pivotY的缩放。
+4）pivotX 和 pivotY：旋转的轴点和缩放的基准点，默认是View的中心点。
+5）x 和 y：描述了view在其父容器中的最终位置，是左上角左标和偏移量（translationX，translationY）的和。
+6）aplha：透明度，1是完全不透明，0是完全透明。
+
+
+//// //////
+
+MaterialDesign动画
+
+1.Touch Feedback（触摸反馈）
+	例子：水波纹效果
+	水波纹效果是5.0+自带的。
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:text="@string/hello_world" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="?attr/selectableItemBackground"
+        android:text="@string/hello_world" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="?attr/selectableItemBackgroundBorderless"//没有边界，圆形
+        android:text="@string/hello_world" />
+
+	可以修改背景颜色和水波纹的颜色：
+	 <item name="colorControlHighlight">@color/colorPrimary_pink</item>//高亮颜色
+        <item name="colorButtonNormal">@color/material_blue_grey_800</item>//默认的颜色
+
+	最好使用AppcompatActivity
+	注意：如果是Button设置背景，原来的背景会被替换了。其他的控件可以设置背景。
+
+2.Reveal Effect（揭露效果）
+	例子：Activity的揭露出现的效果。
+	ViewAnimationUtil工具类
+
+	//圆形水波纹揭露效果
+	ViewAnimationUtils.createCircularReveal(
+			view, //作用在哪个View上面
+			centerX, centerY, //扩散的中心点
+			startRadius, //开始扩散初始半径
+			endRadius)//扩散结束半径
+
+3.Activity transition（Activity转场动画效果）
+ 概念：两个Activity进行跳转的时候，转场动画。
+
+	ActivityOptions类。只支持API21以上的版本。
+	版本判断会比较麻烦，谷歌很贴心 设计了一个兼容类：ActivityOptionsCompat（v4包中）
+	但是此类在低版本上面并没有转场动画效果，只是解决了我们手动去判断版本的问题而已。
+
+	转场动画可以分为两大类：共享元素转换和普通的转换
+
+	使用转换动画前提：需要给两个Activity都设置如下，让其允许使用转场动画。
+	//方法一：
+	getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+	//方法二：
+	修改主题：<item name="android:windowContentTransitions">true</item>
+
+	1）共享元素转换
+		概念：可以把两个Activity当中的相同的元素关联起来做连贯的变换动画。
+		前提：（1）给两个Activity当中的共享元素view都设置同一个名字---android:transitionName
+				<ImageView
+				android:id="@+id/iv1"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:scaleType="centerCrop"
+				android:transitionName="iv_meinv3"
+				android:src="@drawable/meinv3" />
+
+
+
+		按返回键的时候自动实现了返回的共享元素转场动画，原因看源码：
+		public void onBackPressed() {
+			finishAfterTransition();
+		}
+		public void finishAfterTransition() {
+			if (!mActivityTransitionState.startExitBackTransition(this)) {
+			    finish();
+			}
+		}
+
+		//单个元素共享
+		ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, iv1, "iv_meinv3");
+		Intent intent = new Intent(this, SecondActivity.class);
+		startActivity(intent, optionsCompat.toBundle());
+		//多个共享元素
+		ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
+				.makeSceneTransitionAnimation(this, Pair.create((View)iv1, "iv1"),Pair.create((View)bt, "bt"));
+		Intent intent = new Intent(this, SecondActivity.class);
+		startActivity(intent, optionsCompat.toBundle());
+
+
+	2）普通的转换动画
+		（只有API 21才有下面自带效果）
+		三种系统带的：滑动效果(Slide)、展开效果Explode、渐变显示隐藏效果Fade
+
+
+
+
+4.Curved motion(曲线运动)
+	设计：view的平移旋转等效果结合Path、Interpolator插值器。
+
+5.View State change (视图的状态改变)
+	例子：按下一个控件会有Z轴的阴影加深效果。
+
+
+	1.实现揭露效果的低版本兼容！
+	1.使用RecyclerView实现共享元素转场动画。
+	2.如何实现普通的转换动画滑动效果(Slide)，兼容低版本实现。
+		手动撸。提示：各种属性动画组合实现。
+
+	view.setTranslationX(xxx)
+	objectClass.setCurrentRadius(xxx)

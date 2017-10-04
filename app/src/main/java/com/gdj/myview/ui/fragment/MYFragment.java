@@ -21,6 +21,7 @@ import com.gdj.myview.entry.ItemModel;
 import com.gdj.myview.fileup.UploadFileActivity;
 import com.gdj.myview.ui.activity.AnimationActivity;
 import com.gdj.myview.ui.activity.CVActivity;
+import com.gdj.myview.ui.activity.CoordinatorActivity3;
 import com.gdj.myview.ui.activity.KTLockPatternActivity;
 import com.gdj.myview.ui.activity.MainActivity;
 import com.gdj.myview.ui.activity.MultiButtonActivity;
@@ -91,9 +92,9 @@ public class MYFragment extends MainFragment {
             startActivity(new Intent(context, AnimationActivity.class));
 
         if (position == 11)
-            startActivity(new Intent(context, UploadFileActivity.class));
+            startActivity(new Intent(context, CoordinatorActivity3.class));//UploadFileActivity
 
-
+//
         //
     }
 }
