@@ -11,10 +11,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Pair;
 import android.view.View;
-import android.widget.TextView;
 
 import com.gdj.myview.R;
 import com.gdj.myview.ui.fragment.MYFragment;
+import com.gdj.myview.ui.fragment.WaterFallFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,9 @@ public class CoordinatorActivity1 extends BaseActivity {
         initToolBar(toolbar, false, "");
 
         items = new ArrayList<>();
-        items.add(new Pair<String, Fragment>("自定义控件,动画等", new MYFragment()));
+        items.add(new Pair<String, Fragment>("学习控件", new MYFragment()));
+        items.add(new Pair<String, Fragment>("图片瀑布流ScrollView", new WaterFallFragment()));
+
 
         viewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));
         tab.setupWithViewPager(viewPager);

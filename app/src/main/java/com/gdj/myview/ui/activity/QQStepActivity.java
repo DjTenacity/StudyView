@@ -41,6 +41,7 @@ import com.gdj.myview.view.QQStepView;
 import com.gdj.myview.view.RefundProgressView;
 import com.gdj.myview.view.SingleLineFlowLayout;
 import com.gdj.myview.view.TranslucentsScrollView;
+import com.gdj.myview.view.XiuXiuView;
 
 import java.util.HashMap;
 
@@ -83,7 +84,8 @@ public class QQStepActivity extends AppCompatActivity {
     RefundProgressView rpv;
     @BindView(R.id.cdv)
     CircularDataView cdv;
-
+    @BindView(R.id.xiuxiu)
+    XiuXiuView xiuxiu;
 
     BrokenView menu_chart;
 
@@ -131,9 +133,12 @@ public class QQStepActivity extends AppCompatActivity {
         map.put(6.0, 46.0);
         map.put(7.0, 36.0);
         map.put(8.0, 33.0);
-       cdv.setTopStr("2017年", true);
+
+        cdv.setTopStr("2017年", true);
         cdv.setCenterStr("09月", true);
         cdv.setBottomStr("21日", true);
+
+        xiuxiu.start();
 
 //       menu_chart.setView(map,50,10,20,50,"s","b" );
 

@@ -31,6 +31,6 @@ class PoxyC(var b: B) {// : xxxInterface
 }
 
 //mvc   m---->业务逻辑和实体模型     c ---》页面布局
-//mvp                               activity 只是v层，加了present层，v层是不能直接操作依赖于 moudle层
+//mvp                 activity 只是v层，加了present层，v层是不能直接操作依赖于 moudle层
 //dagger2
 

@@ -191,6 +191,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp" />
 
+            <com.gdj.myview.view.XiuXiuView
+                android:id="@+id/xiuxiu"
+                android:layout_width="300dp"
+                android:layout_height="400dp" />
+
 
         </android.support.v7.widget.LinearLayoutCompat>
 
