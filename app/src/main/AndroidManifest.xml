@@ -40,20 +40,25 @@
         <activity
             android:name=".ui.activity.CoordinatorActivity2"
             android:theme="@style/AppTheme.Common.Launch" />
+
         <activity android:name=".ui.activity.KotlinAndroidActivity" />
+        <!--3D按钮-->
         <activity android:name=".ui.activity.MultiButtonActivity" />
+        <!--仿qq空间过度下拉-->
         <activity
             android:name=".ui.activity.QQzoneActivity"
-
             android:theme="@style/AppTheme.Common.Launch" />
         <!--小球加载动画-->
         <activity android:name=".ui.activity.YahooNewsActivity" />
+        <!--view的学习-->
         <activity android:name=".ui.activity.QQStepActivity" />
-
+        <!--仿小红书-->
         <activity android:name=".ui.activity.SplashActivity" />
         <!--svg-->
         <activity android:name=".ui.activity.SVGViewActivity" />
+        <!--九宫格-->
         <activity android:name=".ui.activity.KTLockPatternActivity" />
+        <!--飞机座位-->
         <activity android:name=".ui.activity.FlightSeatActivity" />
         <!--动画-->
         <activity android:name=".ui.activity.AnimationActivity" />
@@ -69,10 +74,13 @@
         <!--滑动隐藏-->
         <activity android:name=".ui.activity.JustMoveActivity" />
         <!--内存泄漏-->
-        <activity android:name=".mobileperf.MobileActivity" />
+        <!--<activity android:name=".mobileperf.MobileActivity" />-->
         <!--面对对象,,,fragment和activity通信-->
         <activity android:name=".fragmentmail.FragmentMailActivity" />
+        <!--学习CoordinatorLayout-->
         <activity android:name=".ui.activity.CoordinatorActivity3" />
+        <!--微信上拉拍照-->
+        <activity android:name=".ui.activity.WechatSlideActivity" />
 
         <!-- 友盟统计  value是其他项目的,而且放心，我改了部分 -->
         <meta-data
@@ -89,7 +97,7 @@
         <service android:name=".service.MyBindService" />
         <service android:name=".AidlService">
             <intent-filter>
-                <action android:name="com.gdj.myview.DataService"/>
+                <action android:name="com.gdj.myview.DataService" />
             </intent-filter>
         </service>
     </application>

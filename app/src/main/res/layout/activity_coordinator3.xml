@@ -5,15 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:background="#ff0"
-        android:padding="16dp"
-        android:text="被观察者----dependency" />
-
     <android.support.v4.widget.NestedScrollView
         android:layout_width="100dp"
         android:layout_height="match_parent"
@@ -84,39 +75,39 @@
                 android:padding="16dp"
                 android:text="被观察者----dependency" />
 
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="left"
+                android:background="#ffc"
+                android:padding="16dp"
+                android:text="被观察者----dependency" />
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="left"
+                android:background="#ff0"
+                android:padding="16dp"
+                android:text="被观察者----dependency" />
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="left"
+                android:background="#ffc"
+                android:padding="16dp"
+                android:text="被观察者----dependency" />
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="left"
+                android:background="#ff0"
+                android:padding="16dp"
+                android:text="被观察者----dependency" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_gravity="left"
-            android:background="#ffc"
-            android:padding="16dp"
-            android:text="被观察者----dependency" />
-
-        <TextView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_gravity="left"
-            android:background="#ff0"
-            android:padding="16dp"
-            android:text="被观察者----dependency" />
-
-        <TextView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_gravity="left"
-            android:background="#ffc"
-            android:padding="16dp"
-            android:text="被观察者----dependency" />
-
-        <TextView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_gravity="left"
-            android:background="#ff0"
-            android:padding="16dp"
-            android:text="被观察者----dependency" />
     </android.support.v4.widget.NestedScrollView>
 
 
@@ -231,7 +222,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="#f0f"
-        android:padding="@dimen/dp_8"
+        android:padding="@dimen/dp_16"
         android:text="观察者"
         app:layout_behavior="com.gdj.myview.ui.behavior.CustomBehavior" />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:background="#ff0"
+        android:padding="16dp"
+        android:text="被观察者dependency" />
 </android.support.design.widget.CoordinatorLayout>

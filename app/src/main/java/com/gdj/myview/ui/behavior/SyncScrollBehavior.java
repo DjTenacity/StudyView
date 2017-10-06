@@ -31,9 +31,8 @@ public class SyncScrollBehavior extends CoordinatorLayout.Behavior<View> {
     @Override
     public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child,
                                   View target, int dx, int dy, int[] consumed) {
-        int scrollY = (int) target.getScaleY();
-        //ScrollView
-        child.setScaleY(target.getScaleY());
+        int scrollY = (int) target.getScrollY();
+        child.setScrollY(scrollY);
         //这种实现方式在快速滑动的时候会出问题
         super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed);
     }
