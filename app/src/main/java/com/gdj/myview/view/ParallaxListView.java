@@ -18,12 +18,12 @@ import com.gdj.myview.R;
  */
 
 public class ParallaxListView extends ListView {
-    ImageView mImageView,iv_icon;
+    ImageView mImageView, iv_icon;
     int mImageViewHeight = 0;
 
     public ParallaxListView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mImageViewHeight = context.getResources().getDimensionPixelOffset(R.dimen.dp_256);
+        mImageViewHeight = context.getResources().getDimensionPixelOffset(R.dimen.dp_192);
     }
 
     //监听  可滑动控件的滑动过度
@@ -33,19 +33,19 @@ public class ParallaxListView extends ListView {
 
         //deltaX, deltaY ——>dx,dy 增量    正的  上拉过度 和负的 下拉过度
 
-Log.w("log.w(\"\")","og.w");
+        Log.w("log.w(\"\")", "og.w");
 
         if (deltaY < 0) {
             //添加高度，因为是centerCrop所以宽度也会变大
             mImageView.getLayoutParams().height = mImageView.getHeight() - deltaY;
             mImageView.requestLayout();
-            iv_icon.setRotation(iv_icon.getRotation()-deltaY);
+            iv_icon.setRotation(iv_icon.getRotation() - deltaY);
         } else {
             //缩小,要确认是放大情况
             if (mImageView.getHeight() > mImageViewHeight) {
                 mImageView.getLayoutParams().height = mImageView.getHeight() - deltaY;
                 mImageView.requestLayout();
-                iv_icon.setRotation(iv_icon.getRotation()+deltaY);
+                iv_icon.setRotation(iv_icon.getRotation() + deltaY);
             }
         }
 
@@ -56,6 +56,7 @@ Log.w("log.w(\"\")","og.w");
     public void setZoomImageView(ImageView imageView) {
         mImageView = imageView;
     }
+
     public void setHeardImageView(ImageView imageView) {
         iv_icon = imageView;
     }
@@ -80,7 +81,7 @@ Log.w("log.w(\"\")","og.w");
         int action = ev.getAction();
         //松开手
         if (action == MotionEvent.ACTION_UP) {
-            ResetAnimation resetAnimation = new ResetAnimation(mImageView,mImageViewHeight,iv_icon);
+            ResetAnimation resetAnimation = new ResetAnimation(mImageView, mImageViewHeight, iv_icon);
             resetAnimation.setDuration(500);
             mImageView.startAnimation(resetAnimation);
         }
@@ -90,14 +91,14 @@ Log.w("log.w(\"\")","og.w");
 
     //自定义动画
     public class ResetAnimation extends Animation {
-        ImageView mIV,iv_icon;
+        ImageView mIV, iv_icon;
         int targetHeight;   //最终要恢复的高度
         int originalHeight;//现在的高度
         int extraHeight;//高度差
 
-        public ResetAnimation(ImageView mImageView, int targetHeight,ImageView iv_icon) {
+        public ResetAnimation(ImageView mImageView, int targetHeight, ImageView iv_icon) {
             mIV = mImageView;
-            this.iv_icon=iv_icon;
+            this.iv_icon = iv_icon;
             this.targetHeight = targetHeight;
             this.originalHeight = mIV.getHeight();
             extraHeight = originalHeight - targetHeight;
@@ -107,9 +108,9 @@ Log.w("log.w(\"\")","og.w");
         protected void applyTransformation(float interpolatedTime, Transformation t) {
             // interpolatedTime(0.0 - 1.0 )执行的百分比
             //减小imageView的高度
-            mIV.getLayoutParams().height = (int) (originalHeight-extraHeight* interpolatedTime);//现在的高度-高度差 * interpolatedTime
-           mIV.requestLayout();
-            iv_icon.setRotation(iv_icon.getRotation()-iv_icon.getRotation()* interpolatedTime);
+            mIV.getLayoutParams().height = (int) (originalHeight - extraHeight * interpolatedTime);//现在的高度-高度差 * interpolatedTime
+            mIV.requestLayout();
+            iv_icon.setRotation(iv_icon.getRotation() - iv_icon.getRotation() * interpolatedTime);
             super.applyTransformation(interpolatedTime, t);
         }
     }
