@@ -1,4 +1,4 @@
-package com.gdj.myview.ui.activity
+﻿package com.gdj.myview.ui.activity
 
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -142,6 +142,11 @@ class KotlinActivity : AppCompatActivity() {
         }
 
     }
+
+
+//类型转换
+str.toFloat()
+
 
     var list = listOf<Int>(1, -1)
 

@@ -2,6 +2,7 @@ package com.gdj.myview.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -10,8 +11,15 @@ import java.util.List;
 
 /**
  * Comment:流式布局
+ *
+ *  * Comment:流式布局
  * 没有权重的时候线性布局的性能高于相对布局
  * 区别在于onMeasure,线性分为水平和竖直,没有权重只会onMeasure一次,而相对布局是两次
+ *
+ *  addView时要这样写,否则会报错
+ *  textView.layoutParams = ViewGroup.MarginLayoutParams
+ *  (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+ *  flow.addView(textView)
  *
  * @author :DJ鼎尔东 / 1757286697@qq.cn
  * @version : Administrator1.0
@@ -30,7 +38,6 @@ public class CustomLayout extends ViewGroup {
         super(context, attrs, defStyleAttr);
     }
 
-    int width, height, lineWidth, lineHeight;
 
     //height最终高度,,,width行中最宽的
     //为了子控件的margin
@@ -41,6 +48,12 @@ public class CustomLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+        int width = 0;
+        int height = 0;
+        int lineWidth = 0;
+        int lineHeight = 0;
+
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
@@ -55,13 +68,13 @@ public class CustomLayout extends ViewGroup {
             View child = getChildAt(i);
 
             //系统自动测量子控件,这里使用getMeasuredWidth,getWidth都行
-            measureChild(child,widthMeasureSpec,heightMeasureSpec);
+            measureChild(child, widthMeasureSpec, heightMeasureSpec);
 
             MarginLayoutParams mlp = (MarginLayoutParams) child.getLayoutParams();
-            int childWidth = mlp.leftMargin + mlp.rightMargin + child.getMeasuredWidth() ;
-            int childHeight = child.getMeasuredHeight() + mlp.bottomMargin + mlp.topMargin ;
+            int childWidth = mlp.leftMargin + mlp.rightMargin + child.getMeasuredWidth();
+            int childHeight = child.getMeasuredHeight() + mlp.bottomMargin + mlp.topMargin;
 
-            if (childWidth + lineWidth > sizeWidth) {//一旦超出了容器的宽度 换行
+            if (childWidth + lineWidth > sizeWidth - getPaddingRight() - getPaddingLeft()) {//一旦超出了容器的宽度 换行
                 width = Math.max(width, lineWidth);
                 height += lineHeight;
                 lineWidth = childWidth;
@@ -70,15 +83,17 @@ public class CustomLayout extends ViewGroup {
                 lineWidth += childWidth;
                 lineHeight = Math.max(lineHeight, childHeight);
             }
+            Log.w("childHeight", childHeight + "    childHeight" + lineWidth + "      lineWidth");
+
             if (i == chileCount - 1) {
                 width = Math.max(width, lineWidth);
                 height += lineHeight;
             }
-
         }
         int measureHeight = modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height;
+        Log.w("childHeight", measureHeight + "    measureHeight");
         int measureWidth = modeWidth == MeasureSpec.EXACTLY ? sizeWidth : width;
-        setMeasuredDimension(measureWidth, measureHeight);
+        setMeasuredDimension(measureWidth + getPaddingRight() + getPaddingLeft(), measureHeight + getPaddingTop() + getPaddingBottom());
 
     }
 
@@ -89,7 +104,7 @@ public class CustomLayout extends ViewGroup {
 
         int lineWidth = 0;
         int lineHeight = 0;
-        int width = getWidth();
+        int width = getWidth() - getPaddingRight() - getPaddingLeft();
         int count = getChildCount();
 
         //行的,这里只能用getMeasuredWidth
@@ -98,7 +113,7 @@ public class CustomLayout extends ViewGroup {
         for (int i = 0; i < count; i++) {
             View child = getChildAt(i);
             MarginLayoutParams mlp = (MarginLayoutParams) child.getLayoutParams();
-            int childWidth = mlp.leftMargin + mlp.rightMargin + child.getMeasuredWidth() ;
+            int childWidth = mlp.leftMargin + mlp.rightMargin + child.getMeasuredWidth();
             int childHeight = child.getMeasuredHeight() + mlp.bottomMargin + mlp.topMargin;
 
             if (childWidth + lineWidth > width) {
@@ -117,7 +132,7 @@ public class CustomLayout extends ViewGroup {
         mListHeight.add(lineHeight);
 
         //排列 每一个子控件的 left,top,right, bottom
-        int left = 0;
+        int left = getPaddingLeft();
         int top = 0;
         int size = mListViews.size();
 
@@ -129,7 +144,7 @@ public class CustomLayout extends ViewGroup {
                 View child = mList.get(j);
                 MarginLayoutParams mlp = (MarginLayoutParams) child.getLayoutParams();
                 int lc = left + mlp.leftMargin;
-                int tc = top + mlp.topMargin;
+                int tc = top + mlp.topMargin + getPaddingTop();
                 int rc = lc + child.getMeasuredWidth();
                 int bc = tc + child.getMeasuredHeight();
                 child.layout(lc, tc, rc, bc);
@@ -137,7 +152,7 @@ public class CustomLayout extends ViewGroup {
                 left += child.getMeasuredWidth() + mlp.leftMargin + mlp.rightMargin;
             }
             top += lineHeight;
-            left = 0;
+            left = getPaddingLeft();
         }
 
     }
