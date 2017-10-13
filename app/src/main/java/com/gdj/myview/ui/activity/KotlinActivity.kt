@@ -145,8 +145,7 @@ class KotlinActivity : AppCompatActivity() {
 
 
 //类型转换
-str.toFloat()
-
+//str.toFloat()
 
     var list = listOf<Int>(1, -1)
 
