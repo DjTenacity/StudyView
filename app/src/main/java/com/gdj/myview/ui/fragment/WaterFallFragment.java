@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.gdj.myview.R;
+import com.gdj.myview.view.WaveView;
+import com.gdj.myview.view.WaveView2;
 
 /**
  * Comment:图片瀑布流ScrollView
@@ -35,11 +37,9 @@ public class WaterFallFragment extends Fragment  {
 
         //performCreateView
         View rootView = inflater.inflate(R.layout.fragment_water_fall, null);
-
-
-
+        ((WaveView)rootView.findViewById(R.id.waveview)).startAnimation();
+        ((WaveView2)rootView.findViewById(R.id.waveview2)).startAnimation();
 
         return rootView;
     }
-
 }

@@ -48,7 +48,7 @@ public class CoordinatorActivity1 extends BaseActivity {
 
         items = new ArrayList<>();
         items.add(new Pair<String, Fragment>("学习控件", new MYFragment()));
-        items.add(new Pair<String, Fragment>("图片瀑布流ScrollView", new WaterFallFragment()));
+        items.add(new Pair<String, Fragment>("Path之波浪", new WaterFallFragment()));
 
 
         viewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));

@@ -30,6 +30,7 @@ import com.gdj.myview.ui.activity.QQzoneActivity;
 import com.gdj.myview.ui.activity.RecyclerViewActivity;
 import com.gdj.myview.ui.activity.SVGViewActivity;
 import com.gdj.myview.ui.activity.TranslateActivity;
+import com.gdj.myview.ui.activity.WechatSlideActivity;
 import com.gdj.myview.ui.activity.YahooNewsActivity;
 
 import java.util.List;
@@ -67,7 +68,9 @@ public class MYFragment extends MainFragment {
 //9
         items.add(new ItemModel("9 TabLayout 和viewpager", ""));
         items.add(new ItemModel("10属性动画的学习与实现", ""));
-        items.add(new ItemModel("11", ""));
+        items.add(new ItemModel("11", "CoordinateLayout学习"));
+        items.add(new ItemModel("12", "微信下拉"));
+
     }
 
     //给予erp的二次开发  以及周边app的开发  卖用户产品
@@ -93,6 +96,9 @@ public class MYFragment extends MainFragment {
 
         if (position == 11)
             startActivity(new Intent(context, CoordinatorActivity3.class));//UploadFileActivity
+
+        if (position == 12)
+            startActivity(new Intent(context, WechatSlideActivity.class));//UploadFileActivity
 
 //
         //

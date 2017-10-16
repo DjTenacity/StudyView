@@ -41,6 +41,8 @@ import com.gdj.myview.view.QQStepView;
 import com.gdj.myview.view.RefundProgressView;
 import com.gdj.myview.view.SingleLineFlowLayout;
 import com.gdj.myview.view.TranslucentsScrollView;
+import com.gdj.myview.view.WaveView;
+import com.gdj.myview.view.WaveView2;
 import com.gdj.myview.view.XiuXiuView;
 
 import java.util.HashMap;
@@ -387,7 +389,6 @@ public class QQStepActivity extends AppCompatActivity {
         });
 
         snackbar.show();
-
     }
 
 //    @Override
@@ -404,4 +405,5 @@ public class QQStepActivity extends AppCompatActivity {
                 .setDuration(500);
         objectAnimator.start();
     }
+
 }

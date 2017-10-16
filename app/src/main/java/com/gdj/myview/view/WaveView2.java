@@ -61,7 +61,7 @@ public class WaveView2 extends View {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 2;
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_start, options);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round, options);
         setPathData();
         mMatrix = new Matrix();
         mPathMeasure = new PathMeasure(path, false);
@@ -69,21 +69,7 @@ public class WaveView2 extends View {
 
     private void setPathData() {
         int originY = 400;
-        if (dy < originY + 150) {
-            dy += 10;
 
-        }
-        //第一个点--->起始点p0
-        //  path.moveTo(100, 400);
-//        //二级贝瑟尔曲线1,起始点x轴距离结束点300
-//        path.quadTo(250, 200, 400, 400);
-//
-//        //二级贝瑟尔曲线2(后面的曲线的起始点,默认是上一个曲线的结束点)
-//        path.quadTo(550, 600, 700, 400);
-//        path.moveTo(100, 700);
-//        //三级贝瑟尔曲线
-//        path.cubicTo(0, 0, 400, 0, 400, 700);
-        //动画循环播放,所以重置path
         path.reset();
         path.moveTo(-waveLength, originY - dy);
 
@@ -121,7 +107,7 @@ public class WaveView2 extends View {
         //方法2,Api,,//flag:表示要求哪一个值：tan或者pos
         mPathMeasure.getMatrix(length * fraction, mMatrix, PathMeasure.TANGENT_MATRIX_FLAG | PathMeasure.POSITION_MATRIX_FLAG);
         //修改偏移值----即让图片中心点与当前坐标点一致 来绘制
-        mMatrix.preTranslate(-mBitmap.getWidth()/2, -mBitmap.getHeight());
+        mMatrix.preTranslate(-mBitmap.getWidth() / 2, -mBitmap.getHeight());
 
         canvas.drawBitmap(mBitmap, mMatrix, paint);
         canvas.drawPath(path, paint);
@@ -130,7 +116,7 @@ public class WaveView2 extends View {
 
     public void startAnimation() {
         ValueAnimator animator = ValueAnimator.ofFloat(0, 1);
-        animator.setDuration(1000);
+        animator.setDuration(5000);
         //循环
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setInterpolator(new LinearInterpolator());

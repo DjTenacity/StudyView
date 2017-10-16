@@ -21,8 +21,10 @@ import android.view.animation.LinearInterpolator;
 public class WaveView extends View {
     private Paint paint;
     private Path path;
-    private int waveLength = 500;
-    private int dy=0;
+    private int waveLength = 800;
+    private int dy = 0;
+    private int dx = 0;
+
     public WaveView(Context context) {
         this(context, null);
     }
@@ -42,17 +44,17 @@ public class WaveView extends View {
         path = new Path();
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.BLUE);
-        paint.setStrokeWidth(8);
-        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int originY = 400;
-        if(dy<originY+150){
-            dy+=10;
+        path.reset();
 
+        int originY = 500;
+        if (dx > 0 && dy < originY + 150) {
+            dy += 1;
         }
         //第一个点--->起始点p0
         //  path.moveTo(100, 400);
@@ -65,8 +67,7 @@ public class WaveView extends View {
 //        //三级贝瑟尔曲线
 //        path.cubicTo(0, 0, 400, 0, 400, 700);
         //动画循环播放,所以重置path
-        path.reset();
-        path.moveTo(-waveLength, originY-dy);
+        path.moveTo(-waveLength + dx, originY - dy);
 
         int halfWaveLength = waveLength / 2;
         //屏幕宽度里面画多少波长
@@ -88,15 +89,15 @@ public class WaveView extends View {
     }
 
     public void startAnimation() {
-        ValueAnimator animator = ValueAnimator.ofFloat(0, waveLength);
-        animator.setDuration(1000);
+        ValueAnimator animator = ValueAnimator.ofInt(0, waveLength);
+        animator.setDuration(6000);
         //循环
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setInterpolator(new LinearInterpolator());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                dy = (int) animation.getAnimatedValue();
+                dx = (int) animation.getAnimatedValue();
                 postInvalidate();
             }
         });
