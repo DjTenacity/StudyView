@@ -16,3 +16,11 @@ Path path = new Path();
 path.quadTo();
 //三阶贝塞尔
 path.cubicTo();
+
+
+PathMeasure：是一个用来测量Path的类。
+
+canvas.drawPath(path, paint);
+一次性全部绘制完的。
+
+android:hardwareAccelerated="false"关闭硬件加速 否则path的多路径效果可能会出想问题
