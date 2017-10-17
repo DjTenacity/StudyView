@@ -27,53 +27,6 @@
             app:divider="@drawable/sss"
             app:showDividers="end">
 
-            <!--<com.gdj.myview.view.BrokenView-->
-            <!--android:id="@+id/menu_chart"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="300dp"-->
-            <!--android:layout_marginBottom="@dimen/dp_20"-->
-            <!--android:layout_marginLeft="@dimen/dp_20"-->
-            <!--android:layout_marginTop="@dimen/dp_20" />-->
-
-
-            <com.gdj.myview.view.ShaderLigntTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/gray"
-                android:text="我的控件和VIEW,CANVAS等的学习之旅"
-                android:textColor="@color/green"
-                android:textSize="30sp" />
-
-            <com.gdj.myview.view.RefundProgressView
-                android:id="@+id/rpv"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                app:pvBackgroundColor="@color/gray"
-                app:pvPassBackgroundColor="#3FCC5B"
-                app:pvPassTextColor="#3FCC5B"
-                app:pvRadius="@dimen/dp_10" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:orientation="horizontal">
-
-
-                <com.gdj.myview.view.ShaderZoomImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:layout_weight="1" />
-
-                <com.gdj.myview.view.ShaderBitmap
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <com.gdj.myview.view.StudyView
-                android:layout_width="match_parent"
-                android:layout_height="180dp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -122,9 +75,63 @@
                         android:onClick="showPopupMenu"
                         android:text="showPopupMenu"
                         android:textSize="@dimen/sp_12" />
+
                 </LinearLayout>
 
+                <com.gdj.myview.view.CircularDataView
+                    android:id="@+id/cdv"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center_vertical" />
             </LinearLayout>
+
+
+            <com.gdj.myview.view.ShaderLigntTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/gray"
+                android:text="我的控件和VIEW,CANVAS等的学习之旅"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                android:visibility="gone" />
+
+            <com.gdj.myview.view.BrokenView
+                android:id="@+id/menu_chart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_20" />
+
+            <com.gdj.myview.view.RefundProgressView
+                android:id="@+id/rpv"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:pvBackgroundColor="@color/gray"
+                app:pvPassBackgroundColor="#3FCC5B"
+                app:pvPassTextColor="#3FCC5B"
+                app:pvRadius="@dimen/dp_10" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:orientation="horizontal">
+
+
+                <com.gdj.myview.view.ShaderZoomImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_weight="1" />
+
+                <com.gdj.myview.view.ShaderBitmap
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <com.gdj.myview.view.StudyView
+                android:layout_width="match_parent"
+                android:layout_height="180dp" />
 
 
             <com.gdj.myview.view.SingleLineFlowLayout
@@ -156,13 +163,6 @@
                     android:padding="16dp"
                     android:text="调色板的使用" />
 
-                <com.gdj.myview.view.CustomImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_toRightOf="@+id/iv"
-                    android:src="@mipmap/doctor"
-                    app:horn_gravity="left_top"
-                    app:radius="18" />
             </LinearLayout>
 
             <!--避免过度绘制-->
@@ -191,13 +191,6 @@
                 android:id="@+id/xiuxiu"
                 android:layout_width="match_parent"
                 android:layout_height="400dp" />
-
-
-                <com.gdj.myview.view.CircularDataView
-                    android:id="@+id/cdv"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_gravity="center_vertical" />
 
 
         </android.support.v7.widget.LinearLayoutCompat>

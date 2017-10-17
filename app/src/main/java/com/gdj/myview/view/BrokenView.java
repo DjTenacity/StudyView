@@ -35,28 +35,33 @@ public class BrokenView extends View {
 
     ArrayList<Double> dlk = new ArrayList<>();
 
-    private int marginT, marginB=20;
-    private HashMap<Double, Double> map  ;//数学系的所有坐标集合
+    private int marginT, marginB = 20;
+    private HashMap<Double, Double> map = new HashMap<>();//数学系的所有坐标集合
     private Paint paint;
+    private Paint paint1;
+    private Paint paint2;
 
-    public BrokenView(Context context) {
-        this(context, null);
-    }
+
+    ArrayList<Integer> xList = new ArrayList<>();
 
     public BrokenView(Context context, @Nullable AttributeSet attrs) {
-        this(context, null, 0);
-    }
-
-    public BrokenView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        super(context, attrs);
         //ANTI_ALIAS_FLAG 提高画质
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.RED);
-    //    paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(2);
+
+        paint1 = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint1.setColor(Color.BLUE);
+        paint1.setStyle(Paint.Style.STROKE);
+        paint1.setStrokeWidth(2);
+
+        paint2 = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint2.setColor(Color.GREEN);
+        paint2.setStyle(Paint.Style.STROKE);
+        paint2.setStrokeWidth(2);
     }
-    ArrayList<Integer> xList = new ArrayList<>();
 
     public void setView(HashMap<Double, Double> map, int totalValue, int jValue,
                         int marginT, int marginB, String s, String b) {
@@ -65,8 +70,8 @@ public class BrokenView extends View {
         this.jValue = jValue;
         this.marginB = marginB;
         this.marginT = marginT;
-        // this.xStr = s;
-        //  this.yStr = b;
+        this.xStr = s;
+        this.yStr = b;
         dlk = getIntfromMap(map);
     }
 
@@ -98,27 +103,22 @@ public class BrokenView extends View {
             float x = bWidth + (width - bWidth) / dlk.size() * j;
             xList.add((int) x);
 
-            canvas.drawLine(x, marginT,
-                    width, x, paint);
+            canvas.drawLine(x, marginT, x, bHeight, paint);
 
             //画x的刻度
-            drawText(j + xStr, (int) x, bHeight - 20, canvas);
+            drawText(j+1 + xStr, (int) x, bHeight + 20, canvas);
         }
         //换算所有点的集合
         Point[] points = getPoints(xList, map, dlk, bHeight, totalValue);
 
-        paint.setColor(Color.BLACK);
-        paint.setStyle(Paint.Style.STROKE);
-
         //电鱼点之间连成线
-        drawsPoiints(points, paint, canvas);
+        drawsPoints(points, paint1, canvas);
+
         //画点的正方形
-        paint.setStrokeWidth(2);
-        paint.setColor(Color.YELLOW);
-        paint.setStyle(Paint.Style.FILL);
+        paint2.setStyle(Paint.Style.FILL);
         //点会上正方形
-        for (int i = 0; i < points.length - 1; i++) {
-            canvas.drawRect(pointRect(points[i]), paint);
+        for (int i = 0; i < points.length ; i++) {
+            canvas.drawRect(pointRect(points[i]), paint2);
         }
     }
 
@@ -130,11 +130,11 @@ public class BrokenView extends View {
     Point endPoint = new Point();
 
     //绘制连线
-    private void drawsPoiints(Point[] points, Paint paint, Canvas canvas) {
+    private void drawsPoints(Point[] points, Paint paint, Canvas canvas) {
 
         for (int i = 0; i < points.length - 1; i++) {
             startPoint = points[i];
-            endPoint = points[i];
+            endPoint = points[i + 1];
             canvas.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y, paint);
         }
     }

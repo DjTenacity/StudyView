@@ -103,14 +103,14 @@ public class XiuXiuView extends View {
         width = canvas.getWidth();
         height = canvas.getHeight();
         int left = width / 2 - bitmapWidth / 2;
-        int top = height / 2 - bitmapHeight / 2;
+        int top = height /4 - bitmapHeight / 2;
         //先把圈圈图片画上面
         //绘制波纹,鲜花一个波,,,同时改变透明度
 
         for (int i : mList) {
 
             paint.setAlpha(177 - 177 * (i - bitmapWidth / 2) / (width/ 2 - bitmapWidth / 2));
-            canvas.drawCircle(width / 2, height / 2, i, paint);
+            canvas.drawCircle(width / 2, height / 4, i, paint);
 
         }
 

@@ -20,6 +20,7 @@ import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -41,8 +42,6 @@ import com.gdj.myview.view.QQStepView;
 import com.gdj.myview.view.RefundProgressView;
 import com.gdj.myview.view.SingleLineFlowLayout;
 import com.gdj.myview.view.TranslucentsScrollView;
-import com.gdj.myview.view.WaveView;
-import com.gdj.myview.view.WaveView2;
 import com.gdj.myview.view.XiuXiuView;
 
 import java.util.HashMap;
@@ -89,6 +88,7 @@ public class QQStepActivity extends AppCompatActivity {
     @BindView(R.id.xiuxiu)
     XiuXiuView xiuxiu;
 
+    @BindView(R.id.menu_chart)
     BrokenView menu_chart;
 
     private String[] mItems = {"1311", "223222", "1131", "222322", "1131", "222232",
@@ -100,7 +100,7 @@ public class QQStepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         ButterKnife.bind(this);
-        //   menu_chart= (BrokenView) findViewById(R.id.menu_chart);
+        // menu_chart = (BrokenView) findViewById(R.id.menu_chart);
 
         //   mSingleLineFlowLayout = (SingleLineFlowLayout) findViewById(R.id.single_line_layout);
 
@@ -135,14 +135,17 @@ public class QQStepActivity extends AppCompatActivity {
         map.put(6.0, 46.0);
         map.put(7.0, 36.0);
         map.put(8.0, 33.0);
+        map.put(9.0, 33.0);
+        map.put(10.0, 14.0);
+        map.put(11.0, 46.0);
 
         cdv.setTopStr("2017年", true);
         cdv.setCenterStr("09月", true);
         cdv.setBottomStr("21日", true);
 
         xiuxiu.start();
-
-//       menu_chart.setView(map,50,10,20,50,"s","b" );
+        Log.w("menu_chart", menu_chart.getId() + "menu_chart");
+        menu_chart.setView(map, 50, 10, 20, 50, "月", "cm");
 
         DroidCardsView deddd = new DroidCardsView(this);
         ll.addView(deddd);

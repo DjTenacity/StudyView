@@ -19,10 +19,6 @@ import android.widget.ImageView;
 
 import com.gdj.myview.R;
 
-/**
- * CJT2325
- * 445263848@qq.com
- */
 @SuppressLint("AppCompatCustomView")
 public class CustomImageView extends ImageView {
 
