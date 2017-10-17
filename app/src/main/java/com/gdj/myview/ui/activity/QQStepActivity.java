@@ -34,8 +34,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gdj.myview.R;
+import com.gdj.myview.entry.DataBean;
 import com.gdj.myview.mobileperf.render.DroidCardsView;
 import com.gdj.myview.view.BrokenView;
+import com.gdj.myview.view.BrokenYearView;
 import com.gdj.myview.view.CircularDataView;
 import com.gdj.myview.view.PregressView;
 import com.gdj.myview.view.QQStepView;
@@ -44,7 +46,9 @@ import com.gdj.myview.view.SingleLineFlowLayout;
 import com.gdj.myview.view.TranslucentsScrollView;
 import com.gdj.myview.view.XiuXiuView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -91,9 +95,13 @@ public class QQStepActivity extends AppCompatActivity {
     @BindView(R.id.menu_chart)
     BrokenView menu_chart;
 
+    @BindView(R.id.menu_chart2)
+    BrokenYearView menu_chart2;
     private String[] mItems = {"1311", "223222", "1131", "222322", "1131", "222232",
             "1411", "1131", "222322", "1131", "222232", "22222", "11133", "22222"};
     private HashMap<Double, Double> map = new HashMap<>();
+    List<DataBean> dataBeanList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -126,18 +134,20 @@ public class QQStepActivity extends AppCompatActivity {
                 }
             }
         });
-        map.put(0.0, 0.0);
+        map.put(0.0, 0.5);
         map.put(1.0, 3.0);
-        map.put(2.0, 13.0);
-        map.put(3.0, 23.0);
-        map.put(4.0, 33.0);
-        map.put(5.0, 14.0);
-        map.put(6.0, 46.0);
-        map.put(7.0, 36.0);
+        map.put(3.0, 13.0);
+        map.put(5.0, 23.0);
         map.put(8.0, 33.0);
-        map.put(9.0, 33.0);
-        map.put(10.0, 14.0);
-        map.put(11.0, 46.0);
+        map.put(9.0, 14.0);
+        map.put(11.0, 33.0);
+
+        dataBeanList.add(new DataBean("2017-01", 5));
+        dataBeanList.add(new DataBean("2017-03", 15));
+        dataBeanList.add(new DataBean("2017-09", 30));
+        dataBeanList.add(new DataBean("2017-10", 40));
+        dataBeanList.add(new DataBean("2017-12", 45));
+
 
         cdv.setTopStr("2017年", true);
         cdv.setCenterStr("09月", true);
@@ -146,7 +156,8 @@ public class QQStepActivity extends AppCompatActivity {
         xiuxiu.start();
         Log.w("menu_chart", menu_chart.getId() + "menu_chart");
         menu_chart.setView(map, 50, 10, 20, 50, "月", "cm");
-
+        //10是每个单位
+        menu_chart2.setView(dataBeanList, 50, 10, 20, 50, "cm");
         DroidCardsView deddd = new DroidCardsView(this);
         ll.addView(deddd);
 

@@ -11,32 +11,27 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.gdj.myview.entry.DataBean;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
 /**
- * Comment:折线图
+ * Comment:年度折线图
  *
  * @author :DJ鼎尔东 / 1757286697@qq.cn
  * @version : Administrator1.0
  * @date : 2017/8/4
  */
-public class BrokenView extends View {
+public class BrokenYearView extends View {
 
     private int bWidth, bHeight;     //左边的边距,,  图表出来后下边距的距离
     private int totalValue = 50;//总的
     private int jValue = 10;  // 每一个  y
-    private String xStr = "x";
     private String yStr = "y";
 
-    ArrayList<Double> dlk = new ArrayList<>();
-
     private int marginT, marginB = 20;
-    private HashMap<Double, Double> map = new HashMap<>();//数学系的所有坐标集合
+    List<DataBean> dataBeanList = new ArrayList<>();
     private Paint paint;
     private Paint paint1;
     private Paint paint2;
@@ -44,7 +39,7 @@ public class BrokenView extends View {
 
     ArrayList<Integer> xList = new ArrayList<>();
 
-    public BrokenView(Context context, @Nullable AttributeSet attrs) {
+    public BrokenYearView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         //ANTI_ALIAS_FLAG 提高画质
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -63,16 +58,14 @@ public class BrokenView extends View {
         paint2.setStrokeWidth(2);
     }
 
-    public void setView(HashMap<Double, Double> map, int totalValue, int jValue,
-                        int marginT, int marginB, String s, String b) {
-        this.map = map;
+    public void setView(List<DataBean> dataBeanList, int totalValue, int jValue,
+                        int marginT, int marginB, String yStr) {
+        this.dataBeanList = dataBeanList;
         this.totalValue = totalValue;
         this.jValue = jValue;
         this.marginB = marginB;
         this.marginT = marginT;
-        this.xStr = s;
-        this.yStr = b;
-        dlk = getIntfromMap(map);
+        this.yStr = yStr;
     }
 
     @Override
@@ -84,7 +77,6 @@ public class BrokenView extends View {
 
         bHeight = height - marginB;
         bWidth = 50;
-
         int jSize = totalValue / jValue;
 
         //画横轴
@@ -98,18 +90,18 @@ public class BrokenView extends View {
         }
 
         //画竖轴
-        for (int j = 0; j < dlk.size(); j++) {
+        for (int j = 0; j < 12; j++) {
             //把所有的x坐标  转换为相对于  View的坐标
-            float x = bWidth + (width - bWidth) / dlk.size() * j;
+            float x = bWidth + (width - bWidth) / 12 * j;
             xList.add((int) x);
 
             canvas.drawLine(x, marginT, x, bHeight, paint);
 
             //画x的刻度
-            drawText(j+1 + xStr, (int) x, bHeight + 20, canvas);
+            drawText(j + 1 + "月", (int) x, bHeight + 20, canvas);
         }
         //换算所有点的集合
-        Point[] points = getPoints(xList, map, dlk, bHeight, totalValue);
+        Point[] points = getPoints(xList, dataBeanList, bHeight, totalValue);
 
         //电鱼点之间连成线
         drawsPoints(points, paint1, canvas);
@@ -117,7 +109,7 @@ public class BrokenView extends View {
         //画点的正方形
         paint2.setStyle(Paint.Style.FILL);
         //点会上正方形
-        for (int i = 0; i < points.length ; i++) {
+        for (int i = 0; i < points.length; i++) {
             canvas.drawRect(pointRect(points[i]), paint2);
         }
     }
@@ -139,14 +131,20 @@ public class BrokenView extends View {
         }
     }
 
-    //得到所有点的集合
-    private Point[] getPoints(ArrayList<Integer> xList, HashMap<Double, Double> map2, ArrayList<Double> dlk, int bHeight2, int totalValue) {
+    //得到所有点的集合  ,xList-->横坐标
+    private Point[] getPoints(ArrayList<Integer> xList, List<DataBean> dataBeanList, int bHeight , int totalValue) {
 
-        Point[] mPoints = new Point[dlk.size()];
+        Point[] mPoints = new Point[dataBeanList.size()];
 
-        for (int i = 0; i < mPoints.length; i++) {
-            int y = bHeight2 - (int) ((bHeight2 - marginT) * (map2.get(dlk.get(i)) / totalValue));
-            mPoints[i] = new Point(xList.get(i), y);
+        for (int i = 0; i < mPoints.length; i++) { //y坐标
+
+            DataBean bean = dataBeanList.get(i);
+
+            String date = bean.date.substring(5, 7);//截取“年月日”  08
+
+            int y = bHeight  - (int) ((bHeight  - marginT) * (bean.value / totalValue));
+
+            mPoints[i] = new Point(xList.get(Integer.parseInt(date) - 1), y);
         }
 
         return mPoints;
@@ -161,21 +159,4 @@ public class BrokenView extends View {
         paint.setTextAlign(Paint.Align.CENTER);
         canvas.drawText(s, x, y, paint);
     }
-
-    //给map的键排个序------>  X   (map2.get(dlk.get(i))
-    ArrayList<Double> getIntfromMap(HashMap<Double, Double> map) {
-        ArrayList<Double> dlk = new ArrayList<Double>();
-
-        Set set = map.entrySet();
-        Iterator iterator = set.iterator();
-        while (iterator.hasNext()) {
-            Map.Entry mapentry = (Map.Entry) iterator.next();
-            dlk.add((Double) mapentry.getKey());
-        }
-        Collections.sort(dlk);
-
-        return dlk;
-    }
-
-
 }
