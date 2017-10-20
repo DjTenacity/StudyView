@@ -223,4 +223,10 @@
         <attr name="mb_percentTextSize" format="dimension"/>
     </declare-styleable>
 
+    <declare-styleable name="ScoreTrend">
+        <attr name="max_score" format="integer"/>
+        <attr name="min_score" format="integer"/>
+        <attr name="broken_line_color" format="color"/>
+    </declare-styleable>
+
 </resources>
