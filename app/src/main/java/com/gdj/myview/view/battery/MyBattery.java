@@ -80,7 +80,7 @@ public class MyBattery extends View {
 
         showPercent = a.getBoolean(R.styleable.MyBattery_mb_showPercent,false);
         int baseColor = a.getColor(R.styleable.MyBattery_mb_baseColor, Color.GRAY);
-        int powerColor = a.getColor(R.styleable.MyBattery_mb_powerColor, Color.GREEN);
+        int powerColor = a.getColor(R.styleable.MyBattery_mb_powerColor, Color.BLUE);
         percentTextSize = a.getDimension(R.styleable.MyBattery_mb_percentTextSize,-1);
 
         a.recycle();
