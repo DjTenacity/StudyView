@@ -15,20 +15,20 @@ import com.gdj.myview.view.WaveView;
 import com.gdj.myview.view.WaveView2;
 
 /**
- * Comment:图片瀑布流ScrollView
+ * Comment:
  *
  * @author :DJ鼎尔东 / 1757286697@qq.cn
  * @version : Administrator1.0
  * @date : 2017/10/5
  */
-public class WaterFallFragment extends Fragment  {
+public class PathStudyFragment extends Fragment  {
 
-    private LinearLayout linearLayout1, linearLayout2, linearLayout3, ll_container;
-    private int height1, height2, height3;
-    //  private WaterFalls mScrollViews;
-
-    int page;
-    int PAGE_COUNT = 16;
+//    private LinearLayout linearLayout1, linearLayout2, linearLayout3, ll_container;
+//    private int height1, height2, height3;
+//    //  private WaterFalls mScrollViews;
+//图片瀑布流ScrollView
+//    int page;
+//    int PAGE_COUNT = 16;
 
 
     @Nullable

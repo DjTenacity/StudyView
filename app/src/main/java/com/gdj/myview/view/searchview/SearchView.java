@@ -1,4 +1,4 @@
-package com.gdj.myview.view;
+package com.gdj.myview.view.searchview;
 
 
 import android.animation.Animator;
@@ -12,6 +12,8 @@ import android.graphics.PathMeasure;
 import android.graphics.RectF;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
@@ -82,6 +84,23 @@ public class SearchView extends View {
         mCurrentState = State.STARTING;
         mStartingAnimator.start();
 
+    }
+
+    public SearchView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        initPaint();
+
+        initPath();
+
+        initListener();
+
+        initHandler();
+
+        initAnimator();
+
+        // 进入开始动画
+        mCurrentState = State.STARTING;
+        mStartingAnimator.start();
     }
 
     private void initPaint() {

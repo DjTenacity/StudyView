@@ -13,8 +13,9 @@ import android.util.Pair;
 import android.view.View;
 
 import com.gdj.myview.R;
+import com.gdj.myview.ui.fragment.CanvasStudyFragment;
 import com.gdj.myview.ui.fragment.MYFragment;
-import com.gdj.myview.ui.fragment.WaterFallFragment;
+import com.gdj.myview.ui.fragment.PathStudyFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,9 @@ public class CoordinatorActivity1 extends BaseActivity {
 
         items = new ArrayList<>();
         items.add(new Pair<String, Fragment>("学习控件", new MYFragment()));
-        items.add(new Pair<String, Fragment>("Path之波浪", new WaterFallFragment()));
+        items.add(new Pair<String, Fragment>("Path之波浪", new PathStudyFragment()));
+        items.add(new Pair<String, Fragment>("Canvas学习", new CanvasStudyFragment()));
+
 
 
         viewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));
