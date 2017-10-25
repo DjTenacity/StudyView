@@ -28,7 +28,7 @@ public class BottomLoadScrollView extends ScrollView {
     protected void onOverScrolled(int scrollX, int scrollY, boolean clampedX, boolean clampedY) {
         super.onOverScrolled(scrollX, scrollY, clampedX, clampedY);
 
-        //到底部
+        //到底部....
         if (clampedY) {
             if (listener != null) listener.loadData(false);
         }
