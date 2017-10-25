@@ -9,10 +9,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!--<com.gdj.myview.view.SearchView-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:layout_marginRight="8dp" />-->
+        <com.gdj.myview.view.searchview.SearchView
+
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="8dp" />
 
         <com.gdj.myview.view.WaveView
             android:id="@+id/waveview"

@@ -44,7 +44,7 @@ public class StudyCanvasView extends View {
         paint.setStyle(Paint.Style.STROKE);
 
         canvas.drawLines(pts, paint);
-        canvas.drawLines(pts, 20, 2, paint);//通过offset设置线的间隔距离，可以实现虚线效果
+        canvas.drawLines(pts, 10, 2, paint);//通过offset设置线的间隔距离，可以实现虚线效果
 
         //		canvas.drawPoint(500, 500, paint);
 //		canvas.drawPoints(pts, paint);  //点

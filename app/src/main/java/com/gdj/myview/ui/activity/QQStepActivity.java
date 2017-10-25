@@ -38,6 +38,7 @@ import com.gdj.myview.entry.DataBean;
 import com.gdj.myview.mobileperf.render.DroidCardsView;
 import com.gdj.myview.view.BrokenView;
 import com.gdj.myview.view.BrokenYearView;
+import com.gdj.myview.view.CircleTextProgressbar;
 import com.gdj.myview.view.CircularDataView;
 import com.gdj.myview.view.PregressView;
 import com.gdj.myview.view.QQStepView;
@@ -45,6 +46,7 @@ import com.gdj.myview.view.RefundProgressView;
 import com.gdj.myview.view.SingleLineFlowLayout;
 import com.gdj.myview.view.TranslucentsScrollView;
 import com.gdj.myview.view.XiuXiuView;
+import com.gdj.myview.view.battery.MyBattery;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -97,6 +99,13 @@ public class QQStepActivity extends AppCompatActivity {
 
     @BindView(R.id.menu_chart2)
     BrokenYearView menu_chart2;
+
+    @BindView(R.id.loading_progress)
+    CircleTextProgressbar loading_progress;
+
+    @BindView(R.id.myBattery)
+    MyBattery myBattery;
+
     private String[] mItems = {"1311", "223222", "1131", "222322", "1131", "222232",
             "1411", "1131", "222322", "1131", "222232", "22222", "11133", "22222"};
     private HashMap<Double, Double> map = new HashMap<>();
@@ -122,6 +131,13 @@ public class QQStepActivity extends AppCompatActivity {
         //学习调色板
         studyPalette();
         studyTextInputLayout();
+
+        loading_progress.setMaxProgress(10000);
+        loading_progress.setProgress(300);
+        loading_progress.setTimeMillis(5000);
+
+     //   myBattery.animalStart(3000);
+        myBattery.setBatteryValue(84);
 
         mSingleLineFlowLayout.post(new Runnable() {
             @Override
