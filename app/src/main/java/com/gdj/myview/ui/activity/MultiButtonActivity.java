@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.gdj.myview.R;
-import com.gjiazhe.multichoicescirclebutton.MultiChoicesCircleButton;
+import com.gdj.myview.view.multichoicescirclebutton.MultiChoicesCircleButton;
 
 import java.util.ArrayList;
 import java.util.List;

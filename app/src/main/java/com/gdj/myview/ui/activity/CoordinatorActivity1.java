@@ -14,6 +14,7 @@ import android.view.View;
 
 import com.gdj.myview.R;
 import com.gdj.myview.ui.fragment.CanvasStudyFragment;
+import com.gdj.myview.ui.fragment.FreshDownloadFragment;
 import com.gdj.myview.ui.fragment.MYFragment;
 import com.gdj.myview.ui.fragment.PathStudyFragment;
 
@@ -51,6 +52,8 @@ public class CoordinatorActivity1 extends BaseActivity {
         items.add(new Pair<String, Fragment>("学习控件", new MYFragment()));
         items.add(new Pair<String, Fragment>("Path之波浪", new PathStudyFragment()));
         items.add(new Pair<String, Fragment>("Canvas学习", new CanvasStudyFragment()));
+        items.add(new Pair<String, Fragment>("FreshDownloadView", new FreshDownloadFragment()));
+
 
 
 

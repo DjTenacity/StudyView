@@ -229,4 +229,29 @@
         <attr name="broken_line_color" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="FreshDownloadView">
+        <attr name="circular_radius" format="dimension" />
+        <attr name="circular_color" format="color" />
+        <attr name="circular_progress_color" format="color" />
+        <attr name="circular_width" format="dimension" />
+        <attr name="progress_text_size2" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="MultiChoicesCircleButton">
+        <attr name="mccb_icon" format="reference"/>
+        <attr name="mccb_enableParallax" format="boolean"/>
+        <attr name="mccb_collapseRadius" format="dimension"/>
+        <attr name="mccb_expandRadius" format="dimension"/>
+        <attr name="mccb_text" format="string"/>
+        <attr name="mccb_textSize" format="dimension"/>
+        <attr name="mccb_textColor" format="color"/>
+        <attr name="mccb_buttonColor" format="color"/>
+        <attr name="mccb_duration" format="integer"/>
+        <attr name="mccb_itemRadius" format="dimension"/>
+        <attr name="mccb_itemDistanceToCentre" format="dimension"/>
+        <attr name="mccb_itemBackgroundColor" format="color"/>
+        <attr name="mccb_showBackgroundShadow" format="boolean"/>
+        <attr name="mccb_backgroundShadowColor" format="boolean"/>
+    </declare-styleable>
+
 </resources>

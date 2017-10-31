@@ -153,7 +153,6 @@ dependencies {
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     // 编译extras目录下的camera模块
     compile project(':camera')
-    compile project(':multichoicescirclebutton')
     compile 'com.google.auto.service:auto-service:1.0-rc3'
     compile project(path: ':djknife')
 

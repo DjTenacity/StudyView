@@ -22,7 +22,7 @@
             android:textSize="20sp"/>
     </android.support.v4.widget.NestedScrollView>
 
-    <com.gjiazhe.multichoicescirclebutton.MultiChoicesCircleButton
+    <com.gdj.myview.view.multichoicescirclebutton.MultiChoicesCircleButton
         android:id="@+id/multiChoicesCircleButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
