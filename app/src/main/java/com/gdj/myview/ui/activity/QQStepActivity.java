@@ -36,7 +36,7 @@ import android.widget.Toast;
 import com.gdj.myview.R;
 import com.gdj.myview.entry.DataBean;
 import com.gdj.myview.mobileperf.render.DroidCardsView;
-import com.gdj.myview.view.BrokenView;
+import com.gdj.myview.view.BrokenScrollView;
 import com.gdj.myview.view.BrokenYearView;
 import com.gdj.myview.view.CircleTextProgressbar;
 import com.gdj.myview.view.CircularDataView;
@@ -95,7 +95,7 @@ public class QQStepActivity extends AppCompatActivity {
     XiuXiuView xiuxiu;
 
     @BindView(R.id.menu_chart)
-    BrokenView menu_chart;
+    BrokenScrollView menu_chart;
 
     @BindView(R.id.menu_chart2)
     BrokenYearView menu_chart2;
@@ -155,8 +155,24 @@ public class QQStepActivity extends AppCompatActivity {
         map.put(3.0, 13.0);
         map.put(5.0, 23.0);
         map.put(8.0, 33.0);
+
         map.put(9.0, 14.0);
         map.put(11.0, 33.0);
+        map.put(15.0, 23.0);
+        map.put(18.0, 33.0);
+        map.put(19.0, 14.0);
+
+        map.put(21.0, 33.0);
+        map.put(25.0, 23.0);
+        map.put(28.0, 33.0);
+        map.put(29.0, 14.0);
+        map.put(31.0, 33.0);
+
+        map.put(32.0, 33.0);
+        map.put(35.0, 23.0);
+        map.put(38.0, 33.0);
+        map.put(39.0, 14.0);
+        map.put(41.0, 33.0);
 
         dataBeanList.add(new DataBean("2017-01", 5));
         dataBeanList.add(new DataBean("2017-03", 15));
@@ -171,7 +187,7 @@ public class QQStepActivity extends AppCompatActivity {
 
         xiuxiu.start();
         Log.w("menu_chart", menu_chart.getId() + "menu_chart");
-        menu_chart.setView(map, 50, 10, 20, 50, "月", "cm");
+        menu_chart.setView(map, 50, 10, 20, 50, "s", "cm");
         //10是每个单位
         menu_chart2.setView(dataBeanList, 50, 10, 20, 50, "cm");
         DroidCardsView deddd = new DroidCardsView(this);

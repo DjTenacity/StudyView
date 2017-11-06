@@ -115,12 +115,11 @@
                 android:textSize="30sp"
                 android:visibility="gone" />
 
-            <com.gdj.myview.view.BrokenView
+            <com.gdj.myview.view.BrokenScrollView
                 android:id="@+id/menu_chart"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="@dimen/dp_20"
-                android:layout_marginLeft="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_20" />
 
             <com.gdj.myview.view.ScoreTrend
@@ -132,7 +131,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="@dimen/dp_20"
-                android:layout_marginLeft="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_20" />
 
 
