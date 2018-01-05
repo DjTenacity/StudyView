@@ -45,7 +45,8 @@ class KTLockPatternView : View {
     private var mIsTouchPoint = false
     //选中的所有点
     private var mSelectPoints = ArrayList<Point>()
-
+    //把选择的密码传给Activity,下标 index
+    //设置错误--->需要价格错误方法,把选中点状态改变,清空, 然后刷新
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet)
