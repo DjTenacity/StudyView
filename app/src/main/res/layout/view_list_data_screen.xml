@@ -13,7 +13,7 @@
 
     </TextView>
 
-    <com.gdj.myview.view.menudata.ListDataScreenView
+    <com.gdj.myview.view.menuview.ListDataScreenView
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

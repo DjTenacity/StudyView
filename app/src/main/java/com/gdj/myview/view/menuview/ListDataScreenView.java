@@ -1,4 +1,4 @@
-package com.gdj.myview.view.menudata;
+package com.gdj.myview.view.menuview;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -77,6 +77,8 @@ public class ListDataScreenView extends LinearLayout implements View.OnClickList
         mMenuTabView.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         addView(mMenuTabView);
+
+
         // 1.2 创建 FrameLayout 用来存放 = 阴影（View） + 菜单内容布局(FrameLayout)
         mMenuMiddleView = new FrameLayout(mContext);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -84,6 +86,8 @@ public class ListDataScreenView extends LinearLayout implements View.OnClickList
         params.weight = 1;
         mMenuMiddleView.setLayoutParams(params);
         addView(mMenuMiddleView);
+
+
         // 创建阴影 可以不用设置 LayoutParams 默认就是 MATCH_PARENT ，MATCH_PARENT
         mShadowView = new View(mContext);
         mShadowView.setBackgroundColor(mShadowColor);
@@ -91,9 +95,12 @@ public class ListDataScreenView extends LinearLayout implements View.OnClickList
         mShadowView.setOnClickListener(this);
         mShadowView.setVisibility(GONE);
         mMenuMiddleView.addView(mShadowView);
+
+
         // 创建菜单用来存放菜单内容
         mMenuContainerView = new FrameLayout(mContext);
         mMenuContainerView.setBackgroundColor(Color.WHITE);
+
         mMenuMiddleView.addView(mMenuContainerView);
     }
 
@@ -112,6 +119,16 @@ public class ListDataScreenView extends LinearLayout implements View.OnClickList
             mMenuContainerView.setTranslationY(-mMenuContainerHeight);
         }
     }
+    /**具体的观察者类对象**/
+    private class AdapterMenuObserver extends  MenuObserver{
+        @Override
+        public void closeMenu() {
+        //如果有注册就会收到通知
+            ListDataScreenView.this.closeMenu();
+        }
+    }
+    private  AdapterMenuObserver adapterMenuObserver;
+
 
     /**
      * 设置 Adapter
@@ -119,7 +136,19 @@ public class ListDataScreenView extends LinearLayout implements View.OnClickList
      * @param adapter
      */
     public void setAdapter(BaseMenuAdapter adapter) {
+
+
+        //观察者,微信的公众号用户
+        if(mAdapter!=null && adapterMenuObserver!=null){
+            //取消订阅
+            mAdapter.unregisterDataSetObserver(adapterMenuObserver);
+        }
+
         this.mAdapter = adapter;
+        //注册观察者 具体的观察者实例对象
+        adapterMenuObserver =new AdapterMenuObserver();
+        //订阅
+        mAdapter.registerDataSetObserver(adapterMenuObserver);
         // 获取有多少条
         int count = mAdapter.getCount();
         for (int i = 0; i < count; i++) {
@@ -166,6 +195,7 @@ public class ListDataScreenView extends LinearLayout implements View.OnClickList
                     if (mCurrentPosition == position) {
                         // 打开了,关闭
                         closeMenu();
+                     //   adapterMenuObserver.closeMenu();
                     } else {
                         // 切换一下显示
                         View currentMenu = mMenuContainerView.getChildAt(mCurrentPosition);
@@ -194,7 +224,9 @@ public class ListDataScreenView extends LinearLayout implements View.OnClickList
         ObjectAnimator translationAnimator = ObjectAnimator.ofFloat(mMenuContainerView, "translationY", 0, -mMenuContainerHeight);
         translationAnimator.setDuration(DURATION_TIME);
         translationAnimator.start();
+
         mShadowView.setVisibility(View.VISIBLE);
+
         ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(mShadowView, "alpha", 1f, 0f);
         alphaAnimator.setDuration(DURATION_TIME);
         // 要等关闭动画执行完才能去隐藏当前菜单
@@ -239,6 +271,7 @@ public class ListDataScreenView extends LinearLayout implements View.OnClickList
         ObjectAnimator translationAnimator = ObjectAnimator.ofFloat(mMenuContainerView, "translationY", -mMenuContainerHeight, 0);
         translationAnimator.setDuration(DURATION_TIME);
         translationAnimator.start();
+
         ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(mShadowView, "alpha", 0f, 1f);
         alphaAnimator.setDuration(DURATION_TIME);
 

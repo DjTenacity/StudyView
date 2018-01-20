@@ -1,4 +1,4 @@
-package com.gdj.myview.view.menudata;
+package com.gdj.myview.view.menuview;
 
 import android.content.Context;
 import android.graphics.Color;
