@@ -52,7 +52,10 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder srcHolder, RecyclerView.ViewHolder target) {
         //自拖拽的过程中不断地调用adapter.notifyMove
-        if (srcHolder.getAdapterPosition() != target.getAdapterPosition()) {
+//        if (srcHolder.getAdapterPosition() != target.getAdapterPosition()) {
+//            return false;
+//        }
+        if(srcHolder.getItemViewType()!=target.getItemViewType()){
             return false;
         }
 
