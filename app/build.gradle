@@ -154,6 +154,6 @@ dependencies {
     // 编译extras目录下的camera模块
     compile project(':camera')
     compile 'com.google.auto.service:auto-service:1.0-rc3'
-    compile project(path: ':djknife')
+//    compile project(path: ':djknife')
 
 }

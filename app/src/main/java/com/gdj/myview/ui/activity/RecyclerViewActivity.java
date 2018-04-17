@@ -36,7 +36,7 @@ import butterknife.ButterKnife;
  */
 public class RecyclerViewActivity extends AppCompatActivity implements DragListener, HideScrollListener {
 
-    @BindView(R.id.recyclerView)
+    @BindView(R.id.recyclerview)
     RecyclerView rv;
     @BindView(R.id.iv_btn)
     ImageButton iv_btn;
