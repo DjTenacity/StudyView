@@ -4,11 +4,8 @@
     <modules>
       <module fileurl="file://C:\Users\cheng\Desktop\StudyView\MyView.iml" filepath="C:\Users\cheng\Desktop\StudyView\MyView.iml" />
       <module fileurl="file://$PROJECT_DIR$/StudyView.iml" filepath="$PROJECT_DIR$/StudyView.iml" />
-      <module fileurl="file://E:\myPro\StudyView\StudyView.iml" filepath="E:\myPro\StudyView\StudyView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://E:\myPro\StudyView\app\app.iml" filepath="E:\myPro\StudyView\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/camera/camera.iml" filepath="$PROJECT_DIR$/camera/camera.iml" />
-      <module fileurl="file://E:\myPro\StudyView\camera\camera.iml" filepath="E:\myPro\StudyView\camera\camera.iml" />
       <module fileurl="file://E:\myPro\StudyView\djheroknife\djheroknife.iml" filepath="E:\myPro\StudyView\djheroknife\djheroknife.iml" />
       <module fileurl="file://E:\myPro\StudyView\djknife\djknife.iml" filepath="E:\myPro\StudyView\djknife\djknife.iml" />
     </modules>
