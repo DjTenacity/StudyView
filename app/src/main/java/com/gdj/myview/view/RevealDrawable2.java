@@ -63,9 +63,10 @@ public class RevealDrawable2 extends Drawable {
                         r);//目标rect
 
                 canvas.save();//保存画布
-                canvas.clipRect(r);//切割
+                canvas.clipRect(r);//切割,调用clipRect()方法后，只会显示被裁剪的区域，之外的区域将不会显示
                 mUnselectedDrawable.draw(canvas);//画
                 canvas.restore();//恢复之前保存的画布
+                //所以使用save方法保存切割之前的画板,然后通过restore恢复切割之前的画板
             }
             {
                 //2.再绘制彩色部分
