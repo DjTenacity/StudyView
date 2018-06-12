@@ -36,6 +36,7 @@ import android.widget.Toast;
 import com.gdj.myview.R;
 import com.gdj.myview.entry.DataBean;
 import com.gdj.myview.mobileperf.render.DroidCardsView;
+import com.gdj.myview.view.AgreeView;
 import com.gdj.myview.view.BrokenScrollView;
 import com.gdj.myview.view.BrokenYearView;
 import com.gdj.myview.view.CircleTextProgressbar;
@@ -105,6 +106,11 @@ public class QQStepActivity extends AppCompatActivity {
 
     @BindView(R.id.myBattery)
     MyBattery myBattery;
+
+    @BindView(R.id.agreeView3)
+    AgreeView txtAgreeView;
+    @BindView(R.id.agreeView4)
+    AgreeView imgAgreeView ;
 
     private String[] mItems = {"1311", "223222", "1131", "222322", "1131", "222232",
             "1411", "1131", "222322", "1131", "222232", "22222", "11133", "22222"};
@@ -205,6 +211,17 @@ public class QQStepActivity extends AppCompatActivity {
             }
         });
         valueAnimator.start();
+
+        txtAgreeView.setClickListener(new AgreeView.AgreeViewClickListener() {
+            @Override
+            public void onAgreeClick(View view) {
+            }
+        });
+        imgAgreeView.setClickListener(new AgreeView.AgreeViewClickListener() {
+            @Override
+            public void onAgreeClick(View view) {
+            }
+        });
     }
 
     private void studyTextInputLayout() {
