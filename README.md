@@ -52,3 +52,4 @@ Drawable就是一个可画的对象，其可能是一张位图（BitmapDrawable�
  
    canvas.drawArc(rectF, -90, -180 * percent, false, paint2);  
     第二个参数是开始的角度 ,第三个参数是 要绘制的角度,切记,不是重点的角度!!!
+    第四个参数是  是否让起始点存在链接 圆心的线
