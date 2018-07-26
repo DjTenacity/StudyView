@@ -44,7 +44,11 @@
         <item>@color/orange</item>
         <item>@color/colorAccent</item>
     </array>
-
+    <!-- action menu color -->
+    <color name="menuNormalRed">#ffff0000</color>
+    <color name="menuPressRed">#ffd2322d</color>
+    <color name="menuNormalInfo">#ff90FB98</color>
+    <color name="menuPressInfo">#ff98ff90</color>
 
     <color name="custom_background_color">#ff012355</color>
 

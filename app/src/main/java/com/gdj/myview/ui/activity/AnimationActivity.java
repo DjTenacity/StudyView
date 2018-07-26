@@ -17,8 +17,11 @@ import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.BounceInterpolator;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.gdj.myview.R;
+import com.lilei.springactionmenu.ActionMenu;
+import com.lilei.springactionmenu.OnActionItemClickListener;
 
 /**
  * Comment:
@@ -32,7 +35,8 @@ public class AnimationActivity extends AppCompatActivity {
     private View ll_frist;
     private View second;
     private Button btn;
-
+    private ActionMenu actionMenuTop;
+    private ActionMenu actionMenuBottom;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,7 @@ public class AnimationActivity extends AppCompatActivity {
         ll_frist = findViewById(R.id.ll_frist);
         second = findViewById(R.id.second);
         btn = (Button) findViewById(R.id.btn);
+        setActionMenu();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             //21
             Slide slide=new Slide();
@@ -49,6 +54,38 @@ public class AnimationActivity extends AppCompatActivity {
             getWindow().setEnterTransition(slide);//进来的动画
         }
     }
+
+    private void setActionMenu() {
+        actionMenuTop = (ActionMenu) findViewById(R.id.actionMenuTop);
+        actionMenuBottom = (ActionMenu) findViewById(R.id.actionMenuBottom);
+
+        // add menu items
+        actionMenuTop.addView(R.drawable.ic_zoom_in_black_24dp, getItemColor(R.color.menuNormalInfo), getItemColor(R.color.menuPressInfo));
+        actionMenuTop.addView(R.drawable.like, getItemColor(R.color.menuNormalRed), getItemColor(R.color.menuPressRed));
+        actionMenuTop.addView(R.drawable.write);
+
+        actionMenuBottom.addView(R.drawable.search, getItemColor(R.color.menuNormalInfo), getItemColor(R.color.menuPressInfo));
+        actionMenuBottom.addView(R.drawable.like, getItemColor(R.color.menuNormalRed), getItemColor(R.color.menuPressRed));
+        actionMenuBottom.addView(R.drawable.write);
+
+
+        actionMenuBottom.setItemClickListener(new OnActionItemClickListener() {
+            @Override
+            public void onItemClick(int index) {
+                Toast.makeText(AnimationActivity.this, "Click " + index, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAnimationEnd(boolean isOpen) {
+                //       showMessage("animation end : " + isOpen);
+            }
+        });
+    }
+    private int getItemColor(int colorID) {
+        return getResources().getColor(colorID);
+    }
+
+
 
     //第一个 view 动画:翻转动画,透明度,缩小放大
     public void startFrist(View v) {

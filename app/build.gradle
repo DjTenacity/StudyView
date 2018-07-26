@@ -18,7 +18,7 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
     // 指定使用哪个版本的sdk编译，
     compileSdkVersion 25
     //buildToolsVersion指定使用哪个版本的构建工具。
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '27.0.3'
 
     //defaultConfig方法包含了该app的核心属性，该属性会重写在AndroidManifest.xml中的对应属性。
     //资源代码和R文件必须拥有相同的包名，否则你的资源代码将需要改变，
@@ -33,9 +33,12 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        //版本名后面添加一句话，意思就是flavor dimension 它的维度就是该版本号，这样维度就是都是统一的了
+        flavorDimensions "versionCode"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         // 默认是yingyongbao的渠道
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
     }
 
     // java版本
@@ -62,7 +65,7 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
                         // 输出apk名称为dumbo_v1.0_2015-01-15_yingyongbao.apk
                         def fileName = "myView_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
-                        output.outputFile = new File(outputFile.parent, fileName)
+             //           output.outputFile = new File(outputFile.parent, fileName)
                     }
                 }
             }
@@ -121,28 +124,28 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
 
 dependencies {
     // 编译libs目录下的所有jar包
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    testImplementation 'junit:junit:4.12'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
    // compile 'com.android.support:palette-v7:23.4.0-alpha1'
-    compile 'com.android.support:palette-v7:25.3.1'
+    implementation 'com.android.support:palette-v7:25.3.1'
     //compile 'com.android.support:appcompat-v7:25.3.1'
-    compile "com.android.support:appcompat-v7:$supportVersion"
-    compile "com.android.support:design:$supportVersion"
-    compile "com.android.support:recyclerview-v7:$supportVersion"
-    compile "com.android.support:cardview-v7:$supportVersion"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "com.android.support:design:$supportVersion"
+    implementation "com.android.support:recyclerview-v7:$supportVersion"
+    implementation "com.android.support:cardview-v7:$supportVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     //compile(name: 'camera-debug', ext: 'aar')   类似于 compile project(':camera')，不过camera是我改的源码，前者是原作者的封装
     // compile 'cn.zhimadi.android.common.lib:android-common-lib:1.0.0-SNAPSHOT'
-    compile 'com.jakewharton:butterknife:8.5.1'
+    implementation 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile 'com.lzy.widget:imagepicker:0.3.2'
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v2.0.7'
+    implementation 'com.lzy.widget:imagepicker:0.3.2'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v2.0.7'
     // circle image,圆形头像
-    compile 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
     //dagger2
     //  compile 'com.google.dagger:dagger:2.4'
     //  apt 'com.google.dagger:dagger-compiler:2.4'
@@ -152,8 +155,8 @@ dependencies {
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     // 编译extras目录下的camera模块
-    compile project(':camera')
+    implementation project(':camera')
     compile 'com.google.auto.service:auto-service:1.0-rc3'
 //    compile project(path: ':djknife')
-
+    implementation project(':springactionmenu')
 }
