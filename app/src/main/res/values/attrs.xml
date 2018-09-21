@@ -282,4 +282,11 @@
             <enum name="img" value="1"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="CustomTextView">
+        <attr name="ct_title_color" format="color"/>
+        <attr name="ct_title_bd_color" format="color"/>
+        <attr name="ct_title_size" format="integer"/>
+        <attr name="ct_title_name" format="string"/>
+    </declare-styleable>
 </resources>
