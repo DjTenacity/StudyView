@@ -125,7 +125,7 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
 dependencies {
     // 编译libs目录下的所有jar包
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation 'junit:junit:4.12'
@@ -151,12 +151,12 @@ dependencies {
     //  apt 'com.google.dagger:dagger-compiler:2.4'
     //java注解
     //  compile 'org.glassfish:javax.annotation:10.0-b28'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     // 编译extras目录下的camera模块
     implementation project(':camera')
-    compile 'com.google.auto.service:auto-service:1.0-rc3'
+    implementation 'com.google.auto.service:auto-service:1.0-rc3'
 //    compile project(path: ':djknife')
     implementation project(':springactionmenu')
 }

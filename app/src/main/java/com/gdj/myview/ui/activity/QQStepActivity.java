@@ -41,6 +41,7 @@ import com.gdj.myview.view.BrokenScrollView;
 import com.gdj.myview.view.BrokenYearView;
 import com.gdj.myview.view.CircleTextProgressbar;
 import com.gdj.myview.view.CircularDataView;
+import com.gdj.myview.view.CricleMenuLayout;
 import com.gdj.myview.view.PregressView;
 import com.gdj.myview.view.QQStepView;
 import com.gdj.myview.view.RefundProgressView;
@@ -116,6 +117,12 @@ public class QQStepActivity extends AppCompatActivity {
             "1411", "1131", "222322", "1131", "222232", "22222", "11133", "22222"};
     private HashMap<Double, Double> map = new HashMap<>();
     List<DataBean> dataBeanList = new ArrayList<>();
+    private CricleMenuLayout mCircleMenuLayout;//自定义圆盘菜单
+    private String[] mItemTexts = new String[]{"放大镜 ", "尺子", "分贝测试仪", "手电筒",
+            "计算器", "SOS"};//圆盘菜单显示文字
+    private int[] mItemImgs = new int[]{ R.drawable.avft_active, R.drawable.box_stack_active,
+            R.drawable.bubble_frame_active,  R.drawable.bubbles_active,
+            R.drawable.bullseye_active, R.drawable.circle_filled_active, R.drawable.circle_outline_active};//圆盘菜单显示图片
 
 
     @Override
@@ -137,6 +144,22 @@ public class QQStepActivity extends AppCompatActivity {
         //学习调色板
         studyPalette();
         studyTextInputLayout();
+        //初始化圆盘控件
+        mCircleMenuLayout = (CricleMenuLayout) findViewById(R.id.id_menulayout);
+        //初始化圆盘控件菜单
+        mCircleMenuLayout.setMenuItemIconsAndTexts(mItemImgs, mItemTexts);
+        //点击事件
+        mCircleMenuLayout.setOnMenuItemClickListener(new CricleMenuLayout.OnMenuItemClickListener() {
+            @Override
+            public void itemClick(View view, int pos) {
+                Toast.makeText(QQStepActivity.this,mItemTexts[pos],Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void itemCenterClick(View view) {
+
+            }
+        });
 
         loading_progress.setMaxProgress(10000);
         loading_progress.setProgress(300);

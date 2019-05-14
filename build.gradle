@@ -45,7 +45,7 @@ buildscript {//buildscript方法是定义了全局的相关属性
         // 依赖包的定义。支持maven/ivy，远程，本地库，也支持单文件，
         // 如果前面定义了repositories{}maven 库，使用maven的依赖（我没接触过ivy。。）的时候
         // 只需要按照用类似于com.android.tools.build:gradle:0.4，gradle 就会自动的往远程库下载相应的依赖。
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.1.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
