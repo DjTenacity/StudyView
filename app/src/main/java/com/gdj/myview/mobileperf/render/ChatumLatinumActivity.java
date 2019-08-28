@@ -17,14 +17,14 @@
 package com.gdj.myview.mobileperf.render;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.gdj.myview.R;
 import com.gdj.myview.ui.fragment.NewsDetailFragment;
 
 
 /**去掉主题背景色  ,合并系统默认FrameLayout*/
-public class ChatumLatinumActivity extends ActionBarActivity {
+public class ChatumLatinumActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

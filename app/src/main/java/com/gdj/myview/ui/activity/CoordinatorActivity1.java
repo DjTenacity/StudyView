@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.support.design.widget.Snackbar.LENGTH_SHORT;
@@ -29,6 +30,7 @@ import static android.support.design.widget.Snackbar.LENGTH_SHORT;
 /**
  * 作者：${LoveDjForever} on 2017/6/30 10:33
  *  * 邮箱： @qq.com
+ * @author admin
  */
 
 public class CoordinatorActivity1 extends BaseActivity {
@@ -46,16 +48,13 @@ public class CoordinatorActivity1 extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coordinator1);
-        initToolBar(toolbar, false, "");
+        initToolBar(toolbar, false, "    ");
 
         items = new ArrayList<>();
         items.add(new Pair<String, Fragment>("学习控件", new MYFragment()));
         items.add(new Pair<String, Fragment>("Path之波浪", new PathStudyFragment()));
         items.add(new Pair<String, Fragment>("Canvas学习", new CanvasStudyFragment()));
         items.add(new Pair<String, Fragment>("FreshDownloadView", new FreshDownloadFragment()));
-
-
-
 
         viewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));
         tab.setupWithViewPager(viewPager);

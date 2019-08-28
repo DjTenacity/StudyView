@@ -112,12 +112,15 @@ public class QQStepActivity extends AppCompatActivity {
     AgreeView txtAgreeView;
     @BindView(R.id.agreeView4)
     AgreeView imgAgreeView ;
+    //初始化圆盘控件菜单
+    @BindView(R.id.menulayout)
+    CricleMenuLayout mCircleMenuLayout ;
 
     private String[] mItems = {"1311", "223222", "1131", "222322", "1131", "222232",
             "1411", "1131", "222322", "1131", "222232", "22222", "11133", "22222"};
     private HashMap<Double, Double> map = new HashMap<>();
     List<DataBean> dataBeanList = new ArrayList<>();
-    private CricleMenuLayout mCircleMenuLayout;//自定义圆盘菜单
+//    private CricleMenuLayout mCircleMenuLayout;//自定义圆盘菜单
     private String[] mItemTexts = new String[]{"放大镜 ", "尺子", "分贝测试仪", "手电筒",
             "计算器", "SOS"};//圆盘菜单显示文字
     private int[] mItemImgs = new int[]{ R.drawable.avft_active, R.drawable.box_stack_active,
@@ -145,7 +148,7 @@ public class QQStepActivity extends AppCompatActivity {
         studyPalette();
         studyTextInputLayout();
         //初始化圆盘控件
-        mCircleMenuLayout = (CricleMenuLayout) findViewById(R.id.id_menulayout);
+//        mCircleMenuLayout = (CricleMenuLayout) findViewById(R.id.menulayout);
         //初始化圆盘控件菜单
         mCircleMenuLayout.setMenuItemIconsAndTexts(mItemImgs, mItemTexts);
         //点击事件

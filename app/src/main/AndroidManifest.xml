@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.gdj.myview">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -18,12 +19,15 @@
     <!--        android:hardwareAccelerated="false"关闭硬件加速-->
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:hardwareAccelerated="false"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory="任意字符"
+        >
         <activity
             android:name=".ui.activity.CoordinatorActivity1"
             android:theme="@style/AppTheme.NoActionBar">
@@ -95,13 +99,13 @@
 
 
         <service android:name=".service.DownloadService" />
-        <service android:name=".service.MyIntentService" />
-        <service android:name=".service.MyBindService" />
-        <service android:name=".AidlService">
-            <intent-filter>
-                <action android:name="com.gdj.myview.DataService" />
-            </intent-filter>
-        </service>
+        <!--<service android:name=".service.MyIntentService" />-->
+        <!--<service android:name=".service.MyBindService" />-->
+        <!--<service android:name=".AidlService">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.gdj.myview.DataService" />-->
+            <!--</intent-filter>-->
+        <!--</service>-->
     </application>
 
 </manifest>

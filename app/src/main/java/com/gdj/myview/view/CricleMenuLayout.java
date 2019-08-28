@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.gdj.myview.R;
 
 /**
- * 描   述: 转轮菜单  自定义布局实现触摸旋转功能
+ * 描   述: 转轮菜单  自定义布局实现触摸旋转功能  https://blog.csdn.net/css33/article/details/87951413
  * 创 建 人: gaodianjie
  * 创建日期: 2019/5/14 19:39
  */

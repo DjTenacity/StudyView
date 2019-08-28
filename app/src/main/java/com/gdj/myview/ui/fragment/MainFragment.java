@@ -68,7 +68,8 @@ public abstract class MainFragment extends BaseFragment implements SwipeRefreshL
         refreshLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
-                adapter.loadComplete();
+                adapter.notifyDataSetChanged();
+//                adapter.loadComplete();
             }
         }, 500);
     }
@@ -97,7 +98,7 @@ public abstract class MainFragment extends BaseFragment implements SwipeRefreshL
 
     public abstract void onItemClick(int position);
 
-    private class MainAdapter extends BaseQuickAdapter<ItemModel> {
+    private class MainAdapter extends BaseQuickAdapter<ItemModel,BaseViewHolder> {
 
         MainAdapter(List<ItemModel> data) {
             super(R.layout.item_main_list, data);

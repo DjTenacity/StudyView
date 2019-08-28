@@ -224,12 +224,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="400dp" />
             <com.gdj.myview.view.CricleMenuLayout
-                android:id="@+id/id_menulayout"
+                android:id="@+id/menulayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/circle_bg"
+                android:background="@drawable/circle_outline"
                 android:padding="100dp">
-            <!--圆盘中间位置布局-->
+                <!--android:background="@drawable/circle_bg"-->
+                <!--圆盘中间位置布局-->
             <RelativeLayout
                 android:id="@+id/id_circle_menu_item_center"
                 android:layout_width="wrap_content"

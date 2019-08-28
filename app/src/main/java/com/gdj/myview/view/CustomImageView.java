@@ -65,10 +65,10 @@ public class CustomImageView extends ImageView {
         // 获取 bitmap，即传入 imageview 的 bitmap
         Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
         // 标志
-        int saveFlags = Canvas.MATRIX_SAVE_FLAG | Canvas.CLIP_SAVE_FLAG | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG
-                | Canvas.FULL_COLOR_LAYER_SAVE_FLAG | Canvas.CLIP_TO_LAYER_SAVE_FLAG;
-        canvas.saveLayer(0, 0, getWidth(), getHeight(), null, saveFlags);
-
+//        int saveFlags = Canvas.MATRIX_SAVE_FLAG | Canvas.CLIP_SAVE_FLAG | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG
+//                | Canvas.FULL_COLOR_LAYER_SAVE_FLAG | Canvas.CLIP_TO_LAYER_SAVE_FLAG;
+//        canvas.saveLayer(0, 0, getWidth(), getHeight(), null, saveFlags);
+        canvas.saveLayer(0, 0, getWidth(), getHeight(), null);
         switch (gravity) {
             case 1://左上
                 drawLeftTop(canvas, bitmap);

@@ -1,4 +1,3 @@
-
 package com.gdj.myview.ui.activity;
 
 import android.app.ProgressDialog;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.gdj.myview.R;
@@ -25,7 +23,8 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    @SuppressWarnings("unchecked")
+    private ProgressDialog dialog;
+
     public <T extends View> T findView(int id) {
         return (T) findViewById(id);
     }
@@ -54,27 +53,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:// 点击返回图标事件
-                finish();
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    /** 子类可以重写改变状态栏颜色 */
-    protected int setStatusBarColor() {
-        return getColorPrimary();
-    }
-
-    /** 子类可以重写决定是否使用透明状态栏 */
-    protected boolean translucentStatusBar() {
-        return false;
-    }
-
-    /** 设置状态栏颜色 */
+    /**
+     * 设置状态栏颜色
+     */
     protected void initSystemBarTint() {
         Window window = getWindow();
         if (translucentStatusBar()) {
@@ -104,36 +85,67 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    /** 获取主题色 */
+    /**
+     * 子类可以重写决定是否使用透明状态栏
+     */
+    protected boolean translucentStatusBar() {
+        return false;
+    }
+
+    /**
+     * 子类可以重写改变状态栏颜色
+     */
+    protected int setStatusBarColor() {
+        return getColorPrimary();
+    }
+
+    /**
+     * 获取主题色
+     */
     public int getColorPrimary() {
         TypedValue typedValue = new TypedValue();
         getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
         return typedValue.data;
     }
 
-    /** 获取深主题色 */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:// 点击返回图标事件
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /**
+     * 获取深主题色
+     */
     public int getDarkColorPrimary() {
         TypedValue typedValue = new TypedValue();
         getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValue, true);
         return typedValue.data;
     }
 
-    /** 初始化 Toolbar */
+    public void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, int resTitle) {
+        initToolBar(toolbar, homeAsUpEnabled, getString(resTitle));
+    }
+
+    /**
+     * 初始化 Toolbar
+     */
     public void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, String title) {
+        if (null == toolbar) {
+            return;
+        }
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(homeAsUpEnabled);
     }
 
-    public void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, int resTitle) {
-        initToolBar(toolbar, homeAsUpEnabled, getString(resTitle));
-    }
-
     public void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
-
-    private ProgressDialog dialog;
 
     public void showLoading() {
         if (dialog != null && dialog.isShowing()) return;

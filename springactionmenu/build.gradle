@@ -3,13 +3,12 @@ apply plugin: 'com.android.library'
 android {
     // 默认情况下，只需要指定compileSdkVersion和buildtoolsVersion，compileSdkVersion
     // 指定使用哪个版本的sdk编译，
-    compileSdkVersion 25
+    compileSdkVersion 28
     //buildToolsVersion指定使用哪个版本的构建工具。
-    buildToolsVersion '27.0.3'
 
     defaultConfig {
-        minSdkVersion 17
-        targetSdkVersion 25
+        minSdkVersion 22
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -22,6 +21,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+
+        sourceCompatibility JavaVersion.VERSION_1_8
+
+        targetCompatibility JavaVersion.VERSION_1_8
+
+    }
 }
 
 dependencies {
@@ -29,6 +35,6 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:25.3.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
 }
