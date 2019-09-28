@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\cheng\Desktop\StudyView\MyView.iml" filepath="C:\Users\cheng\Desktop\StudyView\MyView.iml" />
+      <module fileurl="file://C:/Users/cheng/Desktop/StudyView/MyView.iml" filepath="C:/Users/cheng/Desktop/StudyView/MyView.iml" />
       <module fileurl="file://$PROJECT_DIR$/StudyView.iml" filepath="$PROJECT_DIR$/StudyView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/camera/camera.iml" filepath="$PROJECT_DIR$/camera/camera.iml" />
-      <module fileurl="file://E:\myPro\StudyView\djheroknife\djheroknife.iml" filepath="E:\myPro\StudyView\djheroknife\djheroknife.iml" />
-      <module fileurl="file://E:\myPro\StudyView\djknife\djknife.iml" filepath="E:\myPro\StudyView\djknife\djknife.iml" />
+      <module fileurl="file://$PROJECT_DIR$/djheroknife/djheroknife.iml" filepath="$PROJECT_DIR$/djheroknife/djheroknife.iml" />
+      <module fileurl="file://$PROJECT_DIR$/djknife/djknife.iml" filepath="$PROJECT_DIR$/djknife/djknife.iml" />
     </modules>
   </component>
 </project>

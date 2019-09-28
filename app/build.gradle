@@ -5,20 +5,20 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'com.jakewharton.butterknife'
 //添加如下代码，应用apt插件
 //apply plugin: 'com.neenbedankt.android-apt'
 
-def releaseTime() {
+static def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
 
 android { //设置编译android项目的参数，接下来，我们的构建android项目的所有配置都在这里完成。
     // 默认情况下，只需要指定compileSdkVersion和buildtoolsVersion，compileSdkVersion
     // 指定使用哪个版本的sdk编译，
-    compileSdkVersion 25
+    compileSdkVersion 28
     //buildToolsVersion指定使用哪个版本的构建工具。
-    buildToolsVersion "25.0.3"
+    buildToolsVersion "28.0.3"
 
     //defaultConfig方法包含了该app的核心属性，该属性会重写在AndroidManifest.xml中的对应属性。
     //资源代码和R文件必须拥有相同的包名，否则你的资源代码将需要改变，
@@ -30,18 +30,21 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
         // 应用的包名
         applicationId "com.gdj.myview"
         minSdkVersion 17
-        targetSdkVersion 25
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        flavorDimensions "default"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         // 默认是yingyongbao的渠道
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
+
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
     }
 
     // java版本
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     signingConfigs { //打签名包
@@ -62,7 +65,7 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
                         // 输出apk名称为dumbo_v1.0_2015-01-15_yingyongbao.apk
                         def fileName = "myView_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
-                        output.outputFile = new File(outputFile.parent, fileName)
+//                        output.outputFile = new File(outputFile.parent, fileName)
                     }
                 }
             }
@@ -105,6 +108,19 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
         }
     }
 }
+
+configurations.all {
+    //        resolutionStrategy.force 'com.android.support:support-v4:27.1.1'
+    resolutionStrategy.eachDependency {
+        DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '28.0.0'
+                }
+            }
+    }
+}
 //configurations.all { 私人仓库
 //    resolutionStrategy {
 //        force 'cn.zhimadi.android.common.lib:android-common-lib:1.0.0-SNAPSHOT'
@@ -121,39 +137,41 @@ android { //设置编译android项目的参数，接下来，我们的构建andr
 
 dependencies {
     // 编译libs目录下的所有jar包
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-   // compile 'com.android.support:palette-v7:23.4.0-alpha1'
-    compile 'com.android.support:palette-v7:25.3.1'
-    //compile 'com.android.support:appcompat-v7:25.3.1'
-    compile "com.android.support:appcompat-v7:$supportVersion"
-    compile "com.android.support:design:$supportVersion"
-    compile "com.android.support:recyclerview-v7:$supportVersion"
-    compile "com.android.support:cardview-v7:$supportVersion"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    //compile(name: 'camera-debug', ext: 'aar')   类似于 compile project(':camera')，不过camera是我改的源码，前者是原作者的封装
-    // compile 'cn.zhimadi.android.common.lib:android-common-lib:1.0.0-SNAPSHOT'
-    compile 'com.jakewharton:butterknife:8.5.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile 'com.lzy.widget:imagepicker:0.3.2'
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v2.0.7'
+    testImplementation 'junit:junit:4.12'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // implementation 'com.android.support:palette-v7:23.4.0-alpha1'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:palette-v7:28.0.0'
+    //implementation 'com.android.support:appcompat-v7:25.3.1'
+    implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "com.android.support:design:$supportVersion"
+    implementation "com.android.support:recyclerview-v7:$supportVersion"
+    implementation "com.android.support:cardview-v7:$supportVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    //implementation(name: 'camera-debug', ext: 'aar')   类似于 implementation project(':camera')，不过camera是我改的源码，前者是原作者的封装
+    // implementation 'cn.zhimadi.android.common.lib:android-common-lib:1.0.0-SNAPSHOT'
+    implementation 'com.jakewharton:butterknife:9.0.0-rc2'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
+    implementation 'com.lzy.widget:imagepicker:0.5.5'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     // circle image,圆形头像
-    compile 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
     //dagger2
-    //  compile 'com.google.dagger:dagger:2.4'
-    //  apt 'com.google.dagger:dagger-compiler:2.4'
+    //  implementation 'com.google.dagger:dagger:2.4'
+    //  apt 'com.google.dagger:dagger-implementationr:2.4'
     //java注解
-    //  compile 'org.glassfish:javax.annotation:10.0-b28'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    //  implementation 'org.glassfish:javax.annotation:10.0-b28'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     // 编译extras目录下的camera模块
-    compile project(':camera')
-    compile 'com.google.auto.service:auto-service:1.0-rc3'
-//    compile project(path: ':djknife')
+    implementation project(':camera')
+    implementation 'com.google.auto.service:auto-service:1.0-rc6'
+//    implementation 'com.jakewharton:butterknife:8.8.1'
+//    implementation project(path: ':djknife')
 
 }
